@@ -62,6 +62,8 @@
 
     <Compile Include="../../Assets/VoxDetroit/Scripts/Persistence/VoxDetroitSaveData.cs" Link="Persistence/VoxDetroitSaveData.cs" />
     <Compile Include="../../Assets/VoxDetroit/Scripts/Persistence/NewGameFactory.cs" Link="Persistence/NewGameFactory.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Persistence/SaveDataNormalizer.cs" Link="Persistence/SaveDataNormalizer.cs" />
     <Compile Include="../../Assets/VoxDetroit/Scripts/Simulation/SimulationSession.cs" Link="Simulation/SimulationSession.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Simulation/PrototypeScenarioFactory.cs" Link="Simulation/PrototypeScenarioFactory.cs" />
   </ItemGroup>
 </Project>

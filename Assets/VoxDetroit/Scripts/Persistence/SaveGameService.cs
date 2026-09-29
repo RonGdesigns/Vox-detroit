@@ -82,7 +82,7 @@ namespace VoxDetroit.Persistence
                 JsonUtility.FromJson<VoxDetroitSaveData>(json);
 
             ValidateLoaded(data);
-            return data;
+            return SaveDataNormalizer.Normalize(data);
         }
 
         public bool TryLoad(

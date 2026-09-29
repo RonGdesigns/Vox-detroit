@@ -25,6 +25,7 @@ internal static class Program
         TestChunkCoordinates();
         TestFinanceJobsPropertyAndObligations();
         TestStoreTasksAndSimulation();
+        TestPrototypeScenario();
         TestBusiness();
         TestNpcSchedule();
         TestStory();
@@ -302,6 +303,117 @@ internal static class Program
         Assert(
             advance.missedObligations.Count == 0,
             "simulation processes payable bill");
+    }
+
+
+    private static void TestPrototypeScenario()
+    {
+        VoxDetroitSaveData data =
+            PrototypeScenarioFactory.Create();
+
+        var session = new SimulationSession(
+            data,
+            PrototypeJobCatalog.Create());
+
+        Assert(
+            session.Finance
+                .GetBalance(AccountIds.PlayerCash)
+                .Cents == 6000,
+            "prototype starting cash");
+
+        Assert(
+            session.Finance
+                .GetBalance(AccountIds.PlayerChecking)
+                .Cents == 40000,
+            "prototype starting checking");
+
+        Assert(
+            data.player.residencePropertyId ==
+            PrototypeContentIds.StartingApartment,
+            "prototype residence assigned");
+
+        Assert(
+            session.Properties.Find(
+                PrototypeContentIds.StartingApartment) != null,
+            "prototype apartment exists");
+
+        Assert(
+            data.obligations.obligations.Count == 2,
+            "prototype bills seeded");
+
+        Assert(
+            data.npcs.npcs.Count == 2,
+            "prototype NPC hooks seeded");
+
+        Assert(
+            session.Story.GetFlag("intro.arrived"),
+            "prototype intro story state");
+
+        Assert(
+            session.Jobs.TryAcceptJob("job.delivery.entry"),
+            "prototype delivery job accepted");
+
+        Assert(
+            session.JobTasks.TryAccept(
+                PrototypeContentIds.FirstDeliveryTask,
+                data.employment.currentJobId,
+                session.Clock.TotalMinutes),
+            "prototype first delivery accepted");
+
+        long balanceBefore =
+            session.Finance
+                .GetBalance(AccountIds.PlayerChecking)
+                .Cents;
+
+        Assert(
+            session.JobTasks.TryAddProgress(
+                PrototypeContentIds.FirstDeliveryTask,
+                1,
+                session.Clock.TotalMinutes,
+                session.Jobs,
+                session.Finance),
+            "prototype first delivery completed");
+
+        Assert(
+            session.Finance
+                .GetBalance(AccountIds.PlayerChecking)
+                .Cents ==
+            balanceBefore + 1800,
+            "prototype delivery pays player");
+
+        Assert(
+            session.Stores.TryBuy(
+                PrototypeContentIds.HardwareStore,
+                "material.brick",
+                1,
+                AccountIds.PlayerChecking,
+                session.Finance,
+                session.Inventory,
+                session.Clock.TotalMinutes),
+            "prototype store purchase");
+
+        Assert(
+            session.Inventory.Count("material.brick") == 1,
+            "prototype inventory receives purchase");
+
+        var sparse = new VoxDetroitSaveData
+        {
+            finance = null,
+            inventory = null,
+            stores = null,
+            jobTasks = null,
+            npcs = null
+        };
+
+        SaveDataNormalizer.Normalize(sparse);
+
+        Assert(
+            sparse.finance != null &&
+            sparse.inventory != null &&
+            sparse.stores != null &&
+            sparse.jobTasks != null &&
+            sparse.npcs != null,
+            "save normalizer repairs missing sections");
     }
 
     private static void TestBusiness()

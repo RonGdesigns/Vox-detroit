@@ -40,22 +40,23 @@ namespace VoxDetroit.Simulation
             VoxDetroitSaveData data,
             IEnumerable<JobDefinition> jobDefinitions)
         {
-            Data = data ??
-                throw new ArgumentNullException(nameof(data));
+            Data = SaveDataNormalizer.Normalize(
+                data ??
+                throw new ArgumentNullException(nameof(data)));
 
-            Clock = new GameClock(data.clock);
-            Finance = new FinanceService(data.finance);
-            Obligations = new ObligationService(data.obligations);
+            Clock = new GameClock(Data.clock);
+            Finance = new FinanceService(Data.finance);
+            Obligations = new ObligationService(Data.obligations);
             Jobs = new JobService(
-                data.employment,
+                Data.employment,
                 jobDefinitions);
-            JobTasks = new JobTaskService(data.jobTasks);
-            Inventory = new InventoryService(data.inventory);
-            Stores = new StoreService(data.stores);
-            Properties = new PropertyService(data.properties);
-            Businesses = new BusinessService(data.businesses);
-            Reputation = new ReputationService(data.reputation);
-            Story = new StoryService(data.story);
+            JobTasks = new JobTaskService(Data.jobTasks);
+            Inventory = new InventoryService(Data.inventory);
+            Stores = new StoreService(Data.stores);
+            Properties = new PropertyService(Data.properties);
+            Businesses = new BusinessService(Data.businesses);
+            Reputation = new ReputationService(Data.reputation);
+            Story = new StoryService(Data.story);
         }
 
         public SimulationAdvanceResult AdvanceMinutes(int minutes)
