@@ -20,7 +20,6 @@ namespace VoxDetroit.Editor
         private const string OutputPath =
             "Assets/VoxDetroit/Data/downtown-core-prototype.json";
 
-        // Small Downtown core test area near Campus Martius.
         private const double South = 42.3306;
         private const double West = -83.0475;
         private const double North = 42.3323;
@@ -62,8 +61,7 @@ namespace VoxDetroit.Editor
 
             using (new EditorGUI.DisabledScope(_downloading))
             {
-                if (GUILayout.Button(
-                        "Download + Convert Prototype"))
+                if (GUILayout.Button("Download + Convert Prototype"))
                 {
                     DownloadAndConvert();
                 }
@@ -81,42 +79,31 @@ namespace VoxDetroit.Editor
                 string query = BuildOverpassQuery();
 
                 using (var client = new HttpClient())
-                using (var body =
-                       new StringContent(
-                           query,
-                           Encoding.UTF8,
-                           "application/x-www-form-urlencoded"))
+                using (var formContent =
+                       new FormUrlEncodedContent(
+                           new[]
+                           {
+                               new KeyValuePair<string, string>(
+                                   "data",
+                                   query)
+                           }))
                 {
-                    body.Headers.Remove("Content-Type");
-                    body.Headers.TryAddWithoutValidation(
-                        "Content-Type",
-                        "application/x-www-form-urlencoded");
+                    client.DefaultRequestHeaders.UserAgent.ParseAdd(
+                        "VoxDetroit-Unity-Importer/0.1");
 
-                    var formContent =
-                        new FormUrlEncodedContent(
-                            new[]
-                            {
-                                new KeyValuePair<string, string>(
-                                    "data",
-                                    query)
-                            });
+                    HttpResponseMessage response =
+                        await client.PostAsync(Endpoint, formContent);
 
-                    using (formContent)
-                    {
-                        string xml = await client.PostAsync(
-                                Endpoint,
-                                formContent)
-                            .Result
-                            .Content
-                            .ReadAsStringAsync();
-                        ConvertAndSave(xml);
-                    }
+                    response.EnsureSuccessStatusCode();
+                    string xml =
+                        await response.Content.ReadAsStringAsync();
+
+                    ConvertAndSave(xml);
                 }
             }
             catch (Exception exception)
             {
-                _status =
-                    "Import failed: " + exception.Message;
+                _status = "Import failed: " + exception.Message;
                 Debug.LogException(exception);
             }
             finally
@@ -133,8 +120,7 @@ namespace VoxDetroit.Editor
             var roads = new List<RoadFeature>();
             var buildings = new List<BuildingFeature>();
 
-            foreach (XElement way in
-                     source.Descendants("way"))
+            foreach (XElement way in source.Descendants("way"))
             {
                 Dictionary<string, string> tags =
                     way.Elements("tag")
@@ -143,10 +129,8 @@ namespace VoxDetroit.Editor
                                 element.Attribute("k") != null &&
                                 element.Attribute("v") != null)
                         .ToDictionary(
-                            element =>
-                                element.Attribute("k").Value,
-                            element =>
-                                element.Attribute("v").Value);
+                            element => element.Attribute("k").Value,
+                            element => element.Attribute("v").Value);
 
                 GeoPoint[] geometry =
                     way.Elements("nd")
@@ -168,12 +152,9 @@ namespace VoxDetroit.Editor
                     continue;
                 }
 
-                string id =
-                    "way/" + way.Attribute("id")?.Value;
+                string id = "way/" + way.Attribute("id")?.Value;
 
-                if (tags.TryGetValue(
-                        "highway",
-                        out string highway))
+                if (tags.TryGetValue("highway", out string highway))
                 {
                     roads.Add(
                         new RoadFeature
@@ -187,9 +168,7 @@ namespace VoxDetroit.Editor
                         });
                 }
 
-                if (tags.TryGetValue(
-                        "building",
-                        out string building))
+                if (tags.TryGetValue("building", out string building))
                 {
                     buildings.Add(
                         new BuildingFeature
@@ -206,38 +185,28 @@ namespace VoxDetroit.Editor
                 }
             }
 
-            var document =
-                new DetroitImportDocument
+            var document = new DetroitImportDocument
+            {
+                schemaVersion = "1.0",
+                sourceName = "OpenStreetMap",
+                sourceAttribution = "© OpenStreetMap contributors",
+                sourceLicense = "Open Database License (ODbL) 1.0",
+                sourceUrl = "https://www.openstreetmap.org/copyright",
+                retrievedUtc = DateTime.UtcNow.ToString("O"),
+                areaName = "Downtown Detroit Core Prototype",
+                bounds = new GeoBounds
                 {
-                    schemaVersion = "1.0",
-                    sourceName = "OpenStreetMap",
-                    sourceAttribution =
-                        "© OpenStreetMap contributors",
-                    sourceLicense =
-                        "Open Database License (ODbL) 1.0",
-                    sourceUrl =
-                        "https://www.openstreetmap.org/copyright",
-                    retrievedUtc =
-                        DateTime.UtcNow.ToString("O"),
-                    areaName =
-                        "Downtown Detroit Core Prototype",
-                    bounds =
-                        new GeoBounds
-                        {
-                            south = South,
-                            west = West,
-                            north = North,
-                            east = East
-                        },
-                    roads = roads.ToArray(),
-                    buildings = buildings.ToArray()
-                };
+                    south = South,
+                    west = West,
+                    north = North,
+                    east = East
+                },
+                roads = roads.ToArray(),
+                buildings = buildings.ToArray()
+            };
 
-            string json =
-                JsonUtility.ToJson(document, true);
-
-            string directory =
-                Path.GetDirectoryName(OutputPath);
+            string json = JsonUtility.ToJson(document, true);
+            string directory = Path.GetDirectoryName(OutputPath);
 
             if (!Directory.Exists(directory))
             {
@@ -256,14 +225,13 @@ namespace VoxDetroit.Editor
 
         private static string BuildOverpassQuery()
         {
-            string bbox =
-                string.Format(
-                    CultureInfo.InvariantCulture,
-                    "{0},{1},{2},{3}",
-                    South,
-                    West,
-                    North,
-                    East);
+            string bbox = string.Format(
+                CultureInfo.InvariantCulture,
+                "{0},{1},{2},{3}",
+                South,
+                West,
+                North,
+                East);
 
             return
                 "[out:xml][timeout:30];" +
@@ -278,12 +246,8 @@ namespace VoxDetroit.Editor
             Dictionary<string, string> tags,
             string highway)
         {
-            if (tags.TryGetValue(
-                    "width",
-                    out string widthText) &&
-                TryParseMeters(
-                    widthText,
-                    out float explicitWidth))
+            if (tags.TryGetValue("width", out string widthText) &&
+                TryParseMeters(widthText, out float explicitWidth))
             {
                 return explicitWidth;
             }
@@ -316,12 +280,8 @@ namespace VoxDetroit.Editor
         private static float ResolveBuildingHeight(
             Dictionary<string, string> tags)
         {
-            if (tags.TryGetValue(
-                    "height",
-                    out string heightText) &&
-                TryParseMeters(
-                    heightText,
-                    out float height))
+            if (tags.TryGetValue("height", out string heightText) &&
+                TryParseMeters(heightText, out float height))
             {
                 return height;
             }
@@ -352,16 +312,12 @@ namespace VoxDetroit.Editor
             string value,
             out float meters)
         {
-            string trimmed =
-                value.Trim().ToLowerInvariant();
+            string trimmed = value.Trim().ToLowerInvariant();
 
             if (trimmed.EndsWith("ft"))
             {
                 string feetText =
-                    trimmed.Substring(
-                        0,
-                        trimmed.Length - 2)
-                    .Trim();
+                    trimmed.Substring(0, trimmed.Length - 2).Trim();
 
                 if (float.TryParse(
                         feetText,
@@ -374,11 +330,11 @@ namespace VoxDetroit.Editor
                 }
             }
 
-            trimmed =
-                trimmed.Replace("meters", "")
-                    .Replace("meter", "")
-                    .Replace("m", "")
-                    .Trim();
+            trimmed = trimmed
+                .Replace("meters", "")
+                .Replace("meter", "")
+                .Replace("m", "")
+                .Trim();
 
             return float.TryParse(
                 trimmed,
@@ -391,9 +347,7 @@ namespace VoxDetroit.Editor
             Dictionary<string, string> tags,
             string key)
         {
-            return tags.TryGetValue(
-                key,
-                out string value)
+            return tags.TryGetValue(key, out string value)
                 ? value
                 : string.Empty;
         }
