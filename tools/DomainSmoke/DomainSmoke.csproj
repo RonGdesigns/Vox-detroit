@@ -51,6 +51,11 @@
     <Compile Include="../../Assets/VoxDetroit/Scripts/Events/PerformerState.cs" Link="Events/PerformerState.cs" />
     <Compile Include="../../Assets/VoxDetroit/Scripts/Events/CityEventService.cs" Link="Events/CityEventService.cs" />
     <Compile Include="../../Assets/VoxDetroit/Scripts/Events/PrototypeEventCatalog.cs" Link="Events/PrototypeEventCatalog.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Events/CrowdRepresentationPlan.cs" Link="Events/CrowdRepresentationPlan.cs" />
+
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Sports/SportsState.cs" Link="Sports/SportsState.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Sports/SportsGameService.cs" Link="Sports/SportsGameService.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Sports/PrototypeSportsCatalog.cs" Link="Sports/PrototypeSportsCatalog.cs" />
 
     <Compile Include="../../Assets/VoxDetroit/Scripts/Properties/PropertyState.cs" Link="Properties/PropertyState.cs" />
     <Compile Include="../../Assets/VoxDetroit/Scripts/Properties/PropertyService.cs" Link="Properties/PropertyService.cs" />

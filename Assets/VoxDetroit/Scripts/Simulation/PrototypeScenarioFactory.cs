@@ -6,6 +6,7 @@ using VoxDetroit.Inventory;
 using VoxDetroit.Jobs;
 using VoxDetroit.NPCs;
 using VoxDetroit.Persistence;
+using VoxDetroit.Sports;
 using VoxDetroit.Properties;
 using VoxDetroit.Story;
 
@@ -53,6 +54,7 @@ namespace VoxDetroit.Simulation
             SeedInventory(data);
             SeedStores(data);
             SeedCityEvents(data);
+            SeedSports(data);
             SeedJobTasks(data);
             SeedNpcs(data);
             SeedStory(data);
@@ -191,6 +193,16 @@ namespace VoxDetroit.Simulation
                      in PrototypeCityEventCatalog.Create())
             {
                 data.cityEvents.events.Add(cityEvent);
+            }
+        }
+
+        private static void SeedSports(
+            VoxDetroitSaveData data)
+        {
+            foreach (SportsGameRecord game
+                     in PrototypeSportsCatalog.CreateSchedule())
+            {
+                data.sports.games.Add(game);
             }
         }
 

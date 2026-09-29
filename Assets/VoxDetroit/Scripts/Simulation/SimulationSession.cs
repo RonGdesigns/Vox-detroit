@@ -12,6 +12,7 @@ using VoxDetroit.Persistence;
 using VoxDetroit.Properties;
 using VoxDetroit.Reputation;
 using VoxDetroit.Story;
+using VoxDetroit.Sports;
 
 namespace VoxDetroit.Simulation
 {
@@ -34,6 +35,7 @@ namespace VoxDetroit.Simulation
         public InventoryService Inventory { get; }
         public StoreService Stores { get; }
         public CityEventService CityEvents { get; }
+        public SportsGameService Sports { get; }
         public CareerService Careers { get; }
         public PropertyService Properties { get; }
         public BusinessService Businesses { get; }
@@ -42,7 +44,8 @@ namespace VoxDetroit.Simulation
 
         public SimulationSession(
             VoxDetroitSaveData data,
-            IEnumerable<JobDefinition> jobDefinitions)
+            IEnumerable<JobDefinition> jobDefinitions,
+            IEnumerable<SportsTeamDefinition> sportsTeams = null)
         {
             Data = SaveDataNormalizer.Normalize(
                 data ??
@@ -58,6 +61,9 @@ namespace VoxDetroit.Simulation
             Inventory = new InventoryService(Data.inventory);
             Stores = new StoreService(Data.stores);
             CityEvents = new CityEventService(Data.cityEvents);
+            Sports = new SportsGameService(
+                Data.sports,
+                sportsTeams ?? PrototypeSportsCatalog.CreateTeams());
             Careers = new CareerService(Data.careers);
             Properties = new PropertyService(Data.properties);
             Businesses = new BusinessService(Data.businesses);

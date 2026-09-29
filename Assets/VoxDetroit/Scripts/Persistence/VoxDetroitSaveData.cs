@@ -12,6 +12,7 @@ using VoxDetroit.Player;
 using VoxDetroit.Properties;
 using VoxDetroit.Reputation;
 using VoxDetroit.Story;
+using VoxDetroit.Sports;
 using VoxDetroit.Vehicles;
 using VoxDetroit.World;
 
@@ -41,6 +42,7 @@ namespace VoxDetroit.Persistence
         public StoreWorldState stores = new StoreWorldState();
         public CityEventWorldState cityEvents = new CityEventWorldState();
         public PerformerWorldState performers = new PerformerWorldState();
+        public SportsWorldState sports = new SportsWorldState();
         public CareerWorldState careers = new CareerWorldState();
         public SubstanceMarketState substanceMarkets =
             new SubstanceMarketState();

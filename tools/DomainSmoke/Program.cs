@@ -14,6 +14,7 @@ using VoxDetroit.NPCs;
 using VoxDetroit.Properties;
 using VoxDetroit.Reputation;
 using VoxDetroit.Story;
+using VoxDetroit.Sports;
 using VoxDetroit.Voxels;
 using VoxDetroit.World;
 
@@ -30,6 +31,7 @@ internal static class Program
         TestPrototypeScenario();
         TestCareerPaths();
         TestCityEvents();
+        TestSportsAndCrowds();
         TestBusiness();
         TestNpcSchedule();
         TestStory();
@@ -546,6 +548,102 @@ internal static class Program
                 venue =>
                     venue.id == "venue.hart-plaza"),
             "Hart Plaza venue catalog");
+    }
+
+
+    private static void TestSportsAndCrowds()
+    {
+        var state = new SportsWorldState();
+
+        foreach (SportsGameRecord game
+                 in PrototypeSportsCatalog.CreateSchedule())
+        {
+            state.games.Add(game);
+        }
+
+        var service = new SportsGameService(
+            state,
+            PrototypeSportsCatalog.CreateTeams());
+
+        SportsGameRecord football =
+            service.Find("game.football.home.01");
+
+        Assert(football != null, "football game seeded");
+
+        SportsGameSnapshot before =
+            service.GetSnapshot(
+                football.id,
+                football.startMinute - 10);
+
+        Assert(
+            before.status == SportsGameStatus.Scheduled,
+            "sports game scheduled state");
+
+        SportsGameSnapshot live =
+            service.GetSnapshot(
+                football.id,
+                football.startMinute + 90);
+
+        Assert(
+            live.status == SportsGameStatus.InProgress,
+            "sports game live state");
+
+        Assert(
+            football.moments.Count > 0,
+            "sports game timeline generated");
+
+        SportsGameSnapshot final =
+            service.GetSnapshot(
+                football.id,
+                football.startMinute +
+                football.scheduledDurationMinutes + 1);
+
+        Assert(
+            final.status == SportsGameStatus.Final,
+            "sports game final state");
+
+        Assert(
+            final.homeScore >= 0 &&
+            final.awayScore >= 0,
+            "sports final score valid");
+
+        EventDemandModifiers demand =
+            service.GetGameDayDemand(football);
+
+        Assert(
+            demand.taxiDemandPercent > 150 &&
+            demand.securityDemandPercent > 180,
+            "sports game changes city demand");
+
+        CrowdRepresentationPlan crowd =
+            CrowdRepresentationPlanner.Build(
+                football.expectedAttendance);
+
+        Assert(
+            crowd.fullNpcCount +
+            crowd.lightweightAgentCount +
+            crowd.visualCrowdCount ==
+            football.expectedAttendance,
+            "crowd representation covers attendance");
+
+        Assert(
+            crowd.fullNpcCount <= 120,
+            "crowd full NPC budget capped");
+
+        EventOverlayPlan overlay =
+            EventOverlayPlanner.ForSportsGame(
+                football.expectedAttendance);
+
+        Assert(
+            overlay.tailgateZone &&
+            overlay.temporaryParkingControl &&
+            overlay.securityCheckpoints > 0,
+            "sports overlay plan");
+
+        Assert(
+            service.MarkPlayerAttended(football.id) &&
+            football.playerAttended,
+            "sports attendance persists");
     }
 
     private static void TestBusiness()

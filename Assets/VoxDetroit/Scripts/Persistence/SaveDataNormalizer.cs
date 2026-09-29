@@ -12,6 +12,7 @@ using VoxDetroit.Player;
 using VoxDetroit.Properties;
 using VoxDetroit.Reputation;
 using VoxDetroit.Story;
+using VoxDetroit.Sports;
 using VoxDetroit.Vehicles;
 using VoxDetroit.World;
 
@@ -75,6 +76,11 @@ namespace VoxDetroit.Persistence
             if (data.performers == null)
             {
                 data.performers = new PerformerWorldState();
+            }
+
+            if (data.sports == null)
+            {
+                data.sports = new SportsWorldState();
             }
 
             if (data.careers == null)
@@ -170,6 +176,10 @@ namespace VoxDetroit.Persistence
             data.performers.seenLivePerformerIds =
                 data.performers.seenLivePerformerIds ??
                 new List<string>();
+
+            data.sports.games =
+                data.sports.games ??
+                new List<SportsGameRecord>();
 
             data.careers.paths =
                 data.careers.paths ??
