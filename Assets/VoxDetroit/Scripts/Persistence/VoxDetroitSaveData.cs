@@ -1,5 +1,6 @@
 using System;
 using VoxDetroit.Businesses;
+using VoxDetroit.Careers;
 using VoxDetroit.Commerce;
 using VoxDetroit.Core;
 using VoxDetroit.Economy;
@@ -37,6 +38,9 @@ namespace VoxDetroit.Persistence
         public JobTaskWorldState jobTasks = new JobTaskWorldState();
         public InventoryState inventory = new InventoryState();
         public StoreWorldState stores = new StoreWorldState();
+        public CareerWorldState careers = new CareerWorldState();
+        public SubstanceMarketState substanceMarkets =
+            new SubstanceMarketState();
         public PropertyWorldState properties = new PropertyWorldState();
         public BusinessWorldState businesses = new BusinessWorldState();
         public VehicleWorldState vehicles = new VehicleWorldState();

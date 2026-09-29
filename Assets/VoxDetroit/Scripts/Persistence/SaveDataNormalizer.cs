@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using VoxDetroit.Businesses;
 using VoxDetroit.Commerce;
+using VoxDetroit.Careers;
 using VoxDetroit.Core;
 using VoxDetroit.Economy;
 using VoxDetroit.Inventory;
@@ -63,6 +64,17 @@ namespace VoxDetroit.Persistence
             if (data.stores == null)
             {
                 data.stores = new StoreWorldState();
+            }
+
+            if (data.careers == null)
+            {
+                data.careers = new CareerWorldState();
+            }
+
+            if (data.substanceMarkets == null)
+            {
+                data.substanceMarkets =
+                    new SubstanceMarketState();
             }
 
             if (data.properties == null)
@@ -135,6 +147,14 @@ namespace VoxDetroit.Persistence
             data.stores.stores =
                 data.stores.stores ??
                 new List<StoreRecord>();
+
+            data.careers.paths =
+                data.careers.paths ??
+                new List<IncomePathProgress>();
+
+            data.substanceMarkets.categories =
+                data.substanceMarkets.categories ??
+                new List<SubstanceMarketProgress>();
 
             data.properties.properties =
                 data.properties.properties ??

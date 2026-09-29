@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using VoxDetroit.Businesses;
 using VoxDetroit.Commerce;
+using VoxDetroit.Careers;
 using VoxDetroit.Core;
 using VoxDetroit.Economy;
 using VoxDetroit.Inventory;
@@ -31,6 +32,7 @@ namespace VoxDetroit.Simulation
         public JobTaskService JobTasks { get; }
         public InventoryService Inventory { get; }
         public StoreService Stores { get; }
+        public CareerService Careers { get; }
         public PropertyService Properties { get; }
         public BusinessService Businesses { get; }
         public ReputationService Reputation { get; }
@@ -53,6 +55,7 @@ namespace VoxDetroit.Simulation
             JobTasks = new JobTaskService(Data.jobTasks);
             Inventory = new InventoryService(Data.inventory);
             Stores = new StoreService(Data.stores);
+            Careers = new CareerService(Data.careers);
             Properties = new PropertyService(Data.properties);
             Businesses = new BusinessService(Data.businesses);
             Reputation = new ReputationService(Data.reputation);

@@ -1,6 +1,7 @@
 using System;
 using VoxDetroit.Businesses;
 using VoxDetroit.Commerce;
+using VoxDetroit.Careers;
 using VoxDetroit.Inventory;
 using VoxDetroit.Persistence;
 using VoxDetroit.Simulation;
@@ -26,6 +27,7 @@ internal static class Program
         TestFinanceJobsPropertyAndObligations();
         TestStoreTasksAndSimulation();
         TestPrototypeScenario();
+        TestCareerPaths();
         TestBusiness();
         TestNpcSchedule();
         TestStory();
@@ -414,6 +416,66 @@ internal static class Program
             sparse.jobTasks != null &&
             sparse.npcs != null,
             "save normalizer repairs missing sections");
+    }
+
+
+    private static void TestCareerPaths()
+    {
+        var state = new CareerWorldState();
+        var careers = new CareerService(state);
+
+        careers.Unlock("career.underground");
+        careers.AddExperience("career.underground", 4);
+        careers.AddTrust("career.underground", 3);
+        careers.AddHeat("career.underground", 7);
+
+        IncomePathProgress progress =
+            careers.GetOrCreate("career.underground");
+
+        Assert(progress.unlocked, "career path unlock");
+        Assert(progress.experience == 4, "career experience");
+        Assert(progress.trust == 3, "career trust");
+        Assert(progress.heat == 7, "career heat");
+
+        careers.CoolHeat("career.underground", 2);
+        Assert(progress.heat == 5, "career heat cools");
+
+        var paths = PrototypeIncomePathCatalog.Create();
+
+        Assert(
+            paths.Exists(
+                path =>
+                    path.id == "career.cannabis.licensed" &&
+                    path.kind == IncomePathKind.RegulatedCannabis),
+            "licensed cannabis career catalog");
+
+        Assert(
+            paths.Exists(
+                path =>
+                    path.id == "career.underground" &&
+                    path.kind == IncomePathKind.Underground),
+            "underground career catalog");
+
+        var risks = PrototypeSubstanceRiskCatalog.Create();
+
+        SubstanceRiskProfile opioid =
+            risks.Find(
+                risk =>
+                    risk.category == SubstanceCategory.Opioid &&
+                    risk.marketStatus == SubstanceMarketStatus.Illegal);
+
+        SubstanceRiskProfile cannabis =
+            risks.Find(
+                risk =>
+                    risk.category == SubstanceCategory.Cannabis &&
+                    risk.marketStatus == SubstanceMarketStatus.Illegal);
+
+        Assert(
+            opioid != null &&
+            cannabis != null &&
+            opioid.customerHealthRisk >
+            cannabis.customerHealthRisk,
+            "substance categories carry different risk profiles");
     }
 
     private static void TestBusiness()
