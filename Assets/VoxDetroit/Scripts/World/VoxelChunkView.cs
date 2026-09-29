@@ -19,19 +19,27 @@ namespace VoxDetroit.World
 
         private void Awake()
         {
-            _meshFilter = GetComponent<MeshFilter>();
-            _meshCollider = GetComponent<MeshCollider>();
+            _meshFilter =
+                GetComponent<MeshFilter>();
+
+            _meshCollider =
+                GetComponent<MeshCollider>();
         }
 
         public void Initialize(
             ChunkCoord coord,
             VoxelChunkData data,
-            IVoxelBlockSource neighborSource = null)
+            IVoxelBlockSource neighborSource = null,
+            bool rebuildImmediately = true)
         {
             Coord = coord;
             Data = data;
             _neighborSource = neighborSource;
-            RebuildMesh();
+
+            if (rebuildImmediately)
+            {
+                RebuildMesh();
+            }
         }
 
         public void RebuildMesh()
@@ -46,14 +54,20 @@ namespace VoxDetroit.World
                 Destroy(_mesh);
             }
 
-            _mesh = VoxelChunkMeshBuilder.Build(
-                Data,
-                Coord,
-                _neighborSource);
+            _mesh =
+                VoxelChunkMeshBuilder.Build(
+                    Data,
+                    Coord,
+                    _neighborSource);
 
-            _meshFilter.sharedMesh = _mesh;
-            _meshCollider.sharedMesh = null;
-            _meshCollider.sharedMesh = _mesh;
+            _meshFilter.sharedMesh =
+                _mesh;
+
+            _meshCollider.sharedMesh =
+                null;
+
+            _meshCollider.sharedMesh =
+                _mesh;
         }
 
         private void OnDestroy()

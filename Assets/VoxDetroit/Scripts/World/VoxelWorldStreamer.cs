@@ -278,7 +278,8 @@ namespace VoxDetroit.World
             view.Initialize(
                 coord,
                 data,
-                _residentBlockSource);
+                _residentBlockSource,
+                false);
 
             return view;
         }
