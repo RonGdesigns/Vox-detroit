@@ -20,3 +20,6 @@ jobs:
 
       - name: Compile and run engine-independent smoke tests
         run: dotnet run --project tools/DomainSmoke/DomainSmoke.csproj --configuration Release
+
+      - name: Validate committed Downtown Detroit map data
+        run: python3 tools/osm/validate_downtown.py Assets/VoxDetroit/Data/downtown-core-prototype.json

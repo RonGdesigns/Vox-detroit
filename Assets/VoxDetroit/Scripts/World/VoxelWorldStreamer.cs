@@ -31,6 +31,7 @@ namespace VoxDetroit.World
         private ChunkCoord? _lastCenter;
 
         public VoxelWorldData World => _world;
+        public int ResidentViewCount => _views.Count;
 
         public bool GeneratePrototypeChunks
         {
@@ -40,8 +41,7 @@ namespace VoxDetroit.World
 
         private void Awake()
         {
-            _residentBlockSource =
-                new ResidentBlockSource(_world, _residentCoords);
+            EnsureInitialized();
         }
 
         private void Start()
@@ -78,6 +78,8 @@ namespace VoxDetroit.World
 
         public void ForceRefresh()
         {
+            EnsureInitialized();
+
             ChunkCoord center = focus != null
                 ? GetFocusChunk()
                 : new ChunkCoord(0, 0, 0);
@@ -85,9 +87,21 @@ namespace VoxDetroit.World
             Refresh(center);
         }
 
+        private void EnsureInitialized()
+        {
+            if (_residentBlockSource == null)
+            {
+                _residentBlockSource =
+                    new ResidentBlockSource(
+                        _world,
+                        _residentCoords);
+            }
+        }
+
         private ChunkCoord GetFocusChunk()
         {
-            Vector3 local = transform.InverseTransformPoint(focus.position);
+            Vector3 local =
+                transform.InverseTransformPoint(focus.position);
 
             return ChunkCoord.FromWorldMeters(
                 local.x,
@@ -97,9 +111,11 @@ namespace VoxDetroit.World
 
         private void Refresh(ChunkCoord center)
         {
+            EnsureInitialized();
             _lastCenter = center;
 
-            HashSet<ChunkCoord> target = BuildTargetSet(center);
+            HashSet<ChunkCoord> target =
+                BuildTargetSet(center);
 
             _residentCoords.Clear();
             foreach (ChunkCoord coord in target)
@@ -111,7 +127,9 @@ namespace VoxDetroit.World
 
             foreach (ChunkCoord coord in target)
             {
-                if (!_world.TryGetChunk(coord, out VoxelChunkData data))
+                if (!_world.TryGetChunk(
+                        coord,
+                        out VoxelChunkData data))
                 {
                     if (!generatePrototypeChunks)
                     {
@@ -125,7 +143,9 @@ namespace VoxDetroit.World
 
                 if (!_views.ContainsKey(coord))
                 {
-                    _views.Add(coord, CreateView(coord, data));
+                    _views.Add(
+                        coord,
+                        CreateView(coord, data));
                 }
             }
 
@@ -135,18 +155,44 @@ namespace VoxDetroit.World
             }
         }
 
-        private HashSet<ChunkCoord> BuildTargetSet(ChunkCoord center)
+        private HashSet<ChunkCoord> BuildTargetSet(
+            ChunkCoord center)
         {
             var target = new HashSet<ChunkCoord>();
+
+            // Imported city data already knows which vertical chunks
+            // contain geometry. Load every populated Y chunk inside
+            // the horizontal render radius so tall buildings are not
+            // clipped by a fixed height window.
+            if (!generatePrototypeChunks &&
+                _world.ChunkCount > 0)
+            {
+                foreach (ChunkCoord coord in _world.ChunkCoords)
+                {
+                    if (System.Math.Abs(coord.X - center.X) <=
+                            renderRadius &&
+                        System.Math.Abs(coord.Z - center.Z) <=
+                            renderRadius)
+                    {
+                        target.Add(coord);
+                    }
+                }
+
+                return target;
+            }
 
             int minY = center.Y - chunksBelowFocus;
             int maxY = center.Y + chunksAboveFocus;
 
             for (int y = minY; y <= maxY; y++)
             {
-                for (int z = -renderRadius; z <= renderRadius; z++)
+                for (int z = -renderRadius;
+                     z <= renderRadius;
+                     z++)
                 {
-                    for (int x = -renderRadius; x <= renderRadius; x++)
+                    for (int x = -renderRadius;
+                         x <= renderRadius;
+                         x++)
                     {
                         target.Add(
                             new ChunkCoord(
@@ -160,11 +206,14 @@ namespace VoxDetroit.World
             return target;
         }
 
-        private void RemoveViewsOutside(HashSet<ChunkCoord> target)
+        private void RemoveViewsOutside(
+            HashSet<ChunkCoord> target)
         {
             var remove = new List<ChunkCoord>();
 
-            foreach (KeyValuePair<ChunkCoord, VoxelChunkView> pair in _views)
+            foreach (
+                KeyValuePair<ChunkCoord, VoxelChunkView> pair
+                in _views)
             {
                 if (!target.Contains(pair.Key))
                 {
@@ -189,13 +238,21 @@ namespace VoxDetroit.World
             ChunkCoord coord,
             VoxelChunkData data)
         {
-            var chunkObject = new GameObject($"Chunk {coord}");
+            var chunkObject =
+                new GameObject($"Chunk {coord}");
 
-            chunkObject.transform.SetParent(transform, false);
-            chunkObject.transform.localPosition = new Vector3(
-                coord.X * VoxDetroitConstants.ChunkWorldSizeMeters,
-                coord.Y * VoxDetroitConstants.ChunkWorldSizeMeters,
-                coord.Z * VoxDetroitConstants.ChunkWorldSizeMeters);
+            chunkObject.transform.SetParent(
+                transform,
+                false);
+
+            chunkObject.transform.localPosition =
+                new Vector3(
+                    coord.X *
+                    VoxDetroitConstants.ChunkWorldSizeMeters,
+                    coord.Y *
+                    VoxDetroitConstants.ChunkWorldSizeMeters,
+                    coord.Z *
+                    VoxDetroitConstants.ChunkWorldSizeMeters);
 
             VoxelChunkView view =
                 chunkObject.AddComponent<VoxelChunkView>();
@@ -205,7 +262,11 @@ namespace VoxDetroit.World
 
             renderer.sharedMaterial = ResolveMaterial();
 
-            view.Initialize(coord, data, _residentBlockSource);
+            view.Initialize(
+                coord,
+                data,
+                _residentBlockSource);
+
             return view;
         }
 
@@ -221,7 +282,9 @@ namespace VoxDetroit.World
                 return _runtimeMaterial;
             }
 
-            Shader shader = Shader.Find("Universal Render Pipeline/Lit");
+            Shader shader =
+                Shader.Find(
+                    "Universal Render Pipeline/Lit");
 
             if (shader == null)
             {
@@ -255,11 +318,14 @@ namespace VoxDetroit.World
         private void OnValidate()
         {
             renderRadius = Mathf.Max(0, renderRadius);
-            chunksBelowFocus = Mathf.Max(0, chunksBelowFocus);
-            chunksAboveFocus = Mathf.Max(0, chunksAboveFocus);
+            chunksBelowFocus =
+                Mathf.Max(0, chunksBelowFocus);
+            chunksAboveFocus =
+                Mathf.Max(0, chunksAboveFocus);
         }
 
-        private sealed class ResidentBlockSource : IVoxelBlockSource
+        private sealed class ResidentBlockSource :
+            IVoxelBlockSource
         {
             private readonly VoxelWorldData _world;
             private readonly HashSet<ChunkCoord> _resident;
@@ -279,7 +345,10 @@ namespace VoxDetroit.World
                 out BlockId block)
             {
                 ChunkCoord coord =
-                    ChunkCoord.FromWorldVoxel(worldX, worldY, worldZ);
+                    ChunkCoord.FromWorldVoxel(
+                        worldX,
+                        worldY,
+                        worldZ);
 
                 if (!_resident.Contains(coord))
                 {

@@ -8,6 +8,9 @@ namespace VoxDetroit.Detroit
 {
     public static class DetroitFeatureRasterizer
     {
+        // Guards against bad source data without clipping real Detroit towers.
+        private const float MaxImportedBuildingHeightMeters = 300f;
+
         public static void Rasterize(
             DetroitImportDocument document,
             VoxelWorldData world)
@@ -111,16 +114,15 @@ namespace VoxDetroit.Detroit
                 maxZ = Math.Max(maxZ, point.Z);
             }
 
-            float heightMeters = ResolveHeight(building);
+            float heightMeters = Math.Min(
+                ResolveHeight(building),
+                MaxImportedBuildingHeightMeters);
+
             int heightVoxels = Math.Max(
-                4,
+                2,
                 (int)Math.Ceiling(
                     heightMeters /
                     VoxDetroitConstants.VoxelSizeMeters));
-
-            // Prototype safety cap. Tall landmarks will later use
-            // dedicated generation/LOD rules.
-            heightVoxels = Math.Min(heightVoxels, 192);
 
             for (int z = minZ; z <= maxZ; z++)
             {
@@ -275,7 +277,26 @@ namespace VoxDetroit.Detroit
                 return building.levels * 3.2f;
             }
 
-            return 9.6f;
+            switch (building.buildingType)
+            {
+                case "canopy":
+                    return 4f;
+
+                case "garage":
+                case "garages":
+                    return 4.5f;
+
+                case "house":
+                case "detached":
+                case "residential":
+                    return 6.4f;
+
+                case "construction":
+                    return 6f;
+
+                default:
+                    return 9.6f;
+            }
         }
 
         private static bool PointInPolygon(
