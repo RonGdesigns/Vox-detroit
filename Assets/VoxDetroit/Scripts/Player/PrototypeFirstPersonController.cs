@@ -1,6 +1,9 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using VoxDetroit.Core;
+using VoxDetroit.Voxels;
+using VoxDetroit.World;
 
 namespace VoxDetroit.Player
 {
@@ -9,6 +12,7 @@ namespace VoxDetroit.Player
     {
         [Header("References")]
         [SerializeField] private Camera playerCamera;
+        [SerializeField] private VoxelWorldStreamer worldStreamer;
 
         [Header("Walk")]
         [SerializeField, Min(0.1f)] private float walkSpeed = 5.5f;
@@ -26,6 +30,7 @@ namespace VoxDetroit.Player
 
         [Header("Prototype Spawn")]
         [SerializeField] private bool autoSnapToGround = true;
+        [SerializeField, Min(10f)] private float voxelStreetSearchRadius = 150f;
         [SerializeField, Min(1f)] private float spawnSearchRadius = 32f;
         [SerializeField, Min(10f)] private float spawnProbeHeight = 220f;
 
@@ -35,8 +40,10 @@ namespace VoxDetroit.Player
         private bool _flyMode;
         private bool _cursorLocked = true;
         private bool _initialSpawnPending;
+        private string _spawnStatus = "Waiting";
 
         public bool FlyMode => _flyMode;
+        public string SpawnStatus => _spawnStatus;
 
         private void Awake()
         {
@@ -45,6 +52,12 @@ namespace VoxDetroit.Player
             if (playerCamera == null)
             {
                 playerCamera = GetComponentInChildren<Camera>();
+            }
+
+            if (worldStreamer == null)
+            {
+                worldStreamer =
+                    FindFirstObjectByType<VoxelWorldStreamer>();
             }
 
             ConfigureCharacterController();
@@ -58,6 +71,10 @@ namespace VoxDetroit.Player
             {
                 StartCoroutine(
                     ResolveInitialStreetSpawn());
+            }
+            else
+            {
+                _spawnStatus = "Auto spawn disabled";
             }
         }
 
@@ -296,6 +313,11 @@ namespace VoxDetroit.Player
             {
                 _controller.enabled = !enabled;
             }
+
+            _spawnStatus =
+                enabled
+                    ? "Debug fly"
+                    : "Walking";
         }
 
         private void SetCursorLocked(bool locked)
@@ -327,6 +349,7 @@ namespace VoxDetroit.Player
         private IEnumerator ResolveInitialStreetSpawn()
         {
             _initialSpawnPending = true;
+            _spawnStatus = "Waiting for Detroit data";
 
             bool controllerWasEnabled =
                 _controller != null &&
@@ -337,7 +360,7 @@ namespace VoxDetroit.Player
                 _controller.enabled = false;
             }
 
-            const int maxAttempts = 60;
+            const int maxAttempts = 120;
 
             for (int attempt = 0;
                  attempt < maxAttempts;
@@ -345,21 +368,28 @@ namespace VoxDetroit.Player
             {
                 yield return null;
 
-                if ((attempt % 3) == 0)
+                if (worldStreamer == null)
                 {
-                    yield return new WaitForFixedUpdate();
+                    worldStreamer =
+                        FindFirstObjectByType<VoxelWorldStreamer>();
                 }
 
-                Physics.SyncTransforms();
-
-                if (TryFindNearbyStreetLevel(
-                        out Vector3 point))
+                if (worldStreamer == null ||
+                    worldStreamer.World.ChunkCount <= 0)
                 {
-                    transform.position =
-                        point +
-                        (Vector3.up * 0.08f);
+                    continue;
+                }
+
+                _spawnStatus = "Finding nearest road";
+
+                if (TryFindRoadVoxel(
+                        out Vector3 roadPoint))
+                {
+                    transform.position = roadPoint;
+                    Physics.SyncTransforms();
 
                     _initialSpawnPending = false;
+                    _spawnStatus = "Street spawn";
 
                     if (_controller != null)
                     {
@@ -367,8 +397,13 @@ namespace VoxDetroit.Player
                             controllerWasEnabled;
                     }
 
+                    if (worldStreamer != null)
+                    {
+                        worldStreamer.SetFocus(transform);
+                    }
+
                     Debug.Log(
-                        $"Vox Detroit player spawned at street level: " +
+                        $"Vox Detroit player placed on imported road voxel at " +
                         $"{transform.position}.");
 
                     yield break;
@@ -376,41 +411,62 @@ namespace VoxDetroit.Player
             }
 
             _initialSpawnPending = false;
+
+            if (TryFindNearbyStreetLevelPhysics(
+                    out Vector3 physicsPoint))
+            {
+                transform.position =
+                    physicsPoint +
+                    (Vector3.up * 0.08f);
+
+                Physics.SyncTransforms();
+                _spawnStatus = "Physics fallback";
+
+                if (_controller != null)
+                {
+                    _controller.enabled =
+                        controllerWasEnabled;
+                }
+
+                Debug.Log(
+                    $"Vox Detroit player used physics spawn fallback at " +
+                    $"{transform.position}.");
+
+                yield break;
+            }
+
             SetFlyMode(true);
+            _spawnStatus = "Spawn failed - fly mode";
 
             Debug.LogWarning(
-                "Vox Detroit could not resolve an initial street spawn " +
-                "after waiting for voxel colliders. Free-fly mode was " +
-                "enabled automatically; press F3 to retry.");
-
-            if (_controller != null &&
-                !_flyMode)
-            {
-                _controller.enabled =
-                    controllerWasEnabled;
-            }
+                "Vox Detroit could not find a road voxel or walkable " +
+                "collider. Free-fly mode was enabled automatically.");
         }
 
         [ContextMenu("Snap To Nearby Street Level")]
         public void SnapToNearbyStreetLevel()
         {
-            if (TryFindNearbyStreetLevel(
-                    out Vector3 point))
+            bool controllerWasEnabled =
+                _controller != null &&
+                _controller.enabled;
+
+            if (_controller != null)
             {
-                bool controllerWasEnabled =
-                    _controller != null &&
-                    _controller.enabled;
+                _controller.enabled = false;
+            }
 
-                if (_controller != null)
-                {
-                    _controller.enabled = false;
-                }
+            if (worldStreamer == null)
+            {
+                worldStreamer =
+                    FindFirstObjectByType<VoxelWorldStreamer>();
+            }
 
-                transform.position =
-                    point +
-                    (Vector3.up * 0.08f);
-
+            if (TryFindRoadVoxel(
+                    out Vector3 roadPoint))
+            {
+                transform.position = roadPoint;
                 Physics.SyncTransforms();
+                _spawnStatus = "Street snap";
 
                 if (_controller != null)
                 {
@@ -419,30 +475,246 @@ namespace VoxDetroit.Player
                         !_flyMode;
                 }
 
-                Debug.Log(
-                    $"Vox Detroit player snapped to street level: " +
-                    $"{transform.position}.");
-            }
-            else
-            {
-                Debug.LogWarning(
-                    "Vox Detroit player could not find a nearby " +
-                    "walkable surface. Press F2 for free-fly mode.");
-            }
-        }
+                if (worldStreamer != null)
+                {
+                    worldStreamer.SetFocus(transform);
+                }
 
-        private bool TryFindNearbyStreetLevel(
-            out Vector3 bestPoint)
-        {
-            bool controllerWasEnabled =
-                _controller != null &&
-                _controller.enabled;
+                Debug.Log(
+                    $"Vox Detroit player snapped to imported road voxel at " +
+                    $"{transform.position}.");
+
+                return;
+            }
+
+            if (TryFindNearbyStreetLevelPhysics(
+                    out Vector3 physicsPoint))
+            {
+                transform.position =
+                    physicsPoint +
+                    (Vector3.up * 0.08f);
+
+                Physics.SyncTransforms();
+                _spawnStatus = "Physics street snap";
+
+                if (_controller != null)
+                {
+                    _controller.enabled =
+                        controllerWasEnabled &&
+                        !_flyMode;
+                }
+
+                return;
+            }
 
             if (_controller != null)
             {
-                _controller.enabled = false;
+                _controller.enabled =
+                    controllerWasEnabled &&
+                    !_flyMode;
             }
 
+            _spawnStatus = "No nearby street";
+
+            Debug.LogWarning(
+                "Vox Detroit player could not find a nearby imported " +
+                "road voxel or walkable surface.");
+        }
+
+        private bool TryFindRoadVoxel(
+            out Vector3 worldPoint)
+        {
+            worldPoint = transform.position;
+
+            if (worldStreamer == null ||
+                worldStreamer.World.ChunkCount <= 0)
+            {
+                return false;
+            }
+
+            float voxelSize =
+                VoxDetroitConstants.VoxelSizeMeters;
+
+            int centerX =
+                Mathf.FloorToInt(
+                    transform.position.x /
+                    voxelSize);
+
+            int centerZ =
+                Mathf.FloorToInt(
+                    transform.position.z /
+                    voxelSize);
+
+            int maxRadius =
+                Mathf.CeilToInt(
+                    voxelStreetSearchRadius /
+                    voxelSize);
+
+            if (FindNearestGroundBlock(
+                    centerX,
+                    centerZ,
+                    maxRadius,
+                    BlockId.Asphalt,
+                    out int roadX,
+                    out int roadZ))
+            {
+                worldPoint =
+                    ToStandingPoint(
+                        roadX,
+                        roadZ,
+                        0);
+
+                return true;
+            }
+
+            BlockId[] fallbacks =
+            {
+                BlockId.Concrete,
+                BlockId.Grass,
+                BlockId.Soil
+            };
+
+            foreach (BlockId fallback in fallbacks)
+            {
+                if (FindNearestGroundBlock(
+                        centerX,
+                        centerZ,
+                        maxRadius,
+                        fallback,
+                        out int fallbackX,
+                        out int fallbackZ))
+                {
+                    worldPoint =
+                        ToStandingPoint(
+                            fallbackX,
+                            fallbackZ,
+                            0);
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private bool FindNearestGroundBlock(
+            int centerX,
+            int centerZ,
+            int maxRadius,
+            BlockId required,
+            out int foundX,
+            out int foundZ)
+        {
+            foundX = 0;
+            foundZ = 0;
+
+            for (int radius = 0;
+                 radius <= maxRadius;
+                 radius++)
+            {
+                int minX = centerX - radius;
+                int maxX = centerX + radius;
+                int minZ = centerZ - radius;
+                int maxZ = centerZ + radius;
+
+                for (int x = minX; x <= maxX; x++)
+                {
+                    if (IsValidGround(
+                            x,
+                            minZ,
+                            required))
+                    {
+                        foundX = x;
+                        foundZ = minZ;
+                        return true;
+                    }
+
+                    if (radius > 0 &&
+                        IsValidGround(
+                            x,
+                            maxZ,
+                            required))
+                    {
+                        foundX = x;
+                        foundZ = maxZ;
+                        return true;
+                    }
+                }
+
+                for (int z = minZ + 1;
+                     z < maxZ;
+                     z++)
+                {
+                    if (IsValidGround(
+                            minX,
+                            z,
+                            required))
+                    {
+                        foundX = minX;
+                        foundZ = z;
+                        return true;
+                    }
+
+                    if (radius > 0 &&
+                        IsValidGround(
+                            maxX,
+                            z,
+                            required))
+                    {
+                        foundX = maxX;
+                        foundZ = z;
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private bool IsValidGround(
+            int x,
+            int z,
+            BlockId required)
+        {
+            VoxelWorldData world =
+                worldStreamer.World;
+
+            return
+                world.GetBlockOrAir(
+                    x,
+                    0,
+                    z) == required &&
+                world.GetBlockOrAir(
+                    x,
+                    1,
+                    z) == BlockId.Air &&
+                world.GetBlockOrAir(
+                    x,
+                    2,
+                    z) == BlockId.Air &&
+                world.GetBlockOrAir(
+                    x,
+                    3,
+                    z) == BlockId.Air;
+        }
+
+        private static Vector3 ToStandingPoint(
+            int voxelX,
+            int voxelZ,
+            int voxelY)
+        {
+            float size =
+                VoxDetroitConstants.VoxelSizeMeters;
+
+            return new Vector3(
+                (voxelX + 0.5f) * size,
+                ((voxelY + 1f) * size) + 0.08f,
+                (voxelZ + 0.5f) * size);
+        }
+
+        private bool TryFindNearbyStreetLevelPhysics(
+            out Vector3 bestPoint)
+        {
             Physics.SyncTransforms();
 
             Vector3 center =
@@ -463,7 +735,8 @@ namespace VoxDetroit.Player
                  xi++)
             {
                 float tx =
-                    xi / (float)(samplesPerAxis - 1);
+                    xi /
+                    (float)(samplesPerAxis - 1);
 
                 float offsetX =
                     Mathf.Lerp(
@@ -476,7 +749,8 @@ namespace VoxDetroit.Player
                      zi++)
                 {
                     float tz =
-                        zi / (float)(samplesPerAxis - 1);
+                        zi /
+                        (float)(samplesPerAxis - 1);
 
                     float offsetZ =
                         Mathf.Lerp(
@@ -513,13 +787,6 @@ namespace VoxDetroit.Player
                         found = true;
                     }
                 }
-            }
-
-            if (_controller != null)
-            {
-                _controller.enabled =
-                    controllerWasEnabled &&
-                    !_flyMode;
             }
 
             return found;
