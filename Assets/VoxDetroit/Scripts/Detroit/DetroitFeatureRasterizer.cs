@@ -10,6 +10,7 @@ namespace VoxDetroit.Detroit
     {
         // Guards against bad source data without clipping real Detroit towers.
         private const float MaxImportedBuildingHeightMeters = 300f;
+        private const float GroundPaddingMeters = 8f;
 
         public static void Rasterize(
             DetroitImportDocument document,
@@ -24,6 +25,10 @@ namespace VoxDetroit.Detroit
             {
                 throw new ArgumentNullException(nameof(world));
             }
+
+            RasterizePrototypeGround(
+                document,
+                world);
 
             if (document.roads != null)
             {
@@ -183,6 +188,156 @@ namespace VoxDetroit.Detroit
                     }
                 }
             }
+        }
+
+        private static void RasterizePrototypeGround(
+            DetroitImportDocument document,
+            VoxelWorldData world)
+        {
+            if (!TryResolveDocumentExtents(
+                    document,
+                    out int minX,
+                    out int maxX,
+                    out int minZ,
+                    out int maxZ))
+            {
+                return;
+            }
+
+            int paddingVoxels =
+                Math.Max(
+                    1,
+                    (int)Math.Ceiling(
+                        GroundPaddingMeters /
+                        VoxDetroitConstants.VoxelSizeMeters));
+
+            minX -= paddingVoxels;
+            maxX += paddingVoxels;
+            minZ -= paddingVoxels;
+            maxZ += paddingVoxels;
+
+            for (int z = minZ; z <= maxZ; z++)
+            {
+                for (int x = minX; x <= maxX; x++)
+                {
+                    world.SetBlock(
+                        x,
+                        0,
+                        z,
+                        BlockId.Concrete);
+                }
+            }
+        }
+
+        private static bool TryResolveDocumentExtents(
+            DetroitImportDocument document,
+            out int minX,
+            out int maxX,
+            out int minZ,
+            out int maxZ)
+        {
+            minX = int.MaxValue;
+            maxX = int.MinValue;
+            minZ = int.MaxValue;
+            maxZ = int.MinValue;
+            bool any = false;
+
+            if (document.roads != null)
+            {
+                foreach (RoadFeature road in document.roads)
+                {
+                    if (road?.centerline == null)
+                    {
+                        continue;
+                    }
+
+                    foreach (GeoPoint point in road.centerline)
+                    {
+                        ExpandBounds(
+                            point,
+                            ref minX,
+                            ref maxX,
+                            ref minZ,
+                            ref maxZ,
+                            ref any);
+                    }
+                }
+            }
+
+            if (document.buildings != null)
+            {
+                foreach (BuildingFeature building
+                         in document.buildings)
+                {
+                    if (building?.footprint == null)
+                    {
+                        continue;
+                    }
+
+                    foreach (GeoPoint point
+                             in building.footprint)
+                    {
+                        ExpandBounds(
+                            point,
+                            ref minX,
+                            ref maxX,
+                            ref minZ,
+                            ref maxZ,
+                            ref any);
+                    }
+                }
+            }
+
+            if (!any &&
+                document.bounds != null &&
+                document.bounds.north > document.bounds.south &&
+                document.bounds.east > document.bounds.west)
+            {
+                ExpandBounds(
+                    new GeoPoint(
+                        document.bounds.south,
+                        document.bounds.west),
+                    ref minX,
+                    ref maxX,
+                    ref minZ,
+                    ref maxZ,
+                    ref any);
+
+                ExpandBounds(
+                    new GeoPoint(
+                        document.bounds.north,
+                        document.bounds.east),
+                    ref minX,
+                    ref maxX,
+                    ref minZ,
+                    ref maxZ,
+                    ref any);
+            }
+
+            return any;
+        }
+
+        private static void ExpandBounds(
+            GeoPoint point,
+            ref int minX,
+            ref int maxX,
+            ref int minZ,
+            ref int maxZ,
+            ref bool any)
+        {
+            if (point == null)
+            {
+                return;
+            }
+
+            GridPoint grid =
+                ToGrid(point);
+
+            minX = Math.Min(minX, grid.X);
+            maxX = Math.Max(maxX, grid.X);
+            minZ = Math.Min(minZ, grid.Z);
+            maxZ = Math.Max(maxZ, grid.Z);
+            any = true;
         }
 
         private static void PaintRoadDisc(

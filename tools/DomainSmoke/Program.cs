@@ -857,6 +857,19 @@ internal static class Program
         Assert(
             world.GetBlockOrAir(x, 0, z) == BlockId.Asphalt,
             "detroit road raster");
+
+        (int groundX, int groundZ) =
+            DetroitGeoReference.ToWorldVoxel(
+                lat + 0.00012,
+                lon + 0.00012,
+                VoxDetroitConstants.VoxelSizeMeters);
+
+        Assert(
+            world.GetBlockOrAir(
+                groundX,
+                0,
+                groundZ) != BlockId.Air,
+            "detroit continuous prototype ground");
     }
 
     private static void Assert(bool condition, string name)

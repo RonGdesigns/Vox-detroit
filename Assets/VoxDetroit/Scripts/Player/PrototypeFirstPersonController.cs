@@ -41,6 +41,8 @@ namespace VoxDetroit.Player
         private bool _cursorLocked = true;
         private bool _initialSpawnPending;
         private string _spawnStatus = "Waiting";
+        private Vector3 _lastSafePosition;
+        private bool _hasSafePosition;
 
         public bool FlyMode => _flyMode;
         public string SpawnStatus => _spawnStatus;
@@ -99,6 +101,8 @@ namespace VoxDetroit.Player
             {
                 return;
             }
+
+            RecoverFromPrototypeFall();
 
             if (_flyMode)
             {
@@ -197,6 +201,14 @@ namespace VoxDetroit.Player
 
             bool grounded =
                 _controller.isGrounded;
+
+            if (grounded)
+            {
+                _lastSafePosition =
+                    transform.position;
+
+                _hasSafePosition = true;
+            }
 
             if (grounded &&
                 _verticalVelocity < 0f)
@@ -390,6 +402,8 @@ namespace VoxDetroit.Player
 
                     _initialSpawnPending = false;
                     _spawnStatus = "Street spawn";
+                    _lastSafePosition = transform.position;
+                    _hasSafePosition = true;
 
                     if (_controller != null)
                     {
@@ -467,6 +481,8 @@ namespace VoxDetroit.Player
                 transform.position = roadPoint;
                 Physics.SyncTransforms();
                 _spawnStatus = "Street snap";
+                _lastSafePosition = transform.position;
+                _hasSafePosition = true;
 
                 if (_controller != null)
                 {
@@ -519,6 +535,58 @@ namespace VoxDetroit.Player
             Debug.LogWarning(
                 "Vox Detroit player could not find a nearby imported " +
                 "road voxel or walkable surface.");
+        }
+
+        private void RecoverFromPrototypeFall()
+        {
+            if (_flyMode ||
+                transform.position.y >= -5f)
+            {
+                return;
+            }
+
+            bool controllerWasEnabled =
+                _controller != null &&
+                _controller.enabled;
+
+            if (_controller != null)
+            {
+                _controller.enabled = false;
+            }
+
+            if (_hasSafePosition)
+            {
+                transform.position =
+                    _lastSafePosition +
+                    (Vector3.up * 0.25f);
+
+                _spawnStatus = "Fall recovery";
+            }
+            else if (TryFindRoadVoxel(
+                         out Vector3 roadPoint))
+            {
+                transform.position = roadPoint;
+                _spawnStatus = "Road recovery";
+            }
+            else
+            {
+                SetFlyMode(true);
+                _spawnStatus = "Recovery failed - fly";
+                return;
+            }
+
+            _verticalVelocity = 0f;
+            Physics.SyncTransforms();
+
+            if (_controller != null)
+            {
+                _controller.enabled =
+                    controllerWasEnabled;
+            }
+
+            Debug.LogWarning(
+                "Vox Detroit prototype fall recovery returned the player " +
+                "to a safe position.");
         }
 
         private bool TryFindRoadVoxel(
