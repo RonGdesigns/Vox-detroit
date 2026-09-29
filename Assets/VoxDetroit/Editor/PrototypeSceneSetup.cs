@@ -4,6 +4,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using VoxDetroit.Detroit;
+using VoxDetroit.Player;
 using VoxDetroit.World;
 
 namespace VoxDetroit.Editor
@@ -44,11 +45,8 @@ namespace VoxDetroit.Editor
                     NewSceneSetup.EmptyScene,
                     NewSceneMode.Single);
 
-            Transform streamingFocus =
-                CreateStreamingFocus();
-
-            Camera camera =
-                CreateCamera();
+            Transform player =
+                CreatePlayer();
 
             CreateSun();
 
@@ -65,7 +63,7 @@ namespace VoxDetroit.Editor
 
             ConfigureStreamer(
                 streamer,
-                streamingFocus);
+                player);
 
             ConfigureImporter(
                 importer,
@@ -76,54 +74,76 @@ namespace VoxDetroit.Editor
                 ScenePath);
 
             Selection.activeGameObject =
-                worldObject;
+                player.gameObject;
 
             EditorGUIUtility.PingObject(
-                worldObject);
+                player.gameObject);
 
             Debug.Log(
                 "Vox Detroit Downtown prototype scene created at " +
                 ScenePath +
-                ". Enter Play Mode to import and render the city slice.");
+                ". Enter Play Mode for street-level exploration. " +
+                "Controls: WASD/mouse, Shift sprint, Space jump, " +
+                "F2 free-fly, F3 snap to street, Esc releases mouse.");
         }
 
-        private static Transform CreateStreamingFocus()
+        private static Transform CreatePlayer()
         {
-            var focusObject =
-                new GameObject("Downtown Streaming Focus");
+            var playerObject =
+                new GameObject("Prototype Player");
 
-            focusObject.transform.position =
-                Vector3.zero;
+            playerObject.transform.position =
+                new Vector3(
+                    0f,
+                    25f,
+                    -30f);
 
-            return focusObject.transform;
-        }
+            CharacterController character =
+                playerObject.AddComponent<CharacterController>();
 
-        private static Camera CreateCamera()
-        {
+            character.height = 1.8f;
+            character.radius = 0.34f;
+            character.center =
+                new Vector3(
+                    0f,
+                    0.9f,
+                    0f);
+
             var cameraObject =
                 new GameObject("Main Camera");
 
             cameraObject.tag = "MainCamera";
 
+            cameraObject.transform.SetParent(
+                playerObject.transform,
+                false);
+
+            cameraObject.transform.localPosition =
+                new Vector3(
+                    0f,
+                    1.62f,
+                    0f);
+
             Camera camera =
                 cameraObject.AddComponent<Camera>();
 
-            camera.nearClipPlane = 0.1f;
-            camera.farClipPlane = 2500f;
+            camera.nearClipPlane = 0.05f;
+            camera.farClipPlane = 1800f;
+            camera.fieldOfView = 72f;
 
-            camera.transform.position =
-                new Vector3(
-                    0f,
-                    150f,
-                    -210f);
+            PrototypeFirstPersonController controller =
+                playerObject.AddComponent<PrototypeFirstPersonController>();
 
-            camera.transform.LookAt(
-                new Vector3(
-                    0f,
-                    35f,
-                    0f));
+            var serialized =
+                new SerializedObject(controller);
 
-            return camera;
+            serialized.FindProperty("playerCamera")
+                .objectReferenceValue =
+                camera;
+
+            serialized.ApplyModifiedPropertiesWithoutUndo();
+
+            return playerObject.transform;
         }
 
         private static void CreateSun()
@@ -148,14 +168,14 @@ namespace VoxDetroit.Editor
 
         private static void ConfigureStreamer(
             VoxelWorldStreamer streamer,
-            Transform streamingFocus)
+            Transform player)
         {
             var serialized =
                 new SerializedObject(streamer);
 
             serialized.FindProperty("focus")
                 .objectReferenceValue =
-                streamingFocus;
+                player;
 
             serialized.FindProperty("renderRadius")
                 .intValue = 8;
