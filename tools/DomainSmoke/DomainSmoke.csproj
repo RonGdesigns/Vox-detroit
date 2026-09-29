@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <DefaultItemExcludes>$(DefaultItemExcludes);**/obj/**;**/bin/**</DefaultItemExcludes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Core/VoxDetroitConstants.cs" Link="Core/VoxDetroitConstants.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Core/GameClock.cs" Link="Core/GameClock.cs" />
+
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Voxels/BlockId.cs" Link="Voxels/BlockId.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Voxels/IVoxelBlockSource.cs" Link="Voxels/IVoxelBlockSource.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Voxels/VoxelChunkData.cs" Link="Voxels/VoxelChunkData.cs" />
+
+    <Compile Include="../../Assets/VoxDetroit/Scripts/World/ChunkCoord.cs" Link="World/ChunkCoord.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/World/VoxelWorldData.cs" Link="World/VoxelWorldData.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/World/VoxelDeltaState.cs" Link="World/VoxelDeltaState.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/World/PrototypeChunkGenerator.cs" Link="World/PrototypeChunkGenerator.cs" />
+
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Detroit/DetroitGeoReference.cs" Link="Detroit/DetroitGeoReference.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Detroit/DetroitImportSchema.cs" Link="Detroit/DetroitImportSchema.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Detroit/DetroitFeatureRasterizer.cs" Link="Detroit/DetroitFeatureRasterizer.cs" />
+
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Economy/Money.cs" Link="Economy/Money.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Economy/FinanceState.cs" Link="Economy/FinanceState.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Economy/FinanceService.cs" Link="Economy/FinanceService.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Economy/ObligationState.cs" Link="Economy/ObligationState.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Economy/ObligationService.cs" Link="Economy/ObligationService.cs" />
+
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Jobs/JobDefinition.cs" Link="Jobs/JobDefinition.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Jobs/EmploymentState.cs" Link="Jobs/EmploymentState.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Jobs/JobService.cs" Link="Jobs/JobService.cs" />
+
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Properties/PropertyState.cs" Link="Properties/PropertyState.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Properties/PropertyService.cs" Link="Properties/PropertyService.cs" />
+
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Businesses/BusinessState.cs" Link="Businesses/BusinessState.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Businesses/BusinessService.cs" Link="Businesses/BusinessService.cs" />
+
+    <Compile Include="../../Assets/VoxDetroit/Scripts/NPCs/NpcState.cs" Link="NPCs/NpcState.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/NPCs/NpcScheduleService.cs" Link="NPCs/NpcScheduleService.cs" />
+
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Reputation/ReputationState.cs" Link="Reputation/ReputationState.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Reputation/ReputationService.cs" Link="Reputation/ReputationService.cs" />
+
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Story/StoryState.cs" Link="Story/StoryState.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Story/StoryService.cs" Link="Story/StoryService.cs" />
+
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Vehicles/VehicleState.cs" Link="Vehicles/VehicleState.cs" />
+  </ItemGroup>
+</Project>
