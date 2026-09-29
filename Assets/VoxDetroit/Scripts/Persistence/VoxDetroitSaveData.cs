@@ -4,6 +4,7 @@ using VoxDetroit.Careers;
 using VoxDetroit.Commerce;
 using VoxDetroit.Core;
 using VoxDetroit.Economy;
+using VoxDetroit.Events;
 using VoxDetroit.Inventory;
 using VoxDetroit.Jobs;
 using VoxDetroit.NPCs;
@@ -38,6 +39,8 @@ namespace VoxDetroit.Persistence
         public JobTaskWorldState jobTasks = new JobTaskWorldState();
         public InventoryState inventory = new InventoryState();
         public StoreWorldState stores = new StoreWorldState();
+        public CityEventWorldState cityEvents = new CityEventWorldState();
+        public PerformerWorldState performers = new PerformerWorldState();
         public CareerWorldState careers = new CareerWorldState();
         public SubstanceMarketState substanceMarkets =
             new SubstanceMarketState();

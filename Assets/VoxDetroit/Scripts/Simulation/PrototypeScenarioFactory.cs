@@ -1,6 +1,7 @@
 using VoxDetroit.Commerce;
 using VoxDetroit.Core;
 using VoxDetroit.Economy;
+using VoxDetroit.Events;
 using VoxDetroit.Inventory;
 using VoxDetroit.Jobs;
 using VoxDetroit.NPCs;
@@ -51,6 +52,7 @@ namespace VoxDetroit.Simulation
             SeedBills(data);
             SeedInventory(data);
             SeedStores(data);
+            SeedCityEvents(data);
             SeedJobTasks(data);
             SeedNpcs(data);
             SeedStory(data);
@@ -180,6 +182,16 @@ namespace VoxDetroit.Simulation
                 });
 
             data.stores.stores.Add(hardware);
+        }
+
+        private static void SeedCityEvents(
+            VoxDetroitSaveData data)
+        {
+            foreach (ScheduledCityEvent cityEvent
+                     in PrototypeCityEventCatalog.Create())
+            {
+                data.cityEvents.events.Add(cityEvent);
+            }
         }
 
         private static void SeedJobTasks(

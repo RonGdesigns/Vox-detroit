@@ -47,6 +47,11 @@
     <Compile Include="../../Assets/VoxDetroit/Scripts/Careers/SubstanceMarketState.cs" Link="Careers/SubstanceMarketState.cs" />
     <Compile Include="../../Assets/VoxDetroit/Scripts/Careers/PrototypeIncomePathCatalog.cs" Link="Careers/PrototypeIncomePathCatalog.cs" />
 
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Events/CityEventState.cs" Link="Events/CityEventState.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Events/PerformerState.cs" Link="Events/PerformerState.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Events/CityEventService.cs" Link="Events/CityEventService.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Events/PrototypeEventCatalog.cs" Link="Events/PrototypeEventCatalog.cs" />
+
     <Compile Include="../../Assets/VoxDetroit/Scripts/Properties/PropertyState.cs" Link="Properties/PropertyState.cs" />
     <Compile Include="../../Assets/VoxDetroit/Scripts/Properties/PropertyService.cs" Link="Properties/PropertyService.cs" />
 

@@ -5,6 +5,7 @@ using VoxDetroit.Commerce;
 using VoxDetroit.Careers;
 using VoxDetroit.Core;
 using VoxDetroit.Economy;
+using VoxDetroit.Events;
 using VoxDetroit.Inventory;
 using VoxDetroit.Jobs;
 using VoxDetroit.Persistence;
@@ -32,6 +33,7 @@ namespace VoxDetroit.Simulation
         public JobTaskService JobTasks { get; }
         public InventoryService Inventory { get; }
         public StoreService Stores { get; }
+        public CityEventService CityEvents { get; }
         public CareerService Careers { get; }
         public PropertyService Properties { get; }
         public BusinessService Businesses { get; }
@@ -55,6 +57,7 @@ namespace VoxDetroit.Simulation
             JobTasks = new JobTaskService(Data.jobTasks);
             Inventory = new InventoryService(Data.inventory);
             Stores = new StoreService(Data.stores);
+            CityEvents = new CityEventService(Data.cityEvents);
             Careers = new CareerService(Data.careers);
             Properties = new PropertyService(Data.properties);
             Businesses = new BusinessService(Data.businesses);

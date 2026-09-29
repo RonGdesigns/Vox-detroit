@@ -4,6 +4,7 @@ using VoxDetroit.Commerce;
 using VoxDetroit.Careers;
 using VoxDetroit.Core;
 using VoxDetroit.Economy;
+using VoxDetroit.Events;
 using VoxDetroit.Inventory;
 using VoxDetroit.Jobs;
 using VoxDetroit.NPCs;
@@ -64,6 +65,16 @@ namespace VoxDetroit.Persistence
             if (data.stores == null)
             {
                 data.stores = new StoreWorldState();
+            }
+
+            if (data.cityEvents == null)
+            {
+                data.cityEvents = new CityEventWorldState();
+            }
+
+            if (data.performers == null)
+            {
+                data.performers = new PerformerWorldState();
             }
 
             if (data.careers == null)
@@ -147,6 +158,18 @@ namespace VoxDetroit.Persistence
             data.stores.stores =
                 data.stores.stores ??
                 new List<StoreRecord>();
+
+            data.cityEvents.events =
+                data.cityEvents.events ??
+                new List<ScheduledCityEvent>();
+
+            data.performers.discoveredPerformerIds =
+                data.performers.discoveredPerformerIds ??
+                new List<string>();
+
+            data.performers.seenLivePerformerIds =
+                data.performers.seenLivePerformerIds ??
+                new List<string>();
 
             data.careers.paths =
                 data.careers.paths ??

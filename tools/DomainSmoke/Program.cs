@@ -8,6 +8,7 @@ using VoxDetroit.Simulation;
 using VoxDetroit.Core;
 using VoxDetroit.Detroit;
 using VoxDetroit.Economy;
+using VoxDetroit.Events;
 using VoxDetroit.Jobs;
 using VoxDetroit.NPCs;
 using VoxDetroit.Properties;
@@ -28,6 +29,7 @@ internal static class Program
         TestStoreTasksAndSimulation();
         TestPrototypeScenario();
         TestCareerPaths();
+        TestCityEvents();
         TestBusiness();
         TestNpcSchedule();
         TestStory();
@@ -476,6 +478,74 @@ internal static class Program
             opioid.customerHealthRisk >
             cannabis.customerHealthRisk,
             "substance categories carry different risk profiles");
+    }
+
+
+    private static void TestCityEvents()
+    {
+        var state = new CityEventWorldState();
+
+        foreach (ScheduledCityEvent cityEvent
+                 in PrototypeCityEventCatalog.Create())
+        {
+            state.events.Add(cityEvent);
+        }
+
+        var service = new CityEventService(state);
+
+        ScheduledCityEvent river =
+            service.Find("event.river-pulse");
+
+        Assert(river != null, "prototype event exists");
+        Assert(
+            service.GetCrowdTier(river) == CrowdTier.Packed,
+            "event crowd tier");
+
+        long activeMinute =
+            river.startMinute + 30;
+
+        Assert(
+            service.GetActive(activeMinute).Count == 1,
+            "active event resolution");
+
+        EventDemandModifiers demand =
+            service.GetCombinedDemand(activeMinute);
+
+        Assert(
+            demand.taxiDemandPercent >= 190,
+            "event increases taxi demand");
+
+        Assert(
+            demand.securityDemandPercent >= 210,
+            "event increases security demand");
+
+        Assert(
+            service.MarkPlayerAttended(river.id) &&
+            river.playerAttended,
+            "event attendance persists");
+
+        var artists =
+            PrototypePerformerCatalog.Create();
+
+        PerformerDefinition staticSaint =
+            artists.Find(
+                artist =>
+                    artist.id == "artist.static-saint");
+
+        Assert(
+            staticSaint != null &&
+            staticSaint.tracks.Count >= 2 &&
+            staticSaint.tracks[0].originalForGame,
+            "fictional performer has original music catalog");
+
+        var venues =
+            PrototypeVenueCatalog.Create();
+
+        Assert(
+            venues.Exists(
+                venue =>
+                    venue.id == "venue.hart-plaza"),
+            "Hart Plaza venue catalog");
     }
 
     private static void TestBusiness()
