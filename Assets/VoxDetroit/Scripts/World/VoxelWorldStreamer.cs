@@ -15,6 +15,9 @@ namespace VoxDetroit.World
         [SerializeField] private bool generatePrototypeChunks = true;
 
         [Header("Rendering")]
+        [Tooltip(
+            "Optional material used as the base for generated " +
+            "prototype block materials.")]
         [SerializeField] private Material voxelMaterial;
 
         private readonly Dictionary<ChunkCoord, VoxelChunkView> _views =
@@ -27,7 +30,7 @@ namespace VoxDetroit.World
             new VoxelWorldData();
 
         private ResidentBlockSource _residentBlockSource;
-        private Material _runtimeMaterial;
+        private Material[] _runtimeMaterials;
         private ChunkCoord? _lastCenter;
 
         public VoxelWorldData World => _world;
@@ -101,7 +104,8 @@ namespace VoxDetroit.World
         private ChunkCoord GetFocusChunk()
         {
             Vector3 local =
-                transform.InverseTransformPoint(focus.position);
+                transform.InverseTransformPoint(
+                    focus.position);
 
             return ChunkCoord.FromWorldMeters(
                 local.x,
@@ -118,6 +122,7 @@ namespace VoxDetroit.World
                 BuildTargetSet(center);
 
             _residentCoords.Clear();
+
             foreach (ChunkCoord coord in target)
             {
                 _residentCoords.Add(coord);
@@ -149,7 +154,8 @@ namespace VoxDetroit.World
                 }
             }
 
-            foreach (VoxelChunkView view in _views.Values)
+            foreach (VoxelChunkView view
+                     in _views.Values)
             {
                 view.RebuildMesh();
             }
@@ -158,20 +164,20 @@ namespace VoxDetroit.World
         private HashSet<ChunkCoord> BuildTargetSet(
             ChunkCoord center)
         {
-            var target = new HashSet<ChunkCoord>();
+            var target =
+                new HashSet<ChunkCoord>();
 
-            // Imported city data already knows which vertical chunks
-            // contain geometry. Load every populated Y chunk inside
-            // the horizontal render radius so tall buildings are not
-            // clipped by a fixed height window.
             if (!generatePrototypeChunks &&
                 _world.ChunkCount > 0)
             {
-                foreach (ChunkCoord coord in _world.ChunkCoords)
+                foreach (ChunkCoord coord
+                         in _world.ChunkCoords)
                 {
-                    if (System.Math.Abs(coord.X - center.X) <=
+                    if (System.Math.Abs(
+                            coord.X - center.X) <=
                             renderRadius &&
-                        System.Math.Abs(coord.Z - center.Z) <=
+                        System.Math.Abs(
+                            coord.Z - center.Z) <=
                             renderRadius)
                     {
                         target.Add(coord);
@@ -181,8 +187,11 @@ namespace VoxDetroit.World
                 return target;
             }
 
-            int minY = center.Y - chunksBelowFocus;
-            int maxY = center.Y + chunksAboveFocus;
+            int minY =
+                center.Y - chunksBelowFocus;
+
+            int maxY =
+                center.Y + chunksAboveFocus;
 
             for (int y = minY; y <= maxY; y++)
             {
@@ -209,7 +218,8 @@ namespace VoxDetroit.World
         private void RemoveViewsOutside(
             HashSet<ChunkCoord> target)
         {
-            var remove = new List<ChunkCoord>();
+            var remove =
+                new List<ChunkCoord>();
 
             foreach (
                 KeyValuePair<ChunkCoord, VoxelChunkView> pair
@@ -223,7 +233,8 @@ namespace VoxDetroit.World
 
             foreach (ChunkCoord coord in remove)
             {
-                VoxelChunkView view = _views[coord];
+                VoxelChunkView view =
+                    _views[coord];
 
                 if (view != null)
                 {
@@ -260,7 +271,8 @@ namespace VoxDetroit.World
             MeshRenderer renderer =
                 chunkObject.GetComponent<MeshRenderer>();
 
-            renderer.sharedMaterial = ResolveMaterial();
+            renderer.sharedMaterials =
+                ResolveMaterials();
 
             view.Initialize(
                 coord,
@@ -270,21 +282,18 @@ namespace VoxDetroit.World
             return view;
         }
 
-        private Material ResolveMaterial()
+        private Material[] ResolveMaterials()
         {
-            if (voxelMaterial != null)
+            if (_runtimeMaterials != null)
             {
-                return voxelMaterial;
-            }
-
-            if (_runtimeMaterial != null)
-            {
-                return _runtimeMaterial;
+                return _runtimeMaterials;
             }
 
             Shader shader =
-                Shader.Find(
-                    "Universal Render Pipeline/Lit");
+                voxelMaterial != null
+                    ? voxelMaterial.shader
+                    : Shader.Find(
+                        "Universal Render Pipeline/Lit");
 
             if (shader == null)
             {
@@ -295,31 +304,136 @@ namespace VoxDetroit.World
             {
                 Debug.LogError(
                     "Vox Detroit could not find a default shader.");
-                return null;
+
+                _runtimeMaterials =
+                    new Material[
+                        BlockCatalog.MaterialSlotCount];
+
+                return _runtimeMaterials;
             }
 
-            _runtimeMaterial = new Material(shader)
-            {
-                name = "Runtime Voxel Material",
-                color = new Color(0.55f, 0.55f, 0.58f)
-            };
+            _runtimeMaterials =
+                new Material[
+                    BlockCatalog.MaterialSlotCount];
 
-            return _runtimeMaterial;
+            for (int slot = 0;
+                 slot < _runtimeMaterials.Length;
+                 slot++)
+            {
+                Material material =
+                    voxelMaterial != null
+                        ? new Material(voxelMaterial)
+                        : new Material(shader);
+
+                BlockId block = (BlockId)slot;
+
+                material.name =
+                    $"Runtime {block} Material";
+
+                material.color =
+                    GetPrototypeColor(block);
+
+                _runtimeMaterials[slot] =
+                    material;
+            }
+
+            return _runtimeMaterials;
+        }
+
+        private static Color GetPrototypeColor(
+            BlockId block)
+        {
+            switch (block)
+            {
+                case BlockId.Soil:
+                    return new Color(
+                        0.30f,
+                        0.20f,
+                        0.12f);
+
+                case BlockId.Grass:
+                    return new Color(
+                        0.22f,
+                        0.42f,
+                        0.20f);
+
+                case BlockId.Concrete:
+                    return new Color(
+                        0.58f,
+                        0.59f,
+                        0.60f);
+
+                case BlockId.Asphalt:
+                    return new Color(
+                        0.12f,
+                        0.13f,
+                        0.14f);
+
+                case BlockId.Brick:
+                    return new Color(
+                        0.50f,
+                        0.22f,
+                        0.16f);
+
+                case BlockId.Glass:
+                    return new Color(
+                        0.35f,
+                        0.58f,
+                        0.68f);
+
+                case BlockId.Wood:
+                    return new Color(
+                        0.45f,
+                        0.30f,
+                        0.16f);
+
+                case BlockId.Water:
+                    return new Color(
+                        0.18f,
+                        0.38f,
+                        0.62f);
+
+                case BlockId.RoadMarking:
+                    return new Color(
+                        0.90f,
+                        0.86f,
+                        0.60f);
+
+                default:
+                    return new Color(
+                        0.45f,
+                        0.45f,
+                        0.45f);
+            }
         }
 
         private void OnDestroy()
         {
-            if (_runtimeMaterial != null)
+            if (_runtimeMaterials == null)
             {
-                Destroy(_runtimeMaterial);
+                return;
             }
+
+            foreach (Material material
+                     in _runtimeMaterials)
+            {
+                if (material != null)
+                {
+                    Destroy(material);
+                }
+            }
+
+            _runtimeMaterials = null;
         }
 
         private void OnValidate()
         {
-            renderRadius = Mathf.Max(0, renderRadius);
+            renderRadius =
+                Mathf.Max(0, renderRadius);
+
             chunksBelowFocus =
                 Mathf.Max(0, chunksBelowFocus);
+
             chunksAboveFocus =
                 Mathf.Max(0, chunksAboveFocus);
         }

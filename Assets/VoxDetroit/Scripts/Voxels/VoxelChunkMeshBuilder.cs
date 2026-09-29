@@ -44,9 +44,11 @@ namespace VoxDetroit.Voxels
             int size = VoxDetroitConstants.ChunkSize;
 
             var vertices = new List<Vector3>();
-            var triangles = new List<int>();
             var normals = new List<Vector3>();
             var uvs = new List<Vector2>();
+
+            List<int>[] trianglesBySlot =
+                CreateTriangleLists();
 
             for (int z = 0; z < size; z++)
             {
@@ -55,10 +57,14 @@ namespace VoxDetroit.Voxels
                     for (int x = 0; x < size; x++)
                     {
                         BlockId block = chunk.Get(x, y, z);
+
                         if (!BlockCatalog.IsSolid(block))
                         {
                             continue;
                         }
+
+                        int materialSlot =
+                            BlockCatalog.GetMaterialSlot(block);
 
                         for (int face = 0; face < 6; face++)
                         {
@@ -76,7 +82,7 @@ namespace VoxDetroit.Voxels
 
                             AddFace(
                                 vertices,
-                                triangles,
+                                trianglesBySlot[materialSlot],
                                 normals,
                                 uvs,
                                 x,
@@ -89,7 +95,10 @@ namespace VoxDetroit.Voxels
                 }
             }
 
-            var mesh = new Mesh { name = $"Voxel Chunk {coord}" };
+            var mesh = new Mesh
+            {
+                name = $"Voxel Chunk {coord}"
+            };
 
             if (vertices.Count > 65535)
             {
@@ -98,12 +107,38 @@ namespace VoxDetroit.Voxels
             }
 
             mesh.SetVertices(vertices);
-            mesh.SetTriangles(triangles, 0);
             mesh.SetNormals(normals);
             mesh.SetUVs(0, uvs);
-            mesh.RecalculateBounds();
 
+            mesh.subMeshCount =
+                BlockCatalog.MaterialSlotCount;
+
+            for (int slot = 0;
+                 slot < trianglesBySlot.Length;
+                 slot++)
+            {
+                mesh.SetTriangles(
+                    trianglesBySlot[slot],
+                    slot,
+                    false);
+            }
+
+            mesh.RecalculateBounds();
             return mesh;
+        }
+
+        private static List<int>[] CreateTriangleLists()
+        {
+            var lists =
+                new List<int>[
+                    BlockCatalog.MaterialSlotCount];
+
+            for (int i = 0; i < lists.Length; i++)
+            {
+                lists[i] = new List<int>();
+            }
+
+            return lists;
         }
 
         private static bool FaceIsOccluded(
@@ -121,9 +156,14 @@ namespace VoxDetroit.Voxels
             int ny = y + offset.y;
             int nz = z + offset.z;
 
-            if (chunk.TryGet(nx, ny, nz, out BlockId localNeighbor))
+            if (chunk.TryGet(
+                    nx,
+                    ny,
+                    nz,
+                    out BlockId localNeighbor))
             {
-                return BlockCatalog.OccludesFace(localNeighbor);
+                return BlockCatalog.OccludesFace(
+                    localNeighbor);
             }
 
             if (neighborSource == null)
@@ -131,16 +171,28 @@ namespace VoxDetroit.Voxels
                 return false;
             }
 
-            int worldX = coord.WorldVoxelOriginX + x + offset.x;
-            int worldY = coord.WorldVoxelOriginY + y + offset.y;
-            int worldZ = coord.WorldVoxelOriginZ + z + offset.z;
+            int worldX =
+                coord.WorldVoxelOriginX +
+                x +
+                offset.x;
+
+            int worldY =
+                coord.WorldVoxelOriginY +
+                y +
+                offset.y;
+
+            int worldZ =
+                coord.WorldVoxelOriginZ +
+                z +
+                offset.z;
 
             return neighborSource.TryGetBlock(
                        worldX,
                        worldY,
                        worldZ,
                        out BlockId worldNeighbor) &&
-                   BlockCatalog.OccludesFace(worldNeighbor);
+                   BlockCatalog.OccludesFace(
+                       worldNeighbor);
         }
 
         private static void AddFace(
@@ -155,6 +207,7 @@ namespace VoxDetroit.Voxels
             float scale)
         {
             int start = vertices.Count;
+
             Vector3 origin = new Vector3(
                 x * scale,
                 y * scale,
@@ -163,8 +216,11 @@ namespace VoxDetroit.Voxels
             for (int i = 0; i < 4; i++)
             {
                 vertices.Add(
-                    origin + FaceCorners[face, i] * scale);
-                normals.Add(NeighborOffsets[face]);
+                    origin +
+                    FaceCorners[face, i] * scale);
+
+                normals.Add(
+                    NeighborOffsets[face]);
             }
 
             uvs.Add(new Vector2(0, 0));
