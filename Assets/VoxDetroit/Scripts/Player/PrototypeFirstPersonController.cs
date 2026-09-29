@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -33,6 +34,7 @@ namespace VoxDetroit.Player
         private float _pitch;
         private bool _flyMode;
         private bool _cursorLocked = true;
+        private bool _initialSpawnPending;
 
         public bool FlyMode => _flyMode;
 
@@ -54,7 +56,8 @@ namespace VoxDetroit.Player
 
             if (autoSnapToGround)
             {
-                SnapToNearbyStreetLevel();
+                StartCoroutine(
+                    ResolveInitialStreetSpawn());
             }
         }
 
@@ -73,6 +76,11 @@ namespace VoxDetroit.Player
             if (_cursorLocked && mouse != null)
             {
                 HandleLook(mouse);
+            }
+
+            if (_initialSpawnPending)
+            {
+                return;
             }
 
             if (_flyMode)
@@ -316,8 +324,115 @@ namespace VoxDetroit.Player
             _controller.skinWidth = 0.04f;
         }
 
+        private IEnumerator ResolveInitialStreetSpawn()
+        {
+            _initialSpawnPending = true;
+
+            bool controllerWasEnabled =
+                _controller != null &&
+                _controller.enabled;
+
+            if (_controller != null)
+            {
+                _controller.enabled = false;
+            }
+
+            const int maxAttempts = 60;
+
+            for (int attempt = 0;
+                 attempt < maxAttempts;
+                 attempt++)
+            {
+                yield return null;
+
+                if ((attempt % 3) == 0)
+                {
+                    yield return new WaitForFixedUpdate();
+                }
+
+                Physics.SyncTransforms();
+
+                if (TryFindNearbyStreetLevel(
+                        out Vector3 point))
+                {
+                    transform.position =
+                        point +
+                        (Vector3.up * 0.08f);
+
+                    _initialSpawnPending = false;
+
+                    if (_controller != null)
+                    {
+                        _controller.enabled =
+                            controllerWasEnabled;
+                    }
+
+                    Debug.Log(
+                        $"Vox Detroit player spawned at street level: " +
+                        $"{transform.position}.");
+
+                    yield break;
+                }
+            }
+
+            _initialSpawnPending = false;
+            SetFlyMode(true);
+
+            Debug.LogWarning(
+                "Vox Detroit could not resolve an initial street spawn " +
+                "after waiting for voxel colliders. Free-fly mode was " +
+                "enabled automatically; press F3 to retry.");
+
+            if (_controller != null &&
+                !_flyMode)
+            {
+                _controller.enabled =
+                    controllerWasEnabled;
+            }
+        }
+
         [ContextMenu("Snap To Nearby Street Level")]
         public void SnapToNearbyStreetLevel()
+        {
+            if (TryFindNearbyStreetLevel(
+                    out Vector3 point))
+            {
+                bool controllerWasEnabled =
+                    _controller != null &&
+                    _controller.enabled;
+
+                if (_controller != null)
+                {
+                    _controller.enabled = false;
+                }
+
+                transform.position =
+                    point +
+                    (Vector3.up * 0.08f);
+
+                Physics.SyncTransforms();
+
+                if (_controller != null)
+                {
+                    _controller.enabled =
+                        controllerWasEnabled &&
+                        !_flyMode;
+                }
+
+                Debug.Log(
+                    $"Vox Detroit player snapped to street level: " +
+                    $"{transform.position}.");
+            }
+            else
+            {
+                Debug.LogWarning(
+                    "Vox Detroit player could not find a nearby " +
+                    "walkable surface. Press F2 for free-fly mode.");
+            }
+        }
+
+        private bool TryFindNearbyStreetLevel(
+            out Vector3 bestPoint)
         {
             bool controllerWasEnabled =
                 _controller != null &&
@@ -328,18 +443,19 @@ namespace VoxDetroit.Player
                 _controller.enabled = false;
             }
 
+            Physics.SyncTransforms();
+
             Vector3 center =
                 transform.position;
 
             float bestY =
                 float.PositiveInfinity;
 
-            Vector3 bestPoint =
+            bestPoint =
                 center;
 
             bool found = false;
 
-            const int rings = 4;
             const int samplesPerAxis = 9;
 
             for (int xi = 0;
@@ -399,25 +515,14 @@ namespace VoxDetroit.Player
                 }
             }
 
-            if (found)
-            {
-                transform.position =
-                    bestPoint +
-                    (Vector3.up * 0.08f);
-            }
-            else
-            {
-                Debug.LogWarning(
-                    "Vox Detroit player could not find a nearby " +
-                    "walkable surface. Press F2 for free-fly mode.");
-            }
-
             if (_controller != null)
             {
                 _controller.enabled =
                     controllerWasEnabled &&
                     !_flyMode;
             }
+
+            return found;
         }
     }
 }
