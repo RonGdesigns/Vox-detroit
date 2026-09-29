@@ -79,3 +79,8 @@ The first Unity render will still require:
 - road markings, sidewalks, trees, lights and street furniture.
 
 The objective of M1 is recognizable geography first, visual authenticity second.
+
+
+## Overpass geometry behavior
+
+The query bounds select features that intersect the prototype area. Overpass can return the complete geometry of an intersecting way, so some road/building points extend beyond the exact query rectangle. The validator intentionally permits this within a small Downtown safety envelope and reports the count instead of treating those points as corrupt data.

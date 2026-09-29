@@ -21,34 +21,46 @@ EXPECTED_BUILDINGS = {
 }
 
 MAX_REASONABLE_BUILDING_HEIGHT_METERS = 300.0
-BOUNDS_TOLERANCE_DEGREES = 0.0002
+
+# Overpass selects ways that intersect the requested bbox, then returns the
+# complete way geometry. Nodes outside the exact bbox are therefore expected.
+# Only points outside this larger envelope are treated as corrupt/unexpected.
+MAX_WAY_EXTENSION_DEGREES = 0.005
 
 
 def finite_number(value):
     return isinstance(value, (int, float)) and math.isfinite(value)
 
 
-def validate_point(point, bounds, label, errors):
+def point_status(point, bounds, label, errors):
     lat = point.get("latitude")
     lon = point.get("longitude")
 
     if not finite_number(lat) or not finite_number(lon):
         errors.append(f"{label}: non-finite latitude/longitude")
-        return
+        return False
 
-    if not (
-        bounds["south"] - BOUNDS_TOLERANCE_DEGREES
+    outside_query = not (
+        bounds["south"] <= lat <= bounds["north"]
+        and bounds["west"] <= lon <= bounds["east"]
+    )
+
+    inside_safety_envelope = (
+        bounds["south"] - MAX_WAY_EXTENSION_DEGREES
         <= lat
-        <= bounds["north"] + BOUNDS_TOLERANCE_DEGREES
-    ):
-        errors.append(f"{label}: latitude {lat} outside prototype bounds")
-
-    if not (
-        bounds["west"] - BOUNDS_TOLERANCE_DEGREES
+        <= bounds["north"] + MAX_WAY_EXTENSION_DEGREES
+        and bounds["west"] - MAX_WAY_EXTENSION_DEGREES
         <= lon
-        <= bounds["east"] + BOUNDS_TOLERANCE_DEGREES
-    ):
-        errors.append(f"{label}: longitude {lon} outside prototype bounds")
+        <= bounds["east"] + MAX_WAY_EXTENSION_DEGREES
+    )
+
+    if not inside_safety_envelope:
+        errors.append(
+            f"{label}: coordinate ({lat}, {lon}) is far outside "
+            "the Downtown prototype envelope"
+        )
+
+    return outside_query
 
 
 def validate(path):
@@ -81,6 +93,8 @@ def validate(path):
 
     ids = set()
     duplicate_ids = set()
+    outside_query_points = 0
+    total_points = 0
 
     for index, road in enumerate(roads):
         rid = road.get("id")
@@ -100,12 +114,14 @@ def validate(path):
             errors.append(f"{rid or index}: road has fewer than 2 points")
 
         for point_index, point in enumerate(points):
-            validate_point(
+            total_points += 1
+            if point_status(
                 point,
                 bounds,
                 f"{rid or index}.centerline[{point_index}]",
                 errors,
-            )
+            ):
+                outside_query_points += 1
 
     max_height = 0.0
     fallback_height_buildings = []
@@ -124,12 +140,14 @@ def validate(path):
             errors.append(f"{bid or index}: footprint has fewer than 3 points")
 
         for point_index, point in enumerate(points):
-            validate_point(
+            total_points += 1
+            if point_status(
                 point,
                 bounds,
                 f"{bid or index}.footprint[{point_index}]",
                 errors,
-            )
+            ):
+                outside_query_points += 1
 
         height = building.get("heightMeters") or 0
         levels = building.get("levels") or 0
@@ -182,6 +200,13 @@ def validate(path):
             "procedural height fallback"
         )
 
+    if outside_query_points:
+        warnings.append(
+            f"{outside_query_points} of {total_points} geometry points "
+            "extend outside the query bbox because Overpass returns "
+            "complete intersecting ways"
+        )
+
     summary = {
         "areaName": data.get("areaName"),
         "roads": len(roads),
@@ -190,6 +215,8 @@ def validate(path):
         "namedBuildings": len(named_buildings),
         "maxExplicitHeightMeters": max_height,
         "fallbackHeightBuildings": len(fallback_height_buildings),
+        "geometryPoints": total_points,
+        "pointsOutsideQueryBounds": outside_query_points,
         "sourceAttribution": data.get("sourceAttribution"),
         "sourceLicense": data.get("sourceLicense"),
     }
