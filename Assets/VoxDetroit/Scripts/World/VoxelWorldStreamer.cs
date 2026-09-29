@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using VoxDetroit.Core;
 using VoxDetroit.Voxels;
 
@@ -292,18 +293,12 @@ namespace VoxDetroit.World
             Shader shader =
                 voxelMaterial != null
                     ? voxelMaterial.shader
-                    : Shader.Find(
-                        "Universal Render Pipeline/Lit");
-
-            if (shader == null)
-            {
-                shader = Shader.Find("Standard");
-            }
+                    : ResolveDefaultShader();
 
             if (shader == null)
             {
                 Debug.LogError(
-                    "Vox Detroit could not find a default shader.");
+                    "Vox Detroit could not find a supported default shader.");
 
                 _runtimeMaterials =
                     new Material[
@@ -330,14 +325,84 @@ namespace VoxDetroit.World
                 material.name =
                     $"Runtime {block} Material";
 
-                material.color =
+                Color color =
                     GetPrototypeColor(block);
+
+                if (material.HasProperty("_BaseColor"))
+                {
+                    material.SetColor("_BaseColor", color);
+                }
+                else if (material.HasProperty("_Color"))
+                {
+                    material.SetColor("_Color", color);
+                }
+                else
+                {
+                    material.color = color;
+                }
 
                 _runtimeMaterials[slot] =
                     material;
             }
 
             return _runtimeMaterials;
+        }
+
+        private static Shader ResolveDefaultShader()
+        {
+            RenderPipelineAsset pipeline =
+                GraphicsSettings.currentRenderPipeline;
+
+            if (pipeline != null)
+            {
+                string pipelineName =
+                    pipeline.GetType().Name;
+
+                if (pipelineName.IndexOf(
+                        "Universal",
+                        System.StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    Shader urpLit =
+                        Shader.Find(
+                            "Universal Render Pipeline/Lit");
+
+                    if (urpLit != null &&
+                        urpLit.isSupported)
+                    {
+                        return urpLit;
+                    }
+
+                    Shader urpUnlit =
+                        Shader.Find(
+                            "Universal Render Pipeline/Unlit");
+
+                    if (urpUnlit != null &&
+                        urpUnlit.isSupported)
+                    {
+                        return urpUnlit;
+                    }
+                }
+            }
+
+            Shader standard =
+                Shader.Find("Standard");
+
+            if (standard != null &&
+                standard.isSupported)
+            {
+                return standard;
+            }
+
+            Shader unlit =
+                Shader.Find("Unlit/Color");
+
+            if (unlit != null &&
+                unlit.isSupported)
+            {
+                return unlit;
+            }
+
+            return null;
         }
 
         private static Color GetPrototypeColor(
