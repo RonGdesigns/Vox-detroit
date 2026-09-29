@@ -33,6 +33,14 @@
     <Compile Include="../../Assets/VoxDetroit/Scripts/Jobs/JobDefinition.cs" Link="Jobs/JobDefinition.cs" />
     <Compile Include="../../Assets/VoxDetroit/Scripts/Jobs/EmploymentState.cs" Link="Jobs/EmploymentState.cs" />
     <Compile Include="../../Assets/VoxDetroit/Scripts/Jobs/JobService.cs" Link="Jobs/JobService.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Jobs/JobTaskState.cs" Link="Jobs/JobTaskState.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Jobs/JobTaskService.cs" Link="Jobs/JobTaskService.cs" />
+
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Inventory/InventoryState.cs" Link="Inventory/InventoryState.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Inventory/InventoryService.cs" Link="Inventory/InventoryService.cs" />
+
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Commerce/StoreState.cs" Link="Commerce/StoreState.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Commerce/StoreService.cs" Link="Commerce/StoreService.cs" />
 
     <Compile Include="../../Assets/VoxDetroit/Scripts/Properties/PropertyState.cs" Link="Properties/PropertyState.cs" />
     <Compile Include="../../Assets/VoxDetroit/Scripts/Properties/PropertyService.cs" Link="Properties/PropertyService.cs" />
@@ -49,6 +57,11 @@
     <Compile Include="../../Assets/VoxDetroit/Scripts/Story/StoryState.cs" Link="Story/StoryState.cs" />
     <Compile Include="../../Assets/VoxDetroit/Scripts/Story/StoryService.cs" Link="Story/StoryService.cs" />
 
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Player/PlayerState.cs" Link="Player/PlayerState.cs" />
     <Compile Include="../../Assets/VoxDetroit/Scripts/Vehicles/VehicleState.cs" Link="Vehicles/VehicleState.cs" />
+
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Persistence/VoxDetroitSaveData.cs" Link="Persistence/VoxDetroitSaveData.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Persistence/NewGameFactory.cs" Link="Persistence/NewGameFactory.cs" />
+    <Compile Include="../../Assets/VoxDetroit/Scripts/Simulation/SimulationSession.cs" Link="Simulation/SimulationSession.cs" />
   </ItemGroup>
 </Project>

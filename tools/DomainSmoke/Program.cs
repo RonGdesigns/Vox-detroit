@@ -1,5 +1,9 @@
 using System;
 using VoxDetroit.Businesses;
+using VoxDetroit.Commerce;
+using VoxDetroit.Inventory;
+using VoxDetroit.Persistence;
+using VoxDetroit.Simulation;
 using VoxDetroit.Core;
 using VoxDetroit.Detroit;
 using VoxDetroit.Economy;
@@ -20,6 +24,7 @@ internal static class Program
         TestClock();
         TestChunkCoordinates();
         TestFinanceJobsPropertyAndObligations();
+        TestStoreTasksAndSimulation();
         TestBusiness();
         TestNpcSchedule();
         TestStory();
@@ -169,6 +174,134 @@ internal static class Program
         Assert(
             obligationState.obligations[0].missedPayments == 1,
             "missed payment count");
+    }
+
+
+    private static void TestStoreTasksAndSimulation()
+    {
+        VoxDetroitSaveData data =
+            NewGameFactory.Create(
+                new NewGameSettings
+                {
+                    startingCashCents = 0,
+                    startingCheckingCents = 50000,
+                    worldSeed = 123
+                });
+
+        var session = new SimulationSession(
+            data,
+            PrototypeJobCatalog.Create());
+
+        session.Finance.GetOrCreateAccount("store.hardware", 0);
+
+        var store = new StoreRecord
+        {
+            id = "store.test",
+            displayName = "Prototype Hardware",
+            financeAccountId = "store.hardware"
+        };
+
+        store.catalog.Add(
+            new StoreCatalogEntry
+            {
+                itemId = "material.brick",
+                unitPriceCents = 250,
+                stock = 10
+            });
+
+        data.stores.stores.Add(store);
+
+        Assert(
+            session.Stores.TryBuy(
+                "store.test",
+                "material.brick",
+                3,
+                AccountIds.PlayerChecking,
+                session.Finance,
+                session.Inventory,
+                session.Clock.TotalMinutes),
+            "buy construction materials");
+
+        Assert(
+            session.Inventory.Count("material.brick") == 3,
+            "inventory received materials");
+
+        Assert(
+            session.Finance.GetBalance("store.hardware").Cents == 750,
+            "store receives purchase");
+
+        Assert(
+            session.Jobs.TryAcceptJob("job.delivery.entry"),
+            "session accepts job");
+
+        data.jobTasks.tasks.Add(
+            new JobTaskRecord
+            {
+                id = "task.delivery.test",
+                jobId = "job.delivery.entry",
+                title = "Prototype Delivery",
+                type = JobTaskType.Delivery,
+                status = JobTaskStatus.Offered,
+                requiredProgress = 1,
+                completionPayCents = 1200,
+                reputationReward = 2,
+                deadlineMinute = 180
+            });
+
+        Assert(
+            session.JobTasks.TryAccept(
+                "task.delivery.test",
+                data.employment.currentJobId,
+                session.Clock.TotalMinutes),
+            "accept job task");
+
+        long beforeTask =
+            session.Finance
+                .GetBalance(AccountIds.PlayerChecking)
+                .Cents;
+
+        Assert(
+            session.JobTasks.TryAddProgress(
+                "task.delivery.test",
+                1,
+                session.Clock.TotalMinutes,
+                session.Jobs,
+                session.Finance),
+            "complete task progress");
+
+        Assert(
+            data.jobTasks.tasks[0].status ==
+            JobTaskStatus.Completed,
+            "job task completed");
+
+        Assert(
+            session.Finance
+                .GetBalance(AccountIds.PlayerChecking)
+                .Cents ==
+            beforeTask + 1200,
+            "job task paid");
+
+        data.obligations.obligations.Add(
+            new ObligationRecord
+            {
+                id = "utility.test",
+                displayName = "Prototype Utility Bill",
+                payerAccountId = AccountIds.PlayerChecking,
+                amountCents = 100,
+                intervalMinutes = 43200,
+                nextDueMinute = 10
+            });
+
+        SimulationAdvanceResult advance =
+            session.AdvanceMinutes(20);
+
+        Assert(
+            advance.currentMinute == 20,
+            "simulation advances time");
+
+        Assert(
+            advance.missedObligations.Count == 0,
+            "simulation processes payable bill");
     }
 
     private static void TestBusiness()

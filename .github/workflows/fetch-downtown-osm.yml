@@ -24,7 +24,7 @@ jobs:
       - name: Commit converted prototype data
         shell: bash
         run: |
-          if git diff --quiet -- Assets/VoxDetroit/Data/downtown-core-prototype.json; then
+          if [ -z "$(git status --porcelain -- Assets/VoxDetroit/Data/downtown-core-prototype.json)" ]; then
             echo "Prototype map data is already current."
             exit 0
           fi

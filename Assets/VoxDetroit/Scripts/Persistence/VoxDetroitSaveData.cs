@@ -1,7 +1,9 @@
 using System;
 using VoxDetroit.Businesses;
+using VoxDetroit.Commerce;
 using VoxDetroit.Core;
 using VoxDetroit.Economy;
+using VoxDetroit.Inventory;
 using VoxDetroit.Jobs;
 using VoxDetroit.NPCs;
 using VoxDetroit.Player;
@@ -32,6 +34,9 @@ namespace VoxDetroit.Persistence
         public FinanceState finance = new FinanceState();
         public ObligationState obligations = new ObligationState();
         public EmploymentState employment = new EmploymentState();
+        public JobTaskWorldState jobTasks = new JobTaskWorldState();
+        public InventoryState inventory = new InventoryState();
+        public StoreWorldState stores = new StoreWorldState();
         public PropertyWorldState properties = new PropertyWorldState();
         public BusinessWorldState businesses = new BusinessWorldState();
         public VehicleWorldState vehicles = new VehicleWorldState();
