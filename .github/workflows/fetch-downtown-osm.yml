@@ -1,0 +1,36 @@
+name: Fetch Downtown Detroit Prototype
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/fetch-downtown-osm.yml'
+      - 'tools/osm/fetch_downtown.py'
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch and convert OSM prototype
+        run: python3 tools/osm/fetch_downtown.py Assets/VoxDetroit/Data/downtown-core-prototype.json
+
+      - name: Commit converted prototype data
+        shell: bash
+        run: |
+          if git diff --quiet -- Assets/VoxDetroit/Data/downtown-core-prototype.json; then
+            echo "Prototype map data is already current."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Assets/VoxDetroit/Data/downtown-core-prototype.json
+          git commit -m "Import Downtown Detroit prototype map data"
+          git push

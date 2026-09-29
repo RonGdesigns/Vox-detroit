@@ -2,18 +2,20 @@
 
 ## Goal
 
-Turn public geospatial data into a recognizable, performant voxel city while reserving manual art time for important locations.
+Turn properly licensed public geospatial data into a recognizable, performant voxel city while reserving manual art time for important locations.
 
 ## Pipeline
 
 ```text
-Source GIS / OpenStreetMap-style data
+OpenStreetMap / other approved GIS sources
         ↓
-Raw import cache
+Raw retrieval
+        ↓
+Vox Detroit intermediate JSON
         ↓
 Coordinate normalization
         ↓
-Road + parcel/building feature extraction
+Road + building feature extraction
         ↓
 Local meter coordinates
         ↓
@@ -34,16 +36,37 @@ The initial code uses a Downtown Detroit reference near 42.3314, -83.0458.
 
 This anchor is only an origin for local coordinate math. It does not imply the first playable block must be centered exactly on that point.
 
-## First import target
+## M1 prototype area
 
-Do not import the whole city first.
+The first automated import uses a deliberately small Downtown Detroit core:
 
-M1 should select one small Downtown test area and prove:
-- road centerlines align plausibly,
-- road widths can be represented,
-- building footprints land in the correct relative positions,
-- building heights can be supplied or inferred,
-- the resulting block is visually recognizable.
+- South: 42.3306
+- West: -83.0475
+- North: 42.3323
+- East: -83.0444
+
+This area is large enough to prove recognizable street/building geometry while remaining cheap to rasterize and inspect.
+
+## Retrieval paths
+
+There are two supported prototype retrieval paths:
+
+1. **GitHub/Python:** `tools/osm/fetch_downtown.py`
+2. **Unity Editor:** `Vox Detroit > Detroit OSM Importer`
+
+The Python path is used to commit a reproducible intermediate JSON dataset before the Unity editor is available.
+
+## Intermediate data
+
+The runtime does not depend directly on Overpass or OSM XML/JSON.
+
+The committed intermediate schema stores only what the prototype needs:
+- road ID/name/class/estimated width/centerline,
+- building ID/name/type/height/levels/footprint,
+- source and license metadata,
+- import bounds and retrieval timestamp.
+
+This creates a stable boundary between changing map-source formats and gameplay/world generation code.
 
 ## Feature hierarchy
 
@@ -91,7 +114,12 @@ Every imported dataset must record:
 - retrieval date,
 - transformation steps.
 
-No map-provider imagery or proprietary game assets should be copied into the project without appropriate rights.
+For the current OSM prototype:
+- attribution: **© OpenStreetMap contributors**
+- license: **Open Database License (ODbL) 1.0**
+- reference: https://www.openstreetmap.org/copyright
+
+Do not use or trace proprietary map imagery as a substitute for properly licensed source data.
 
 ## Accuracy target
 
