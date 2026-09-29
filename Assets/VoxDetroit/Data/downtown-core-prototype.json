@@ -1,0 +1,4395 @@
+{
+  "schemaVersion": "1.0",
+  "sourceName": "OpenStreetMap",
+  "sourceAttribution": "© OpenStreetMap contributors",
+  "sourceLicense": "Open Database License (ODbL) 1.0",
+  "sourceUrl": "https://www.openstreetmap.org/copyright",
+  "retrievedUtc": "2026-09-29T16:51:16.234956Z",
+  "areaName": "Downtown Detroit Core Prototype",
+  "bounds": {
+    "south": 42.3306,
+    "west": -83.0475,
+    "north": 42.3323,
+    "east": -83.0444
+  },
+  "roads": [
+    {
+      "id": "way/8734459",
+      "name": "Fort Street West",
+      "roadClass": "primary",
+      "widthMeters": 21.4,
+      "centerline": [
+        {
+          "latitude": 42.3307287,
+          "longitude": -83.0474207
+        },
+        {
+          "latitude": 42.3306601,
+          "longitude": -83.0475705
+        },
+        {
+          "latitude": 42.330446,
+          "longitude": -83.0480383
+        },
+        {
+          "latitude": 42.3301589,
+          "longitude": -83.0486659
+        },
+        {
+          "latitude": 42.3301201,
+          "longitude": -83.0487506
+        }
+      ]
+    },
+    {
+      "id": "way/8741601",
+      "name": "Woodward Avenue",
+      "roadClass": "primary",
+      "widthMeters": 7.8,
+      "centerline": [
+        {
+          "latitude": 42.3323641,
+          "longitude": -83.0473816
+        },
+        {
+          "latitude": 42.3322481,
+          "longitude": -83.0473319
+        },
+        {
+          "latitude": 42.3321339,
+          "longitude": -83.0472483
+        },
+        {
+          "latitude": 42.3320567,
+          "longitude": -83.0471919
+        }
+      ]
+    },
+    {
+      "id": "way/8750465",
+      "name": "Bates Street",
+      "roadClass": "tertiary",
+      "widthMeters": 6.8,
+      "centerline": [
+        {
+          "latitude": 42.330974,
+          "longitude": -83.0445924
+        },
+        {
+          "latitude": 42.3311539,
+          "longitude": -83.0445927
+        },
+        {
+          "latitude": 42.3313041,
+          "longitude": -83.0445929
+        },
+        {
+          "latitude": 42.3314051,
+          "longitude": -83.0445931
+        },
+        {
+          "latitude": 42.33172,
+          "longitude": -83.0445936
+        },
+        {
+          "latitude": 42.3318139,
+          "longitude": -83.0445938
+        },
+        {
+          "latitude": 42.3321221,
+          "longitude": -83.0446005
+        }
+      ]
+    },
+    {
+      "id": "way/25907392",
+      "name": "Michigan Avenue",
+      "roadClass": "primary",
+      "widthMeters": 14.6,
+      "centerline": [
+        {
+          "latitude": 42.3316857,
+          "longitude": -83.0470278
+        },
+        {
+          "latitude": 42.3316853,
+          "longitude": -83.0470716
+        },
+        {
+          "latitude": 42.3316838,
+          "longitude": -83.0472309
+        },
+        {
+          "latitude": 42.3316808,
+          "longitude": -83.0476452
+        }
+      ]
+    },
+    {
+      "id": "way/30258937",
+      "name": "Monroe Street",
+      "roadClass": "primary",
+      "widthMeters": 11.2,
+      "centerline": [
+        {
+          "latitude": 42.3320347,
+          "longitude": -83.0462314
+        },
+        {
+          "latitude": 42.3320378,
+          "longitude": -83.0462292
+        },
+        {
+          "latitude": 42.3321037,
+          "longitude": -83.0461853
+        },
+        {
+          "latitude": 42.3321377,
+          "longitude": -83.0461626
+        },
+        {
+          "latitude": 42.3321443,
+          "longitude": -83.0461574
+        },
+        {
+          "latitude": 42.3325201,
+          "longitude": -83.0458621
+        },
+        {
+          "latitude": 42.3327077,
+          "longitude": -83.045716
+        }
+      ]
+    },
+    {
+      "id": "way/46274645",
+      "name": "",
+      "roadClass": "primary_link",
+      "widthMeters": 3.4,
+      "centerline": [
+        {
+          "latitude": 42.3321673,
+          "longitude": -83.0468653
+        },
+        {
+          "latitude": 42.3321386,
+          "longitude": -83.0469211
+        },
+        {
+          "latitude": 42.3321129,
+          "longitude": -83.0469642
+        },
+        {
+          "latitude": 42.3321044,
+          "longitude": -83.0469779
+        },
+        {
+          "latitude": 42.3320936,
+          "longitude": -83.0469928
+        },
+        {
+          "latitude": 42.3320845,
+          "longitude": -83.0470044
+        },
+        {
+          "latitude": 42.3320652,
+          "longitude": -83.0470226
+        },
+        {
+          "latitude": 42.3320463,
+          "longitude": -83.0470381
+        },
+        {
+          "latitude": 42.3320254,
+          "longitude": -83.0470471
+        },
+        {
+          "latitude": 42.3320063,
+          "longitude": -83.0470514
+        },
+        {
+          "latitude": 42.3319329,
+          "longitude": -83.0470716
+        }
+      ]
+    },
+    {
+      "id": "way/46274648",
+      "name": "Fort Street West",
+      "roadClass": "primary",
+      "widthMeters": 4.4,
+      "centerline": [
+        {
+          "latitude": 42.3311938,
+          "longitude": -83.0470179
+        },
+        {
+          "latitude": 42.3310309,
+          "longitude": -83.0469849
+        },
+        {
+          "latitude": 42.3309849,
+          "longitude": -83.0469749
+        },
+        {
+          "latitude": 42.3309622,
+          "longitude": -83.0469836
+        },
+        {
+          "latitude": 42.3309384,
+          "longitude": -83.0470188
+        },
+        {
+          "latitude": 42.3309022,
+          "longitude": -83.0470841
+        },
+        {
+          "latitude": 42.3308869,
+          "longitude": -83.047115
+        }
+      ]
+    },
+    {
+      "id": "way/107483266",
+      "name": "",
+      "roadClass": "service",
+      "widthMeters": 5.0,
+      "centerline": [
+        {
+          "latitude": 42.3304844,
+          "longitude": -83.0451577
+        },
+        {
+          "latitude": 42.3305392,
+          "longitude": -83.0451987
+        },
+        {
+          "latitude": 42.3309524,
+          "longitude": -83.0455081
+        }
+      ]
+    },
+    {
+      "id": "way/107493885",
+      "name": "",
+      "roadClass": "service",
+      "widthMeters": 5.0,
+      "centerline": [
+        {
+          "latitude": 42.3321221,
+          "longitude": -83.0446005
+        },
+        {
+          "latitude": 42.3321225,
+          "longitude": -83.0445352
+        },
+        {
+          "latitude": 42.3321261,
+          "longitude": -83.0439298
+        },
+        {
+          "latitude": 42.332128,
+          "longitude": -83.0436012
+        },
+        {
+          "latitude": 42.3321285,
+          "longitude": -83.0435228
+        }
+      ]
+    },
+    {
+      "id": "way/107494406",
+      "name": "",
+      "roadClass": "service",
+      "widthMeters": 5.0,
+      "centerline": [
+        {
+          "latitude": 42.330974,
+          "longitude": -83.0445924
+        },
+        {
+          "latitude": 42.330975,
+          "longitude": -83.0446872
+        },
+        {
+          "latitude": 42.3309792,
+          "longitude": -83.0451085
+        }
+      ]
+    },
+    {
+      "id": "way/107494410",
+      "name": "",
+      "roadClass": "service",
+      "widthMeters": 5.0,
+      "centerline": [
+        {
+          "latitude": 42.3321221,
+          "longitude": -83.0446005
+        },
+        {
+          "latitude": 42.3321222,
+          "longitude": -83.0446974
+        },
+        {
+          "latitude": 42.3321199,
+          "longitude": -83.0450644
+        }
+      ]
+    },
+    {
+      "id": "way/108377927",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3310742,
+          "longitude": -83.0464414
+        },
+        {
+          "latitude": 42.3310367,
+          "longitude": -83.0464083
+        },
+        {
+          "latitude": 42.331011,
+          "longitude": -83.0463841
+        }
+      ]
+    },
+    {
+      "id": "way/108377928",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3321788,
+          "longitude": -83.0462277
+        },
+        {
+          "latitude": 42.3321231,
+          "longitude": -83.0462931
+        },
+        {
+          "latitude": 42.3321196,
+          "longitude": -83.0462962
+        },
+        {
+          "latitude": 42.332082,
+          "longitude": -83.0463397
+        }
+      ]
+    },
+    {
+      "id": "way/108377930",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3319666,
+          "longitude": -83.0461031
+        },
+        {
+          "latitude": 42.3319658,
+          "longitude": -83.0462149
+        },
+        {
+          "latitude": 42.3319658,
+          "longitude": -83.0462192
+        },
+        {
+          "latitude": 42.3319653,
+          "longitude": -83.046291
+        }
+      ]
+    },
+    {
+      "id": "way/108377937",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3321954,
+          "longitude": -83.0462574
+        },
+        {
+          "latitude": 42.3322242,
+          "longitude": -83.046304
+        },
+        {
+          "latitude": 42.3322766,
+          "longitude": -83.046389
+        }
+      ]
+    },
+    {
+      "id": "way/109768282",
+      "name": "Woodward Avenue",
+      "roadClass": "primary",
+      "widthMeters": 7.8,
+      "centerline": [
+        {
+          "latitude": 42.3309794,
+          "longitude": -83.0466914
+        },
+        {
+          "latitude": 42.330992,
+          "longitude": -83.0465875
+        },
+        {
+          "latitude": 42.330995,
+          "longitude": -83.0465504
+        },
+        {
+          "latitude": 42.3310005,
+          "longitude": -83.0465166
+        },
+        {
+          "latitude": 42.3310125,
+          "longitude": -83.0464739
+        },
+        {
+          "latitude": 42.3310367,
+          "longitude": -83.0464083
+        },
+        {
+          "latitude": 42.3310589,
+          "longitude": -83.0463675
+        },
+        {
+          "latitude": 42.3310925,
+          "longitude": -83.0463241
+        },
+        {
+          "latitude": 42.3311278,
+          "longitude": -83.0462819
+        },
+        {
+          "latitude": 42.3311618,
+          "longitude": -83.046253
+        },
+        {
+          "latitude": 42.3312009,
+          "longitude": -83.0462199
+        }
+      ]
+    },
+    {
+      "id": "way/110683314",
+      "name": "Griswold Street",
+      "roadClass": "tertiary",
+      "widthMeters": 13.6,
+      "centerline": [
+        {
+          "latitude": 42.3298483,
+          "longitude": -83.0466781
+        },
+        {
+          "latitude": 42.3299104,
+          "longitude": -83.0467297
+        },
+        {
+          "latitude": 42.33026,
+          "longitude": -83.047024
+        },
+        {
+          "latitude": 42.330617,
+          "longitude": -83.047324
+        },
+        {
+          "latitude": 42.3307287,
+          "longitude": -83.0474207
+        }
+      ]
+    },
+    {
+      "id": "way/119452910",
+      "name": "Woodward Avenue",
+      "roadClass": "tertiary",
+      "widthMeters": 10.2,
+      "centerline": [
+        {
+          "latitude": 42.3302828,
+          "longitude": -83.0456268
+        },
+        {
+          "latitude": 42.3303494,
+          "longitude": -83.0456704
+        },
+        {
+          "latitude": 42.3304257,
+          "longitude": -83.045728
+        },
+        {
+          "latitude": 42.3308821,
+          "longitude": -83.0460933
+        },
+        {
+          "latitude": 42.3309927,
+          "longitude": -83.0461831
+        }
+      ]
+    },
+    {
+      "id": "way/119507706",
+      "name": "East Congress Street",
+      "roadClass": "tertiary",
+      "widthMeters": 13.6,
+      "centerline": [
+        {
+          "latitude": 42.3312937,
+          "longitude": -83.0432467
+        },
+        {
+          "latitude": 42.331223,
+          "longitude": -83.0433919
+        },
+        {
+          "latitude": 42.3311852,
+          "longitude": -83.0434935
+        },
+        {
+          "latitude": 42.331047,
+          "longitude": -83.0438247
+        },
+        {
+          "latitude": 42.3309211,
+          "longitude": -83.0441262
+        },
+        {
+          "latitude": 42.3309031,
+          "longitude": -83.0441689
+        },
+        {
+          "latitude": 42.3308843,
+          "longitude": -83.0442142
+        },
+        {
+          "latitude": 42.3308422,
+          "longitude": -83.0443149
+        },
+        {
+          "latitude": 42.3307859,
+          "longitude": -83.044449
+        },
+        {
+          "latitude": 42.3307654,
+          "longitude": -83.044498
+        },
+        {
+          "latitude": 42.3307261,
+          "longitude": -83.0445917
+        },
+        {
+          "latitude": 42.3307159,
+          "longitude": -83.0446159
+        },
+        {
+          "latitude": 42.330602,
+          "longitude": -83.044875
+        },
+        {
+          "latitude": 42.3305946,
+          "longitude": -83.0448918
+        },
+        {
+          "latitude": 42.3304844,
+          "longitude": -83.0451577
+        },
+        {
+          "latitude": 42.3303151,
+          "longitude": -83.0455356
+        },
+        {
+          "latitude": 42.3302828,
+          "longitude": -83.0456268
+        }
+      ]
+    },
+    {
+      "id": "way/219614131",
+      "name": "Woodward Avenue",
+      "roadClass": "tertiary",
+      "widthMeters": 6.8,
+      "centerline": [
+        {
+          "latitude": 42.3309794,
+          "longitude": -83.0466914
+        },
+        {
+          "latitude": 42.3309389,
+          "longitude": -83.0466176
+        },
+        {
+          "latitude": 42.330926,
+          "longitude": -83.0465907
+        },
+        {
+          "latitude": 42.330911,
+          "longitude": -83.0465615
+        }
+      ]
+    },
+    {
+      "id": "way/330752181",
+      "name": "Woodward Avenue",
+      "roadClass": "tertiary",
+      "widthMeters": 10.2,
+      "centerline": [
+        {
+          "latitude": 42.3307651,
+          "longitude": -83.0464068
+        },
+        {
+          "latitude": 42.3302442,
+          "longitude": -83.0459994
+        },
+        {
+          "latitude": 42.330174,
+          "longitude": -83.0459418
+        },
+        {
+          "latitude": 42.3301663,
+          "longitude": -83.0459354
+        }
+      ]
+    },
+    {
+      "id": "way/381151294",
+      "name": "",
+      "roadClass": "path",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3315967,
+          "longitude": -83.044512
+        },
+        {
+          "latitude": 42.3315967,
+          "longitude": -83.0444704
+        },
+        {
+          "latitude": 42.3315808,
+          "longitude": -83.0444181
+        },
+        {
+          "latitude": 42.331566,
+          "longitude": -83.044394
+        },
+        {
+          "latitude": 42.331557,
+          "longitude": -83.0443899
+        },
+        {
+          "latitude": 42.3315481,
+          "longitude": -83.0442974
+        },
+        {
+          "latitude": 42.3315501,
+          "longitude": -83.0442357
+        },
+        {
+          "latitude": 42.3315719,
+          "longitude": -83.0441365
+        },
+        {
+          "latitude": 42.3315868,
+          "longitude": -83.0440842
+        },
+        {
+          "latitude": 42.3315789,
+          "longitude": -83.0440466
+        },
+        {
+          "latitude": 42.331559,
+          "longitude": -83.0439876
+        },
+        {
+          "latitude": 42.3315541,
+          "longitude": -83.0439179
+        },
+        {
+          "latitude": 42.3315531,
+          "longitude": -83.0438428
+        },
+        {
+          "latitude": 42.331562,
+          "longitude": -83.0438052
+        }
+      ]
+    },
+    {
+      "id": "way/381151295",
+      "name": "",
+      "roadClass": "path",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.331557,
+          "longitude": -83.0443899
+        },
+        {
+          "latitude": 42.3315392,
+          "longitude": -83.0444034
+        },
+        {
+          "latitude": 42.3315362,
+          "longitude": -83.0444208
+        },
+        {
+          "latitude": 42.3315303,
+          "longitude": -83.0444771
+        },
+        {
+          "latitude": 42.3315293,
+          "longitude": -83.0445121
+        }
+      ]
+    },
+    {
+      "id": "way/421869805",
+      "name": "Woodward Avenue",
+      "roadClass": "primary",
+      "widthMeters": 11.2,
+      "centerline": [
+        {
+          "latitude": 42.3321687,
+          "longitude": -83.0466648
+        },
+        {
+          "latitude": 42.3321673,
+          "longitude": -83.0468653
+        }
+      ]
+    },
+    {
+      "id": "way/421869807",
+      "name": "Woodward Avenue",
+      "roadClass": "primary",
+      "widthMeters": 7.8,
+      "centerline": [
+        {
+          "latitude": 42.3321673,
+          "longitude": -83.0468653
+        },
+        {
+          "latitude": 42.3321804,
+          "longitude": -83.0470753
+        },
+        {
+          "latitude": 42.3321853,
+          "longitude": -83.0471167
+        }
+      ]
+    },
+    {
+      "id": "way/421871734",
+      "name": "Fort Street West",
+      "roadClass": "primary",
+      "widthMeters": 11.2,
+      "centerline": [
+        {
+          "latitude": 42.3308869,
+          "longitude": -83.047115
+        },
+        {
+          "latitude": 42.3308031,
+          "longitude": -83.0473069
+        },
+        {
+          "latitude": 42.3307287,
+          "longitude": -83.0474207
+        }
+      ]
+    },
+    {
+      "id": "way/422218369",
+      "name": "Woodward Avenue",
+      "roadClass": "primary",
+      "widthMeters": 14.6,
+      "centerline": [
+        {
+          "latitude": 42.331081,
+          "longitude": -83.0469262
+        },
+        {
+          "latitude": 42.3310538,
+          "longitude": -83.0468983
+        },
+        {
+          "latitude": 42.3310327,
+          "longitude": -83.0468629
+        },
+        {
+          "latitude": 42.3310143,
+          "longitude": -83.0468261
+        },
+        {
+          "latitude": 42.3309999,
+          "longitude": -83.0467813
+        },
+        {
+          "latitude": 42.3309876,
+          "longitude": -83.0467299
+        },
+        {
+          "latitude": 42.3309794,
+          "longitude": -83.0466914
+        }
+      ]
+    },
+    {
+      "id": "way/422218370",
+      "name": "Woodward Avenue",
+      "roadClass": "primary",
+      "widthMeters": 11.2,
+      "centerline": [
+        {
+          "latitude": 42.3316857,
+          "longitude": -83.0470278
+        },
+        {
+          "latitude": 42.331483,
+          "longitude": -83.0470295
+        },
+        {
+          "latitude": 42.3312707,
+          "longitude": -83.0470312
+        }
+      ]
+    },
+    {
+      "id": "way/422218692",
+      "name": "Woodward Avenue",
+      "roadClass": "primary",
+      "widthMeters": 7.8,
+      "centerline": [
+        {
+          "latitude": 42.3320347,
+          "longitude": -83.0462314
+        },
+        {
+          "latitude": 42.3320719,
+          "longitude": -83.0462518
+        },
+        {
+          "latitude": 42.3320902,
+          "longitude": -83.0462649
+        },
+        {
+          "latitude": 42.3321052,
+          "longitude": -83.0462776
+        },
+        {
+          "latitude": 42.3321196,
+          "longitude": -83.0462962
+        },
+        {
+          "latitude": 42.3321339,
+          "longitude": -83.046325
+        },
+        {
+          "latitude": 42.3321478,
+          "longitude": -83.0463548
+        },
+        {
+          "latitude": 42.3321578,
+          "longitude": -83.0463865
+        }
+      ]
+    },
+    {
+      "id": "way/422218694",
+      "name": "Woodward Avenue",
+      "roadClass": "primary",
+      "widthMeters": 11.2,
+      "centerline": [
+        {
+          "latitude": 42.3317962,
+          "longitude": -83.0462174
+        },
+        {
+          "latitude": 42.3319658,
+          "longitude": -83.0462192
+        },
+        {
+          "latitude": 42.3320014,
+          "longitude": -83.0462234
+        },
+        {
+          "latitude": 42.3320347,
+          "longitude": -83.0462314
+        }
+      ]
+    },
+    {
+      "id": "way/455185272",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3306753,
+          "longitude": -83.047195
+        },
+        {
+          "latitude": 42.330778,
+          "longitude": -83.0469599
+        },
+        {
+          "latitude": 42.3308856,
+          "longitude": -83.0467193
+        },
+        {
+          "latitude": 42.3308821,
+          "longitude": -83.0466973
+        },
+        {
+          "latitude": 42.3308642,
+          "longitude": -83.046609
+        },
+        {
+          "latitude": 42.3308289,
+          "longitude": -83.0465926
+        },
+        {
+          "latitude": 42.3304688,
+          "longitude": -83.046312
+        }
+      ]
+    },
+    {
+      "id": "way/455185286",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3305591,
+          "longitude": -83.0474533
+        },
+        {
+          "latitude": 42.330617,
+          "longitude": -83.047324
+        },
+        {
+          "latitude": 42.3306621,
+          "longitude": -83.0472243
+        },
+        {
+          "latitude": 42.3306753,
+          "longitude": -83.047195
+        }
+      ]
+    },
+    {
+      "id": "way/455185289",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3308615,
+          "longitude": -83.0473723
+        },
+        {
+          "latitude": 42.3308031,
+          "longitude": -83.0473069
+        },
+        {
+          "latitude": 42.3307918,
+          "longitude": -83.0472969
+        }
+      ]
+    },
+    {
+      "id": "way/455185290",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3315935,
+          "longitude": -83.0472299
+        },
+        {
+          "latitude": 42.3316221,
+          "longitude": -83.0472306
+        },
+        {
+          "latitude": 42.3316838,
+          "longitude": -83.0472309
+        },
+        {
+          "latitude": 42.3318022,
+          "longitude": -83.0472314
+        }
+      ]
+    },
+    {
+      "id": "way/455185291",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.331803,
+          "longitude": -83.0471378
+        },
+        {
+          "latitude": 42.3318038,
+          "longitude": -83.0470718
+        },
+        {
+          "latitude": 42.331805,
+          "longitude": -83.0470294
+        },
+        {
+          "latitude": 42.3318052,
+          "longitude": -83.0469632
+        }
+      ]
+    },
+    {
+      "id": "way/455185292",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.331803,
+          "longitude": -83.0471378
+        },
+        {
+          "latitude": 42.3318022,
+          "longitude": -83.0472314
+        },
+        {
+          "latitude": 42.3318004,
+          "longitude": -83.0474824
+        },
+        {
+          "latitude": 42.3317986,
+          "longitude": -83.0481442
+        },
+        {
+          "latitude": 42.3318059,
+          "longitude": -83.0482222
+        }
+      ]
+    },
+    {
+      "id": "way/455185294",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3315532,
+          "longitude": -83.0479153
+        },
+        {
+          "latitude": 42.331584,
+          "longitude": -83.04775
+        },
+        {
+          "latitude": 42.3315852,
+          "longitude": -83.0473817
+        },
+        {
+          "latitude": 42.3315935,
+          "longitude": -83.0472299
+        }
+      ]
+    },
+    {
+      "id": "way/455185295",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3315935,
+          "longitude": -83.0472299
+        },
+        {
+          "latitude": 42.3315104,
+          "longitude": -83.0471421
+        },
+        {
+          "latitude": 42.3313267,
+          "longitude": -83.0471291
+        },
+        {
+          "latitude": 42.3312235,
+          "longitude": -83.0471209
+        },
+        {
+          "latitude": 42.3310776,
+          "longitude": -83.0471182
+        },
+        {
+          "latitude": 42.3310173,
+          "longitude": -83.0471163
+        },
+        {
+          "latitude": 42.3309771,
+          "longitude": -83.047115
+        },
+        {
+          "latitude": 42.3308615,
+          "longitude": -83.0473723
+        },
+        {
+          "latitude": 42.331487,
+          "longitude": -83.0479293
+        },
+        {
+          "latitude": 42.3315532,
+          "longitude": -83.0479153
+        }
+      ]
+    },
+    {
+      "id": "way/455185312",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.331803,
+          "longitude": -83.0471378
+        },
+        {
+          "latitude": 42.3319018,
+          "longitude": -83.0471755
+        },
+        {
+          "latitude": 42.3320237,
+          "longitude": -83.0472743
+        },
+        {
+          "latitude": 42.3321542,
+          "longitude": -83.047377
+        },
+        {
+          "latitude": 42.3325131,
+          "longitude": -83.0476636
+        },
+        {
+          "latitude": 42.3328415,
+          "longitude": -83.0479128
+        }
+      ]
+    },
+    {
+      "id": "way/455185346",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3322484,
+          "longitude": -83.0471316
+        },
+        {
+          "latitude": 42.3322571,
+          "longitude": -83.0464344
+        },
+        {
+          "latitude": 42.3322766,
+          "longitude": -83.046389
+        }
+      ]
+    },
+    {
+      "id": "way/455185347",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3322766,
+          "longitude": -83.046389
+        },
+        {
+          "latitude": 42.3322876,
+          "longitude": -83.0463762
+        },
+        {
+          "latitude": 42.3324867,
+          "longitude": -83.0462157
+        },
+        {
+          "latitude": 42.3329542,
+          "longitude": -83.0458406
+        }
+      ]
+    },
+    {
+      "id": "way/455187194",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3312822,
+          "longitude": -83.0469488
+        },
+        {
+          "latitude": 42.3312347,
+          "longitude": -83.046934
+        },
+        {
+          "latitude": 42.3311543,
+          "longitude": -83.0468945
+        },
+        {
+          "latitude": 42.3310995,
+          "longitude": -83.0468302
+        },
+        {
+          "latitude": 42.3310675,
+          "longitude": -83.0467561
+        },
+        {
+          "latitude": 42.3310378,
+          "longitude": -83.0466506
+        },
+        {
+          "latitude": 42.3310408,
+          "longitude": -83.0465676
+        },
+        {
+          "latitude": 42.3310826,
+          "longitude": -83.0464497
+        },
+        {
+          "latitude": 42.3311031,
+          "longitude": -83.0464069
+        },
+        {
+          "latitude": 42.3311275,
+          "longitude": -83.0463666
+        },
+        {
+          "latitude": 42.3311523,
+          "longitude": -83.0463497
+        },
+        {
+          "latitude": 42.3311863,
+          "longitude": -83.0463248
+        },
+        {
+          "latitude": 42.3312831,
+          "longitude": -83.0462964
+        },
+        {
+          "latitude": 42.3314327,
+          "longitude": -83.0462986
+        },
+        {
+          "latitude": 42.3315797,
+          "longitude": -83.0463007
+        },
+        {
+          "latitude": 42.3316402,
+          "longitude": -83.0463014
+        },
+        {
+          "latitude": 42.3316747,
+          "longitude": -83.0463024
+        },
+        {
+          "latitude": 42.3317681,
+          "longitude": -83.0462996
+        },
+        {
+          "latitude": 42.3319352,
+          "longitude": -83.0463028
+        },
+        {
+          "latitude": 42.3319653,
+          "longitude": -83.0463023
+        },
+        {
+          "latitude": 42.3319777,
+          "longitude": -83.0463038
+        },
+        {
+          "latitude": 42.3320011,
+          "longitude": -83.0463084
+        },
+        {
+          "latitude": 42.3320143,
+          "longitude": -83.0463168
+        },
+        {
+          "latitude": 42.3320336,
+          "longitude": -83.046329
+        },
+        {
+          "latitude": 42.3320555,
+          "longitude": -83.0463429
+        },
+        {
+          "latitude": 42.3320702,
+          "longitude": -83.0463568
+        },
+        {
+          "latitude": 42.332077,
+          "longitude": -83.0463686
+        },
+        {
+          "latitude": 42.3320939,
+          "longitude": -83.0464035
+        },
+        {
+          "latitude": 42.3321011,
+          "longitude": -83.0464276
+        },
+        {
+          "latitude": 42.332103,
+          "longitude": -83.0464428
+        },
+        {
+          "latitude": 42.3321038,
+          "longitude": -83.0464934
+        },
+        {
+          "latitude": 42.3321062,
+          "longitude": -83.0466746
+        },
+        {
+          "latitude": 42.3321008,
+          "longitude": -83.0467192
+        },
+        {
+          "latitude": 42.332103,
+          "longitude": -83.0468268
+        },
+        {
+          "latitude": 42.3320997,
+          "longitude": -83.046856
+        },
+        {
+          "latitude": 42.3321006,
+          "longitude": -83.0468678
+        },
+        {
+          "latitude": 42.332085,
+          "longitude": -83.0469094
+        },
+        {
+          "latitude": 42.332041,
+          "longitude": -83.0469702
+        },
+        {
+          "latitude": 42.3320159,
+          "longitude": -83.0469859
+        },
+        {
+          "latitude": 42.3319906,
+          "longitude": -83.0469999
+        },
+        {
+          "latitude": 42.3319588,
+          "longitude": -83.0469971
+        },
+        {
+          "latitude": 42.3319243,
+          "longitude": -83.0469847
+        },
+        {
+          "latitude": 42.3318948,
+          "longitude": -83.0469722
+        },
+        {
+          "latitude": 42.3318053,
+          "longitude": -83.0469476
+        },
+        {
+          "latitude": 42.3316567,
+          "longitude": -83.0469513
+        },
+        {
+          "latitude": 42.3315117,
+          "longitude": -83.0469513
+        },
+        {
+          "latitude": 42.3314146,
+          "longitude": -83.0469488
+        },
+        {
+          "latitude": 42.3313548,
+          "longitude": -83.0469488
+        }
+      ]
+    },
+    {
+      "id": "way/455187195",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3321044,
+          "longitude": -83.047111
+        },
+        {
+          "latitude": 42.3320837,
+          "longitude": -83.0470628
+        }
+      ]
+    },
+    {
+      "id": "way/455187196",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.332146,
+          "longitude": -83.0471075
+        },
+        {
+          "latitude": 42.3321044,
+          "longitude": -83.047111
+        },
+        {
+          "latitude": 42.3320715,
+          "longitude": -83.0471536
+        }
+      ]
+    },
+    {
+      "id": "way/455187197",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3315797,
+          "longitude": -83.0463007
+        },
+        {
+          "latitude": 42.3315798,
+          "longitude": -83.0462806
+        },
+        {
+          "latitude": 42.3315804,
+          "longitude": -83.0462172
+        },
+        {
+          "latitude": 42.3315804,
+          "longitude": -83.0462138
+        },
+        {
+          "latitude": 42.3315807,
+          "longitude": -83.0461336
+        },
+        {
+          "latitude": 42.3315808,
+          "longitude": -83.0461084
+        }
+      ]
+    },
+    {
+      "id": "way/455187199",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.331446,
+          "longitude": -83.0461069
+        },
+        {
+          "latitude": 42.3315558,
+          "longitude": -83.0461081
+        },
+        {
+          "latitude": 42.3315808,
+          "longitude": -83.0461084
+        },
+        {
+          "latitude": 42.3316564,
+          "longitude": -83.0461092
+        }
+      ]
+    },
+    {
+      "id": "way/455187200",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3316564,
+          "longitude": -83.0461092
+        },
+        {
+          "latitude": 42.3316685,
+          "longitude": -83.0461092
+        },
+        {
+          "latitude": 42.3317119,
+          "longitude": -83.0461092
+        },
+        {
+          "latitude": 42.3317976,
+          "longitude": -83.0461077
+        }
+      ]
+    },
+    {
+      "id": "way/455187201",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.331446,
+          "longitude": -83.0461069
+        },
+        {
+          "latitude": 42.3314371,
+          "longitude": -83.0461069
+        },
+        {
+          "latitude": 42.3313975,
+          "longitude": -83.0461069
+        },
+        {
+          "latitude": 42.3313142,
+          "longitude": -83.0461054
+        }
+      ]
+    },
+    {
+      "id": "way/455187202",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3313142,
+          "longitude": -83.0461054
+        },
+        {
+          "latitude": 42.3312832,
+          "longitude": -83.0461251
+        },
+        {
+          "latitude": 42.3310686,
+          "longitude": -83.046116
+        },
+        {
+          "latitude": 42.3310297,
+          "longitude": -83.0460853
+        },
+        {
+          "latitude": 42.3303781,
+          "longitude": -83.0455833
+        }
+      ]
+    },
+    {
+      "id": "way/455187203",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3313047,
+          "longitude": -83.0447013
+        },
+        {
+          "latitude": 42.331153,
+          "longitude": -83.0446984
+        },
+        {
+          "latitude": 42.330975,
+          "longitude": -83.0446872
+        },
+        {
+          "latitude": 42.3308791,
+          "longitude": -83.0446869
+        },
+        {
+          "latitude": 42.330761,
+          "longitude": -83.0446865
+        },
+        {
+          "latitude": 42.3306553,
+          "longitude": -83.0449353
+        },
+        {
+          "latitude": 42.3305392,
+          "longitude": -83.0451987
+        },
+        {
+          "latitude": 42.3303781,
+          "longitude": -83.0455833
+        }
+      ]
+    },
+    {
+      "id": "way/455187204",
+      "name": "",
+      "roadClass": "service",
+      "widthMeters": 10.2,
+      "centerline": [
+        {
+          "latitude": 42.3306282,
+          "longitude": -83.044546
+        },
+        {
+          "latitude": 42.3300647,
+          "longitude": -83.0440977
+        }
+      ]
+    },
+    {
+      "id": "way/455187206",
+      "name": "Bates Street",
+      "roadClass": "tertiary",
+      "widthMeters": 6.8,
+      "centerline": [
+        {
+          "latitude": 42.3307261,
+          "longitude": -83.0445917
+        },
+        {
+          "latitude": 42.3308229,
+          "longitude": -83.044592
+        },
+        {
+          "latitude": 42.3308523,
+          "longitude": -83.0445921
+        },
+        {
+          "latitude": 42.33088,
+          "longitude": -83.0445921
+        },
+        {
+          "latitude": 42.330974,
+          "longitude": -83.0445924
+        }
+      ]
+    },
+    {
+      "id": "way/455187207",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3315047,
+          "longitude": -83.0445122
+        },
+        {
+          "latitude": 42.3315293,
+          "longitude": -83.0445121
+        },
+        {
+          "latitude": 42.3315967,
+          "longitude": -83.044512
+        },
+        {
+          "latitude": 42.3316193,
+          "longitude": -83.044512
+        }
+      ]
+    },
+    {
+      "id": "way/455187208",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3316193,
+          "longitude": -83.044512
+        },
+        {
+          "latitude": 42.3317209,
+          "longitude": -83.0445101
+        },
+        {
+          "latitude": 42.3317787,
+          "longitude": -83.044509
+        },
+        {
+          "latitude": 42.3317999,
+          "longitude": -83.0445086
+        }
+      ]
+    },
+    {
+      "id": "way/455187209",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3318121,
+          "longitude": -83.044522
+        },
+        {
+          "latitude": 42.3318125,
+          "longitude": -83.0445369
+        },
+        {
+          "latitude": 42.3318139,
+          "longitude": -83.0445938
+        },
+        {
+          "latitude": 42.331814,
+          "longitude": -83.0446685
+        },
+        {
+          "latitude": 42.331814,
+          "longitude": -83.0446918
+        }
+      ]
+    },
+    {
+      "id": "way/455187210",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3318028,
+          "longitude": -83.0446916
+        },
+        {
+          "latitude": 42.3317748,
+          "longitude": -83.0446933
+        },
+        {
+          "latitude": 42.3317194,
+          "longitude": -83.0446968
+        },
+        {
+          "latitude": 42.331671,
+          "longitude": -83.0446998
+        },
+        {
+          "latitude": 42.3316499,
+          "longitude": -83.0447012
+        }
+      ]
+    },
+    {
+      "id": "way/455187211",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3316499,
+          "longitude": -83.0447012
+        },
+        {
+          "latitude": 42.3315504,
+          "longitude": -83.0447015
+        },
+        {
+          "latitude": 42.3314499,
+          "longitude": -83.0447033
+        }
+      ]
+    },
+    {
+      "id": "way/455187212",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3313036,
+          "longitude": -83.0445054
+        },
+        {
+          "latitude": 42.3313371,
+          "longitude": -83.0445065
+        },
+        {
+          "latitude": 42.3314052,
+          "longitude": -83.0445088
+        },
+        {
+          "latitude": 42.3314882,
+          "longitude": -83.0445116
+        },
+        {
+          "latitude": 42.3315047,
+          "longitude": -83.0445122
+        }
+      ]
+    },
+    {
+      "id": "way/455187213",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3313047,
+          "longitude": -83.0447013
+        },
+        {
+          "latitude": 42.3313142,
+          "longitude": -83.0461054
+        }
+      ]
+    },
+    {
+      "id": "way/455187215",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3313036,
+          "longitude": -83.0445054
+        },
+        {
+          "latitude": 42.3313051,
+          "longitude": -83.0443758
+        },
+        {
+          "latitude": 42.3313072,
+          "longitude": -83.0441882
+        },
+        {
+          "latitude": 42.331315,
+          "longitude": -83.0435198
+        }
+      ]
+    },
+    {
+      "id": "way/455187217",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3308784,
+          "longitude": -83.0445069
+        },
+        {
+          "latitude": 42.3308229,
+          "longitude": -83.044592
+        },
+        {
+          "latitude": 42.330761,
+          "longitude": -83.0446865
+        }
+      ]
+    },
+    {
+      "id": "way/455187218",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3306733,
+          "longitude": -83.0445106
+        },
+        {
+          "latitude": 42.3307654,
+          "longitude": -83.044498
+        },
+        {
+          "latitude": 42.3308621,
+          "longitude": -83.0444836
+        }
+      ]
+    },
+    {
+      "id": "way/455187262",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3318048,
+          "longitude": -83.0435971
+        },
+        {
+          "latitude": 42.3318072,
+          "longitude": -83.0439166
+        },
+        {
+          "latitude": 42.3317999,
+          "longitude": -83.0445086
+        },
+        {
+          "latitude": 42.3318121,
+          "longitude": -83.044522
+        }
+      ]
+    },
+    {
+      "id": "way/455187263",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3318121,
+          "longitude": -83.044522
+        },
+        {
+          "latitude": 42.3321225,
+          "longitude": -83.0445352
+        },
+        {
+          "latitude": 42.3322944,
+          "longitude": -83.0445343
+        },
+        {
+          "latitude": 42.3324373,
+          "longitude": -83.0445335
+        },
+        {
+          "latitude": 42.3324486,
+          "longitude": -83.0445165
+        }
+      ]
+    },
+    {
+      "id": "way/455187276",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3317976,
+          "longitude": -83.0461077
+        },
+        {
+          "latitude": 42.3319666,
+          "longitude": -83.0461031
+        },
+        {
+          "latitude": 42.3320344,
+          "longitude": -83.0461046
+        },
+        {
+          "latitude": 42.3320561,
+          "longitude": -83.046096
+        },
+        {
+          "latitude": 42.3321049,
+          "longitude": -83.0460681
+        },
+        {
+          "latitude": 42.3328185,
+          "longitude": -83.045512
+        },
+        {
+          "latitude": 42.33284,
+          "longitude": -83.0454913
+        }
+      ]
+    },
+    {
+      "id": "way/455187277",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3318028,
+          "longitude": -83.0446916
+        },
+        {
+          "latitude": 42.3317976,
+          "longitude": -83.0461077
+        }
+      ]
+    },
+    {
+      "id": "way/455187278",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3324986,
+          "longitude": -83.0447043
+        },
+        {
+          "latitude": 42.3321222,
+          "longitude": -83.0446974
+        },
+        {
+          "latitude": 42.331814,
+          "longitude": -83.0446918
+        },
+        {
+          "latitude": 42.3318028,
+          "longitude": -83.0446916
+        }
+      ]
+    },
+    {
+      "id": "way/455190224",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3315104,
+          "longitude": -83.0471421
+        },
+        {
+          "latitude": 42.3314627,
+          "longitude": -83.0472486
+        },
+        {
+          "latitude": 42.3314241,
+          "longitude": -83.0473256
+        }
+      ]
+    },
+    {
+      "id": "way/455190225",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3320111,
+          "longitude": -83.0476392
+        },
+        {
+          "latitude": 42.3318004,
+          "longitude": -83.0474824
+        }
+      ]
+    },
+    {
+      "id": "way/455190226",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3321398,
+          "longitude": -83.0474123
+        },
+        {
+          "latitude": 42.3321542,
+          "longitude": -83.047377
+        }
+      ]
+    },
+    {
+      "id": "way/457238215",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3305311,
+          "longitude": -83.0448444
+        },
+        {
+          "latitude": 42.3305946,
+          "longitude": -83.0448918
+        },
+        {
+          "latitude": 42.3306553,
+          "longitude": -83.0449353
+        }
+      ]
+    },
+    {
+      "id": "way/458222435",
+      "name": "Monroe Street",
+      "roadClass": "primary",
+      "widthMeters": 7.8,
+      "centerline": [
+        {
+          "latitude": 42.3323871,
+          "longitude": -83.046171
+        },
+        {
+          "latitude": 42.3322651,
+          "longitude": -83.046266
+        },
+        {
+          "latitude": 42.3322242,
+          "longitude": -83.046304
+        },
+        {
+          "latitude": 42.3322126,
+          "longitude": -83.0463151
+        },
+        {
+          "latitude": 42.3321694,
+          "longitude": -83.0463714
+        },
+        {
+          "latitude": 42.3321578,
+          "longitude": -83.0463865
+        }
+      ]
+    },
+    {
+      "id": "way/472243890",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3308682,
+          "longitude": -83.0466049
+        },
+        {
+          "latitude": 42.3308709,
+          "longitude": -83.0466022
+        },
+        {
+          "latitude": 42.3308837,
+          "longitude": -83.0465892
+        },
+        {
+          "latitude": 42.330911,
+          "longitude": -83.0465615
+        },
+        {
+          "latitude": 42.3309356,
+          "longitude": -83.0465367
+        }
+      ]
+    },
+    {
+      "id": "way/472243891",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3309356,
+          "longitude": -83.0465367
+        },
+        {
+          "latitude": 42.3309532,
+          "longitude": -83.0464611
+        },
+        {
+          "latitude": 42.3309623,
+          "longitude": -83.0463673
+        },
+        {
+          "latitude": 42.3309622,
+          "longitude": -83.0462852
+        },
+        {
+          "latitude": 42.3309742,
+          "longitude": -83.0462321
+        }
+      ]
+    },
+    {
+      "id": "way/472243892",
+      "name": "",
+      "roadClass": "path",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.331011,
+          "longitude": -83.0463841
+        },
+        {
+          "latitude": 42.3309623,
+          "longitude": -83.0463673
+        },
+        {
+          "latitude": 42.3309342,
+          "longitude": -83.0462977
+        }
+      ]
+    },
+    {
+      "id": "way/472243894",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3309742,
+          "longitude": -83.0462321
+        },
+        {
+          "latitude": 42.3309927,
+          "longitude": -83.0461831
+        },
+        {
+          "latitude": 42.3309983,
+          "longitude": -83.0461684
+        },
+        {
+          "latitude": 42.3310202,
+          "longitude": -83.0461105
+        },
+        {
+          "latitude": 42.3310297,
+          "longitude": -83.0460853
+        }
+      ]
+    },
+    {
+      "id": "way/483685073",
+      "name": "Woodward Avenue",
+      "roadClass": "primary",
+      "widthMeters": 11.2,
+      "centerline": [
+        {
+          "latitude": 42.3319329,
+          "longitude": -83.0470716
+        },
+        {
+          "latitude": 42.3318823,
+          "longitude": -83.047049
+        },
+        {
+          "latitude": 42.3318498,
+          "longitude": -83.0470382
+        },
+        {
+          "latitude": 42.331805,
+          "longitude": -83.0470294
+        },
+        {
+          "latitude": 42.3316857,
+          "longitude": -83.0470278
+        }
+      ]
+    },
+    {
+      "id": "way/483685077",
+      "name": "Cadillac Square",
+      "roadClass": "primary",
+      "widthMeters": 7.8,
+      "centerline": [
+        {
+          "latitude": 42.3317296,
+          "longitude": -83.0438289
+        },
+        {
+          "latitude": 42.3317285,
+          "longitude": -83.0439134
+        },
+        {
+          "latitude": 42.3317209,
+          "longitude": -83.0445101
+        },
+        {
+          "latitude": 42.33172,
+          "longitude": -83.0445936
+        },
+        {
+          "latitude": 42.3317194,
+          "longitude": -83.0446968
+        },
+        {
+          "latitude": 42.3317148,
+          "longitude": -83.0458374
+        }
+      ]
+    },
+    {
+      "id": "way/483685078",
+      "name": "Cadillac Square",
+      "roadClass": "primary",
+      "widthMeters": 11.2,
+      "centerline": [
+        {
+          "latitude": 42.3313972,
+          "longitude": -83.0462172
+        },
+        {
+          "latitude": 42.3313972,
+          "longitude": -83.0462122
+        },
+        {
+          "latitude": 42.3313975,
+          "longitude": -83.0461069
+        },
+        {
+          "latitude": 42.3314045,
+          "longitude": -83.0447027
+        },
+        {
+          "latitude": 42.3314051,
+          "longitude": -83.0445931
+        }
+      ]
+    },
+    {
+      "id": "way/505277861",
+      "name": "Woodward Avenue",
+      "roadClass": "primary",
+      "widthMeters": 11.2,
+      "centerline": [
+        {
+          "latitude": 42.3321578,
+          "longitude": -83.0463865
+        },
+        {
+          "latitude": 42.3321628,
+          "longitude": -83.0464139
+        },
+        {
+          "latitude": 42.3321668,
+          "longitude": -83.0464439
+        },
+        {
+          "latitude": 42.332168,
+          "longitude": -83.0464754
+        },
+        {
+          "latitude": 42.3321687,
+          "longitude": -83.0466648
+        }
+      ]
+    },
+    {
+      "id": "way/507226121",
+      "name": "Cadillac Square",
+      "roadClass": "primary",
+      "widthMeters": 7.8,
+      "centerline": [
+        {
+          "latitude": 42.3317148,
+          "longitude": -83.0458374
+        },
+        {
+          "latitude": 42.3317119,
+          "longitude": -83.0461092
+        },
+        {
+          "latitude": 42.3317108,
+          "longitude": -83.0462129
+        },
+        {
+          "latitude": 42.3317108,
+          "longitude": -83.0462164
+        }
+      ]
+    },
+    {
+      "id": "way/507226122",
+      "name": "Cadillac Square",
+      "roadClass": "primary",
+      "widthMeters": 18.0,
+      "centerline": [
+        {
+          "latitude": 42.3314051,
+          "longitude": -83.0445931
+        },
+        {
+          "latitude": 42.3314052,
+          "longitude": -83.0445088
+        },
+        {
+          "latitude": 42.3314054,
+          "longitude": -83.0443761
+        },
+        {
+          "latitude": 42.3314058,
+          "longitude": -83.0441876
+        },
+        {
+          "latitude": 42.3314059,
+          "longitude": -83.0441318
+        },
+        {
+          "latitude": 42.3314028,
+          "longitude": -83.0439214
+        }
+      ]
+    },
+    {
+      "id": "way/621736892",
+      "name": "",
+      "roadClass": "service",
+      "widthMeters": 5.0,
+      "centerline": [
+        {
+          "latitude": 42.331149,
+          "longitude": -83.0451477
+        },
+        {
+          "latitude": 42.3311529,
+          "longitude": -83.0447112
+        },
+        {
+          "latitude": 42.331153,
+          "longitude": -83.0446984
+        },
+        {
+          "latitude": 42.3311539,
+          "longitude": -83.0445927
+        }
+      ]
+    },
+    {
+      "id": "way/627087639",
+      "name": "Woodward Avenue",
+      "roadClass": "primary",
+      "widthMeters": 11.2,
+      "centerline": [
+        {
+          "latitude": 42.3312009,
+          "longitude": -83.0462199
+        },
+        {
+          "latitude": 42.3312692,
+          "longitude": -83.0462164
+        },
+        {
+          "latitude": 42.3313972,
+          "longitude": -83.0462172
+        }
+      ]
+    },
+    {
+      "id": "way/655208149",
+      "name": "",
+      "roadClass": "path",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3308774,
+          "longitude": -83.0462333
+        },
+        {
+          "latitude": 42.3307718,
+          "longitude": -83.0461508
+        },
+        {
+          "latitude": 42.330687,
+          "longitude": -83.046181
+        },
+        {
+          "latitude": 42.3305586,
+          "longitude": -83.0461133
+        },
+        {
+          "latitude": 42.3305432,
+          "longitude": -83.0460992
+        },
+        {
+          "latitude": 42.330451,
+          "longitude": -83.0459932
+        },
+        {
+          "latitude": 42.3304297,
+          "longitude": -83.0459704
+        },
+        {
+          "latitude": 42.3303861,
+          "longitude": -83.0459329
+        },
+        {
+          "latitude": 42.3302851,
+          "longitude": -83.045856
+        },
+        {
+          "latitude": 42.3302634,
+          "longitude": -83.0458337
+        }
+      ]
+    },
+    {
+      "id": "way/655214098",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3320715,
+          "longitude": -83.0471536
+        },
+        {
+          "latitude": 42.3320567,
+          "longitude": -83.0471919
+        },
+        {
+          "latitude": 42.3320486,
+          "longitude": -83.0472118
+        },
+        {
+          "latitude": 42.3320237,
+          "longitude": -83.0472743
+        }
+      ]
+    },
+    {
+      "id": "way/678978222",
+      "name": "Woodward Avenue",
+      "roadClass": "tertiary",
+      "widthMeters": 10.2,
+      "centerline": [
+        {
+          "latitude": 42.3309927,
+          "longitude": -83.0461831
+        },
+        {
+          "latitude": 42.3310186,
+          "longitude": -83.0462011
+        },
+        {
+          "latitude": 42.3310536,
+          "longitude": -83.0462192
+        },
+        {
+          "latitude": 42.331097,
+          "longitude": -83.046232
+        },
+        {
+          "latitude": 42.331146,
+          "longitude": -83.0462363
+        },
+        {
+          "latitude": 42.3312009,
+          "longitude": -83.0462199
+        }
+      ]
+    },
+    {
+      "id": "way/678978223",
+      "name": "Woodward Avenue",
+      "roadClass": "tertiary",
+      "widthMeters": 6.8,
+      "centerline": [
+        {
+          "latitude": 42.330911,
+          "longitude": -83.0465615
+        },
+        {
+          "latitude": 42.3308947,
+          "longitude": -83.046539
+        },
+        {
+          "latitude": 42.3308699,
+          "longitude": -83.0465067
+        },
+        {
+          "latitude": 42.3308408,
+          "longitude": -83.0464792
+        },
+        {
+          "latitude": 42.3308109,
+          "longitude": -83.0464462
+        },
+        {
+          "latitude": 42.3307651,
+          "longitude": -83.0464068
+        }
+      ]
+    },
+    {
+      "id": "way/678978224",
+      "name": "Woodward Avenue",
+      "roadClass": "primary",
+      "widthMeters": 7.8,
+      "centerline": [
+        {
+          "latitude": 42.3321853,
+          "longitude": -83.0471167
+        },
+        {
+          "latitude": 42.3321867,
+          "longitude": -83.0471253
+        },
+        {
+          "latitude": 42.332195,
+          "longitude": -83.0471616
+        },
+        {
+          "latitude": 42.3322109,
+          "longitude": -83.0472016
+        },
+        {
+          "latitude": 42.3322361,
+          "longitude": -83.0472469
+        },
+        {
+          "latitude": 42.3322838,
+          "longitude": -83.0472959
+        },
+        {
+          "latitude": 42.3323641,
+          "longitude": -83.0473816
+        }
+      ]
+    },
+    {
+      "id": "way/678978225",
+      "name": "Woodward Avenue",
+      "roadClass": "primary",
+      "widthMeters": 7.8,
+      "centerline": [
+        {
+          "latitude": 42.3320567,
+          "longitude": -83.0471919
+        },
+        {
+          "latitude": 42.3319774,
+          "longitude": -83.0471314
+        },
+        {
+          "latitude": 42.3319329,
+          "longitude": -83.0470716
+        }
+      ]
+    },
+    {
+      "id": "way/685337732",
+      "name": "",
+      "roadClass": "pedestrian",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3308821,
+          "longitude": -83.0460933
+        },
+        {
+          "latitude": 42.3308969,
+          "longitude": -83.046146
+        },
+        {
+          "latitude": 42.3309075,
+          "longitude": -83.0461898
+        },
+        {
+          "latitude": 42.3309108,
+          "longitude": -83.0462319
+        },
+        {
+          "latitude": 42.3309064,
+          "longitude": -83.0462662
+        },
+        {
+          "latitude": 42.3308934,
+          "longitude": -83.0463081
+        },
+        {
+          "latitude": 42.3308698,
+          "longitude": -83.0463409
+        },
+        {
+          "latitude": 42.3308405,
+          "longitude": -83.0463671
+        },
+        {
+          "latitude": 42.330805,
+          "longitude": -83.0463856
+        },
+        {
+          "latitude": 42.3307651,
+          "longitude": -83.0464068
+        }
+      ]
+    },
+    {
+      "id": "way/685338182",
+      "name": "Woodward Avenue",
+      "roadClass": "primary",
+      "widthMeters": 11.2,
+      "centerline": [
+        {
+          "latitude": 42.3313972,
+          "longitude": -83.0462172
+        },
+        {
+          "latitude": 42.3315804,
+          "longitude": -83.0462172
+        },
+        {
+          "latitude": 42.3317108,
+          "longitude": -83.0462164
+        },
+        {
+          "latitude": 42.3317962,
+          "longitude": -83.0462174
+        }
+      ]
+    },
+    {
+      "id": "way/685338183",
+      "name": "Woodward Avenue",
+      "roadClass": "primary",
+      "widthMeters": 11.2,
+      "centerline": [
+        {
+          "latitude": 42.3312707,
+          "longitude": -83.0470312
+        },
+        {
+          "latitude": 42.3312282,
+          "longitude": -83.0470274
+        },
+        {
+          "latitude": 42.3311938,
+          "longitude": -83.0470179
+        },
+        {
+          "latitude": 42.3311594,
+          "longitude": -83.0469962
+        },
+        {
+          "latitude": 42.3311315,
+          "longitude": -83.0469779
+        },
+        {
+          "latitude": 42.3311044,
+          "longitude": -83.0469549
+        },
+        {
+          "latitude": 42.331081,
+          "longitude": -83.0469262
+        }
+      ]
+    },
+    {
+      "id": "way/741116338",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3320837,
+          "longitude": -83.0470628
+        },
+        {
+          "latitude": 42.3320652,
+          "longitude": -83.0470226
+        },
+        {
+          "latitude": 42.3320486,
+          "longitude": -83.0469865
+        }
+      ]
+    },
+    {
+      "id": "way/741116339",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.332146,
+          "longitude": -83.0471075
+        },
+        {
+          "latitude": 42.3321853,
+          "longitude": -83.0471167
+        },
+        {
+          "latitude": 42.3322154,
+          "longitude": -83.0471238
+        },
+        {
+          "latitude": 42.3322484,
+          "longitude": -83.0471316
+        }
+      ]
+    },
+    {
+      "id": "way/741116340",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3321049,
+          "longitude": -83.0460681
+        },
+        {
+          "latitude": 42.3321443,
+          "longitude": -83.0461574
+        },
+        {
+          "latitude": 42.3321628,
+          "longitude": -83.0461992
+        }
+      ]
+    },
+    {
+      "id": "way/741116341",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3321628,
+          "longitude": -83.0461992
+        },
+        {
+          "latitude": 42.3321788,
+          "longitude": -83.0462277
+        },
+        {
+          "latitude": 42.3321954,
+          "longitude": -83.0462574
+        }
+      ]
+    },
+    {
+      "id": "way/760235053",
+      "name": "",
+      "roadClass": "service",
+      "widthMeters": 6.8,
+      "centerline": [
+        {
+          "latitude": 42.33088,
+          "longitude": -83.0445921
+        },
+        {
+          "latitude": 42.3308791,
+          "longitude": -83.0446869
+        },
+        {
+          "latitude": 42.330879,
+          "longitude": -83.0446958
+        }
+      ]
+    },
+    {
+      "id": "way/760235054",
+      "name": "",
+      "roadClass": "service",
+      "widthMeters": 10.2,
+      "centerline": [
+        {
+          "latitude": 42.3307159,
+          "longitude": -83.0446159
+        },
+        {
+          "latitude": 42.3306512,
+          "longitude": -83.0445643
+        },
+        {
+          "latitude": 42.3306282,
+          "longitude": -83.044546
+        }
+      ]
+    },
+    {
+      "id": "way/760235065",
+      "name": "Bates Street",
+      "roadClass": "tertiary",
+      "widthMeters": 6.8,
+      "centerline": [
+        {
+          "latitude": 42.3321221,
+          "longitude": -83.0446005
+        },
+        {
+          "latitude": 42.3322945,
+          "longitude": -83.0446008
+        },
+        {
+          "latitude": 42.3324583,
+          "longitude": -83.0446067
+        },
+        {
+          "latitude": 42.3325389,
+          "longitude": -83.0445949
+        }
+      ]
+    },
+    {
+      "id": "way/818557039",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.329982,
+          "longitude": -83.0466192
+        },
+        {
+          "latitude": 42.3304244,
+          "longitude": -83.046972
+        },
+        {
+          "latitude": 42.3306498,
+          "longitude": -83.0471723
+        },
+        {
+          "latitude": 42.3306753,
+          "longitude": -83.047195
+        },
+        {
+          "latitude": 42.3307918,
+          "longitude": -83.0472969
+        }
+      ]
+    },
+    {
+      "id": "way/818557040",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3307551,
+          "longitude": -83.0476268
+        },
+        {
+          "latitude": 42.3308137,
+          "longitude": -83.0474971
+        },
+        {
+          "latitude": 42.3308615,
+          "longitude": -83.0473723
+        }
+      ]
+    },
+    {
+      "id": "way/857963030",
+      "name": "",
+      "roadClass": "path",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3315558,
+          "longitude": -83.0461081
+        },
+        {
+          "latitude": 42.3315598,
+          "longitude": -83.0449714
+        }
+      ]
+    },
+    {
+      "id": "way/857963031",
+      "name": "",
+      "roadClass": "path",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3315598,
+          "longitude": -83.0449714
+        },
+        {
+          "latitude": 42.3314959,
+          "longitude": -83.0449714
+        },
+        {
+          "latitude": 42.3314979,
+          "longitude": -83.044823
+        },
+        {
+          "latitude": 42.3315503,
+          "longitude": -83.0448244
+        }
+      ]
+    },
+    {
+      "id": "way/857963032",
+      "name": "",
+      "roadClass": "path",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3315598,
+          "longitude": -83.0449714
+        },
+        {
+          "latitude": 42.3316001,
+          "longitude": -83.0449728
+        },
+        {
+          "latitude": 42.3316011,
+          "longitude": -83.0448258
+        },
+        {
+          "latitude": 42.3315503,
+          "longitude": -83.0448244
+        }
+      ]
+    },
+    {
+      "id": "way/857963033",
+      "name": "",
+      "roadClass": "path",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3315504,
+          "longitude": -83.0447015
+        },
+        {
+          "latitude": 42.3315504,
+          "longitude": -83.0447339
+        },
+        {
+          "latitude": 42.3315503,
+          "longitude": -83.0448244
+        }
+      ]
+    },
+    {
+      "id": "way/885902958",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3314499,
+          "longitude": -83.0447033
+        },
+        {
+          "latitude": 42.3314384,
+          "longitude": -83.0447031
+        },
+        {
+          "latitude": 42.3314045,
+          "longitude": -83.0447027
+        },
+        {
+          "latitude": 42.3313358,
+          "longitude": -83.0447017
+        },
+        {
+          "latitude": 42.3313047,
+          "longitude": -83.0447013
+        }
+      ]
+    },
+    {
+      "id": "way/885902959",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3313047,
+          "longitude": -83.0447013
+        },
+        {
+          "latitude": 42.3313046,
+          "longitude": -83.0446819
+        },
+        {
+          "latitude": 42.3313041,
+          "longitude": -83.0445929
+        },
+        {
+          "latitude": 42.3313038,
+          "longitude": -83.0445375
+        },
+        {
+          "latitude": 42.3313036,
+          "longitude": -83.0445054
+        }
+      ]
+    },
+    {
+      "id": "way/885902960",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3308621,
+          "longitude": -83.0444836
+        },
+        {
+          "latitude": 42.3308784,
+          "longitude": -83.0445069
+        },
+        {
+          "latitude": 42.3313036,
+          "longitude": -83.0445054
+        }
+      ]
+    },
+    {
+      "id": "way/885902961",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3309914,
+          "longitude": -83.0441798
+        },
+        {
+          "latitude": 42.3309114,
+          "longitude": -83.0443678
+        },
+        {
+          "latitude": 42.3308621,
+          "longitude": -83.0444836
+        }
+      ]
+    },
+    {
+      "id": "way/917729488",
+      "name": "",
+      "roadClass": "service",
+      "widthMeters": 5.0,
+      "centerline": [
+        {
+          "latitude": 42.3322945,
+          "longitude": -83.0446008
+        },
+        {
+          "latitude": 42.3322944,
+          "longitude": -83.0445343
+        },
+        {
+          "latitude": 42.3322946,
+          "longitude": -83.0445009
+        },
+        {
+          "latitude": 42.3322932,
+          "longitude": -83.0444293
+        }
+      ]
+    },
+    {
+      "id": "way/917729490",
+      "name": "",
+      "roadClass": "service",
+      "widthMeters": 5.0,
+      "centerline": [
+        {
+          "latitude": 42.3322927,
+          "longitude": -83.0438236
+        },
+        {
+          "latitude": 42.3323392,
+          "longitude": -83.0438435
+        },
+        {
+          "latitude": 42.3323596,
+          "longitude": -83.0438781
+        },
+        {
+          "latitude": 42.3323676,
+          "longitude": -83.0439699
+        },
+        {
+          "latitude": 42.3323629,
+          "longitude": -83.0443692
+        },
+        {
+          "latitude": 42.3323469,
+          "longitude": -83.0444149
+        },
+        {
+          "latitude": 42.3322932,
+          "longitude": -83.0444293
+        }
+      ]
+    },
+    {
+      "id": "way/991957458",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3305311,
+          "longitude": -83.0448444
+        },
+        {
+          "latitude": 42.3306512,
+          "longitude": -83.0445643
+        },
+        {
+          "latitude": 42.3306733,
+          "longitude": -83.0445106
+        },
+        {
+          "latitude": 42.3308405,
+          "longitude": -83.0441191
+        },
+        {
+          "latitude": 42.3309258,
+          "longitude": -83.0439211
+        },
+        {
+          "latitude": 42.3309867,
+          "longitude": -83.0437767
+        },
+        {
+          "latitude": 42.3311274,
+          "longitude": -83.0434475
+        },
+        {
+          "latitude": 42.3311766,
+          "longitude": -83.0433261
+        },
+        {
+          "latitude": 42.3311897,
+          "longitude": -83.0432937
+        },
+        {
+          "latitude": 42.3311933,
+          "longitude": -83.0432757
+        }
+      ]
+    },
+    {
+      "id": "way/1016981190",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3310826,
+          "longitude": -83.0464497
+        },
+        {
+          "latitude": 42.3310742,
+          "longitude": -83.0464414
+        }
+      ]
+    },
+    {
+      "id": "way/1016981192",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3308642,
+          "longitude": -83.046609
+        },
+        {
+          "latitude": 42.3308682,
+          "longitude": -83.0466049
+        }
+      ]
+    },
+    {
+      "id": "way/1016981194",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3309342,
+          "longitude": -83.0462977
+        },
+        {
+          "latitude": 42.3309064,
+          "longitude": -83.0462662
+        },
+        {
+          "latitude": 42.3308774,
+          "longitude": -83.0462333
+        }
+      ]
+    },
+    {
+      "id": "way/1078485951",
+      "name": "Griswold Street",
+      "roadClass": "tertiary",
+      "widthMeters": 13.6,
+      "centerline": [
+        {
+          "latitude": 42.3307287,
+          "longitude": -83.0474207
+        },
+        {
+          "latitude": 42.3308137,
+          "longitude": -83.0474971
+        },
+        {
+          "latitude": 42.3310246,
+          "longitude": -83.0476866
+        }
+      ]
+    },
+    {
+      "id": "way/1119660074",
+      "name": "",
+      "roadClass": "pedestrian",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.33156,
+          "longitude": -83.0474425
+        },
+        {
+          "latitude": 42.3315852,
+          "longitude": -83.0473817
+        },
+        {
+          "latitude": 42.3316223,
+          "longitude": -83.0472919
+        },
+        {
+          "latitude": 42.3316221,
+          "longitude": -83.0472306
+        },
+        {
+          "latitude": 42.331622,
+          "longitude": -83.0471543
+        },
+        {
+          "latitude": 42.3316045,
+          "longitude": -83.0471105
+        },
+        {
+          "latitude": 42.3310176,
+          "longitude": -83.0471057
+        },
+        {
+          "latitude": 42.3310173,
+          "longitude": -83.0471163
+        },
+        {
+          "latitude": 42.3310166,
+          "longitude": -83.0471434
+        },
+        {
+          "latitude": 42.3311353,
+          "longitude": -83.0472527
+        },
+        {
+          "latitude": 42.3311932,
+          "longitude": -83.047127
+        },
+        {
+          "latitude": 42.3314241,
+          "longitude": -83.0473256
+        }
+      ]
+    },
+    {
+      "id": "way/1201197639",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3318052,
+          "longitude": -83.0469632
+        },
+        {
+          "latitude": 42.3318053,
+          "longitude": -83.0469476
+        }
+      ]
+    },
+    {
+      "id": "way/1201197640",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3320486,
+          "longitude": -83.0469865
+        },
+        {
+          "latitude": 42.332041,
+          "longitude": -83.0469702
+        }
+      ]
+    },
+    {
+      "id": "way/1201197647",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3319653,
+          "longitude": -83.046291
+        },
+        {
+          "latitude": 42.3319653,
+          "longitude": -83.0463023
+        }
+      ]
+    },
+    {
+      "id": "way/1251419651",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3320702,
+          "longitude": -83.0463568
+        },
+        {
+          "latitude": 42.332082,
+          "longitude": -83.0463397
+        }
+      ]
+    },
+    {
+      "id": "way/1362407490",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3308856,
+          "longitude": -83.0467193
+        },
+        {
+          "latitude": 42.330893,
+          "longitude": -83.0467539
+        },
+        {
+          "latitude": 42.3309139,
+          "longitude": -83.0468498
+        },
+        {
+          "latitude": 42.3309276,
+          "longitude": -83.0469086
+        },
+        {
+          "latitude": 42.3309431,
+          "longitude": -83.0469513
+        }
+      ]
+    },
+    {
+      "id": "way/1362407491",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3309431,
+          "longitude": -83.0469513
+        },
+        {
+          "latitude": 42.3309622,
+          "longitude": -83.0469836
+        },
+        {
+          "latitude": 42.3309831,
+          "longitude": -83.0470191
+        }
+      ]
+    },
+    {
+      "id": "way/1362407492",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.3309831,
+          "longitude": -83.0470191
+        },
+        {
+          "latitude": 42.3309771,
+          "longitude": -83.047115
+        }
+      ]
+    },
+    {
+      "id": "way/1424048588",
+      "name": "",
+      "roadClass": "footway",
+      "widthMeters": 2.5,
+      "centerline": [
+        {
+          "latitude": 42.332945,
+          "longitude": -83.0476863
+        },
+        {
+          "latitude": 42.3329101,
+          "longitude": -83.0476101
+        },
+        {
+          "latitude": 42.3323218,
+          "longitude": -83.0471493
+        },
+        {
+          "latitude": 42.3322484,
+          "longitude": -83.0471316
+        }
+      ]
+    },
+    {
+      "id": "way/1442329199",
+      "name": "",
+      "roadClass": "service",
+      "widthMeters": 5.0,
+      "centerline": [
+        {
+          "latitude": 42.3322932,
+          "longitude": -83.0444293
+        },
+        {
+          "latitude": 42.3322477,
+          "longitude": -83.0444162
+        },
+        {
+          "latitude": 42.3322327,
+          "longitude": -83.0443792
+        },
+        {
+          "latitude": 42.3322378,
+          "longitude": -83.0442353
+        },
+        {
+          "latitude": 42.3322443,
+          "longitude": -83.0438613
+        },
+        {
+          "latitude": 42.3322553,
+          "longitude": -83.0438238
+        },
+        {
+          "latitude": 42.3322771,
+          "longitude": -83.0438169
+        },
+        {
+          "latitude": 42.3322927,
+          "longitude": -83.0438236
+        }
+      ]
+    }
+  ],
+  "buildings": [
+    {
+      "id": "way/69000325",
+      "name": "One Kennedy Square",
+      "buildingType": "commercial",
+      "heightMeters": 73.2,
+      "levels": 10,
+      "footprint": [
+        {
+          "latitude": 42.3314479,
+          "longitude": -83.047883
+        },
+        {
+          "latitude": 42.3308999,
+          "longitude": -83.0473885
+        },
+        {
+          "latitude": 42.3310166,
+          "longitude": -83.0471434
+        },
+        {
+          "latitude": 42.3311353,
+          "longitude": -83.0472527
+        },
+        {
+          "latitude": 42.3311932,
+          "longitude": -83.047127
+        },
+        {
+          "latitude": 42.3314241,
+          "longitude": -83.0473256
+        },
+        {
+          "latitude": 42.33156,
+          "longitude": -83.0474425
+        },
+        {
+          "latitude": 42.3314993,
+          "longitude": -83.0475699
+        },
+        {
+          "latitude": 42.3315703,
+          "longitude": -83.0476331
+        }
+      ]
+    },
+    {
+      "id": "way/69000335",
+      "name": "Ally Detroit Center Garage",
+      "buildingType": "yes",
+      "heightMeters": 22.4,
+      "levels": 7,
+      "footprint": [
+        {
+          "latitude": 42.3299496,
+          "longitude": -83.0443676
+        },
+        {
+          "latitude": 42.3300647,
+          "longitude": -83.0440977
+        },
+        {
+          "latitude": 42.3302536,
+          "longitude": -83.0436543
+        },
+        {
+          "latitude": 42.3303282,
+          "longitude": -83.0434793
+        },
+        {
+          "latitude": 42.3308946,
+          "longitude": -83.043921
+        },
+        {
+          "latitude": 42.3308178,
+          "longitude": -83.044101
+        },
+        {
+          "latitude": 42.3306282,
+          "longitude": -83.044546
+        },
+        {
+          "latitude": 42.3305161,
+          "longitude": -83.0448092
+        }
+      ]
+    },
+    {
+      "id": "way/69000337",
+      "name": "The Qube",
+      "buildingType": "office",
+      "heightMeters": 44.8,
+      "levels": 14,
+      "footprint": [
+        {
+          "latitude": 42.3300101,
+          "longitude": -83.0466162
+        },
+        {
+          "latitude": 42.3301885,
+          "longitude": -83.0462009
+        },
+        {
+          "latitude": 42.3308508,
+          "longitude": -83.0467214
+        },
+        {
+          "latitude": 42.3306723,
+          "longitude": -83.0471368
+        }
+      ]
+    },
+    {
+      "id": "way/69117919",
+      "name": "Cadillac Tower",
+      "buildingType": "apartments",
+      "heightMeters": 133.4,
+      "levels": 40,
+      "footprint": [
+        {
+          "latitude": 42.3318298,
+          "longitude": -83.0450782
+        },
+        {
+          "latitude": 42.3318314,
+          "longitude": -83.0447062
+        },
+        {
+          "latitude": 42.3320946,
+          "longitude": -83.0447083
+        },
+        {
+          "latitude": 42.332093,
+          "longitude": -83.0450803
+        }
+      ]
+    },
+    {
+      "id": "way/69118049",
+      "name": "First National Bank Building",
+      "buildingType": "commercial",
+      "heightMeters": 104.0,
+      "levels": 26,
+      "footprint": [
+        {
+          "latitude": 42.3312686,
+          "longitude": -83.0460664
+        },
+        {
+          "latitude": 42.3312708,
+          "longitude": -83.045151
+        },
+        {
+          "latitude": 42.331149,
+          "longitude": -83.0451477
+        },
+        {
+          "latitude": 42.3310061,
+          "longitude": -83.0451438
+        },
+        {
+          "latitude": 42.3308283,
+          "longitude": -83.0451447
+        },
+        {
+          "latitude": 42.3307457,
+          "longitude": -83.0450819
+        },
+        {
+          "latitude": 42.3308146,
+          "longitude": -83.0449212
+        },
+        {
+          "latitude": 42.3309238,
+          "longitude": -83.0449238
+        },
+        {
+          "latitude": 42.3309205,
+          "longitude": -83.0446958
+        },
+        {
+          "latitude": 42.330879,
+          "longitude": -83.0446958
+        },
+        {
+          "latitude": 42.330761,
+          "longitude": -83.0446958
+        },
+        {
+          "latitude": 42.3305618,
+          "longitude": -83.045157
+        },
+        {
+          "latitude": 42.3307446,
+          "longitude": -83.0453127
+        },
+        {
+          "latitude": 42.3311094,
+          "longitude": -83.0453109
+        },
+        {
+          "latitude": 42.3311096,
+          "longitude": -83.0454422
+        },
+        {
+          "latitude": 42.3309976,
+          "longitude": -83.045444
+        },
+        {
+          "latitude": 42.3309954,
+          "longitude": -83.04562
+        },
+        {
+          "latitude": 42.3311081,
+          "longitude": -83.0456229
+        },
+        {
+          "latitude": 42.3311075,
+          "longitude": -83.0458089
+        },
+        {
+          "latitude": 42.3310383,
+          "longitude": -83.0458088
+        },
+        {
+          "latitude": 42.3309435,
+          "longitude": -83.0457357
+        },
+        {
+          "latitude": 42.3308656,
+          "longitude": -83.0459152
+        },
+        {
+          "latitude": 42.3310617,
+          "longitude": -83.0460664
+        }
+      ]
+    },
+    {
+      "id": "way/107483237",
+      "name": "Metropole Building",
+      "buildingType": "office",
+      "heightMeters": 12.8,
+      "levels": 4,
+      "footprint": [
+        {
+          "latitude": 42.3309767,
+          "longitude": -83.0456593
+        },
+        {
+          "latitude": 42.3309435,
+          "longitude": -83.0457357
+        },
+        {
+          "latitude": 42.3308656,
+          "longitude": -83.0459152
+        },
+        {
+          "latitude": 42.3306221,
+          "longitude": -83.0457217
+        },
+        {
+          "latitude": 42.3307583,
+          "longitude": -83.0454081
+        },
+        {
+          "latitude": 42.3309491,
+          "longitude": -83.0455596
+        },
+        {
+          "latitude": 42.330924,
+          "longitude": -83.0456173
+        }
+      ]
+    },
+    {
+      "id": "way/107483242",
+      "name": "Vinton Building",
+      "buildingType": "apartments",
+      "heightMeters": 52.0,
+      "levels": 12,
+      "footprint": [
+        {
+          "latitude": 42.3305004,
+          "longitude": -83.045625
+        },
+        {
+          "latitude": 42.3306366,
+          "longitude": -83.0453113
+        },
+        {
+          "latitude": 42.3305397,
+          "longitude": -83.0452343
+        },
+        {
+          "latitude": 42.3304034,
+          "longitude": -83.0455479
+        }
+      ]
+    },
+    {
+      "id": "way/107483263",
+      "name": "",
+      "buildingType": "retail",
+      "heightMeters": 12.8,
+      "levels": 4,
+      "footprint": [
+        {
+          "latitude": 42.3306221,
+          "longitude": -83.0457217
+        },
+        {
+          "latitude": 42.3307583,
+          "longitude": -83.0454081
+        },
+        {
+          "latitude": 42.3307178,
+          "longitude": -83.0453758
+        },
+        {
+          "latitude": 42.3305815,
+          "longitude": -83.0456895
+        }
+      ]
+    },
+    {
+      "id": "way/107616150",
+      "name": "The New Cadillac Square Apartments",
+      "buildingType": "apartments",
+      "heightMeters": 67.2,
+      "levels": 21,
+      "footprint": [
+        {
+          "latitude": 42.3320992,
+          "longitude": -83.0440502
+        },
+        {
+          "latitude": 42.3318284,
+          "longitude": -83.0440487
+        },
+        {
+          "latitude": 42.3318279,
+          "longitude": -83.0441949
+        },
+        {
+          "latitude": 42.3319987,
+          "longitude": -83.0441956
+        },
+        {
+          "latitude": 42.3319975,
+          "longitude": -83.0443383
+        },
+        {
+          "latitude": 42.3318272,
+          "longitude": -83.0443362
+        },
+        {
+          "latitude": 42.331827,
+          "longitude": -83.0445062
+        },
+        {
+          "latitude": 42.3320978,
+          "longitude": -83.0445076
+        }
+      ]
+    },
+    {
+      "id": "way/107622362",
+      "name": "Campus Martius Fountain",
+      "buildingType": "commercial",
+      "heightMeters": 1.0,
+      "levels": 0,
+      "footprint": [
+        {
+          "latitude": 42.3316335,
+          "longitude": -83.0466616
+        },
+        {
+          "latitude": 42.3316292,
+          "longitude": -83.046443
+        },
+        {
+          "latitude": 42.3314711,
+          "longitude": -83.0464428
+        },
+        {
+          "latitude": 42.3314709,
+          "longitude": -83.0466594
+        }
+      ]
+    },
+    {
+      "id": "way/107622364",
+      "name": "Parc",
+      "buildingType": "yes",
+      "heightMeters": 3.2,
+      "levels": 1,
+      "footprint": [
+        {
+          "latitude": 42.3316411,
+          "longitude": -83.0469401
+        },
+        {
+          "latitude": 42.3316267,
+          "longitude": -83.0469399
+        },
+        {
+          "latitude": 42.3315673,
+          "longitude": -83.0469389
+        },
+        {
+          "latitude": 42.3315554,
+          "longitude": -83.0469387
+        },
+        {
+          "latitude": 42.3315426,
+          "longitude": -83.0469385
+        },
+        {
+          "latitude": 42.3314765,
+          "longitude": -83.0469374
+        },
+        {
+          "latitude": 42.3314769,
+          "longitude": -83.0469062
+        },
+        {
+          "latitude": 42.3314531,
+          "longitude": -83.0469049
+        },
+        {
+          "latitude": 42.3314536,
+          "longitude": -83.0467846
+        },
+        {
+          "latitude": 42.3314755,
+          "longitude": -83.0467855
+        },
+        {
+          "latitude": 42.3314757,
+          "longitude": -83.0467632
+        },
+        {
+          "latitude": 42.3315518,
+          "longitude": -83.046766
+        },
+        {
+          "latitude": 42.3316206,
+          "longitude": -83.0467661
+        },
+        {
+          "latitude": 42.3316204,
+          "longitude": -83.0467886
+        },
+        {
+          "latitude": 42.3316414,
+          "longitude": -83.0467888
+        }
+      ]
+    },
+    {
+      "id": "way/112890057",
+      "name": "1001 Woodward",
+      "buildingType": "commercial",
+      "heightMeters": 103.0,
+      "levels": 25,
+      "footprint": [
+        {
+          "latitude": 42.3318092,
+          "longitude": -83.0474177
+        },
+        {
+          "latitude": 42.3318954,
+          "longitude": -83.0472186
+        },
+        {
+          "latitude": 42.3321398,
+          "longitude": -83.0474123
+        },
+        {
+          "latitude": 42.33224,
+          "longitude": -83.0474917
+        },
+        {
+          "latitude": 42.3321168,
+          "longitude": -83.0477763
+        },
+        {
+          "latitude": 42.3320857,
+          "longitude": -83.0477516
+        },
+        {
+          "latitude": 42.3319557,
+          "longitude": -83.0480517
+        },
+        {
+          "latitude": 42.3318706,
+          "longitude": -83.0479842
+        },
+        {
+          "latitude": 42.3318042,
+          "longitude": -83.0479316
+        },
+        {
+          "latitude": 42.3319327,
+          "longitude": -83.0476349
+        },
+        {
+          "latitude": 42.3319925,
+          "longitude": -83.0476823
+        },
+        {
+          "latitude": 42.3320111,
+          "longitude": -83.0476392
+        },
+        {
+          "latitude": 42.332031,
+          "longitude": -83.0475934
+        }
+      ]
+    },
+    {
+      "id": "way/232392220",
+      "name": "",
+      "buildingType": "retail",
+      "heightMeters": 16.0,
+      "levels": 5,
+      "footprint": [
+        {
+          "latitude": 42.3305004,
+          "longitude": -83.045625
+        },
+        {
+          "latitude": 42.330541,
+          "longitude": -83.0456572
+        },
+        {
+          "latitude": 42.3306772,
+          "longitude": -83.0453436
+        },
+        {
+          "latitude": 42.3306366,
+          "longitude": -83.0453113
+        }
+      ]
+    },
+    {
+      "id": "way/232392221",
+      "name": "",
+      "buildingType": "retail",
+      "heightMeters": 12.8,
+      "levels": 4,
+      "footprint": [
+        {
+          "latitude": 42.3305815,
+          "longitude": -83.0456895
+        },
+        {
+          "latitude": 42.330541,
+          "longitude": -83.0456572
+        },
+        {
+          "latitude": 42.3306772,
+          "longitude": -83.0453436
+        },
+        {
+          "latitude": 42.3307178,
+          "longitude": -83.0453758
+        }
+      ]
+    },
+    {
+      "id": "way/784224245",
+      "name": "One Campus Martius",
+      "buildingType": "commercial",
+      "heightMeters": 51.2,
+      "levels": 16,
+      "footprint": [
+        {
+          "latitude": 42.3329663,
+          "longitude": -83.0475836
+        },
+        {
+          "latitude": 42.3331166,
+          "longitude": -83.0472368
+        },
+        {
+          "latitude": 42.3331197,
+          "longitude": -83.0472394
+        },
+        {
+          "latitude": 42.3333317,
+          "longitude": -83.0467317
+        },
+        {
+          "latitude": 42.3333341,
+          "longitude": -83.0467231
+        },
+        {
+          "latitude": 42.3333351,
+          "longitude": -83.0467138
+        },
+        {
+          "latitude": 42.333334,
+          "longitude": -83.0467045
+        },
+        {
+          "latitude": 42.3333314,
+          "longitude": -83.0466941
+        },
+        {
+          "latitude": 42.3331251,
+          "longitude": -83.0462104
+        },
+        {
+          "latitude": 42.3331218,
+          "longitude": -83.0462125
+        },
+        {
+          "latitude": 42.3331104,
+          "longitude": -83.0461845
+        },
+        {
+          "latitude": 42.333183,
+          "longitude": -83.0461285
+        },
+        {
+          "latitude": 42.3332499,
+          "longitude": -83.0460769
+        },
+        {
+          "latitude": 42.3332364,
+          "longitude": -83.0460451
+        },
+        {
+          "latitude": 42.3332342,
+          "longitude": -83.0460398
+        },
+        {
+          "latitude": 42.3331178,
+          "longitude": -83.0457621
+        },
+        {
+          "latitude": 42.3330499,
+          "longitude": -83.0458138
+        },
+        {
+          "latitude": 42.3329784,
+          "longitude": -83.0458683
+        },
+        {
+          "latitude": 42.3329741,
+          "longitude": -83.0458565
+        },
+        {
+          "latitude": 42.3322896,
+          "longitude": -83.0463828
+        },
+        {
+          "latitude": 42.3322896,
+          "longitude": -83.0464721
+        },
+        {
+          "latitude": 42.3322861,
+          "longitude": -83.046964
+        },
+        {
+          "latitude": 42.3322862,
+          "longitude": -83.0470487
+        }
+      ]
+    },
+    {
+      "id": "way/1201141667",
+      "name": "",
+      "buildingType": "canopy",
+      "heightMeters": 0.0,
+      "levels": 0,
+      "footprint": [
+        {
+          "latitude": 42.3318803,
+          "longitude": -83.0464816
+        },
+        {
+          "latitude": 42.3318825,
+          "longitude": -83.0466304
+        },
+        {
+          "latitude": 42.3317308,
+          "longitude": -83.0466322
+        },
+        {
+          "latitude": 42.331729,
+          "longitude": -83.046481
+        }
+      ]
+    },
+    {
+      "id": "way/1201141668",
+      "name": "Bandshell",
+      "buildingType": "canopy",
+      "heightMeters": 0.0,
+      "levels": 0,
+      "footprint": [
+        {
+          "latitude": 42.3319972,
+          "longitude": -83.0465042
+        },
+        {
+          "latitude": 42.3320515,
+          "longitude": -83.0465013
+        },
+        {
+          "latitude": 42.3320559,
+          "longitude": -83.0465254
+        },
+        {
+          "latitude": 42.3320585,
+          "longitude": -83.0465575
+        },
+        {
+          "latitude": 42.3320545,
+          "longitude": -83.0465848
+        },
+        {
+          "latitude": 42.332049,
+          "longitude": -83.04661
+        },
+        {
+          "latitude": 42.3319966,
+          "longitude": -83.0466092
+        }
+      ]
+    },
+    {
+      "id": "way/1307535737",
+      "name": "Brisabar",
+      "buildingType": "yes",
+      "heightMeters": 0.0,
+      "levels": 0,
+      "footprint": [
+        {
+          "latitude": 42.3314094,
+          "longitude": -83.0466541
+        },
+        {
+          "latitude": 42.331409,
+          "longitude": -83.0464375
+        },
+        {
+          "latitude": 42.3312679,
+          "longitude": -83.0464359
+        },
+        {
+          "latitude": 42.3312531,
+          "longitude": -83.0466553
+        }
+      ]
+    },
+    {
+      "id": "way/1362407485",
+      "name": "",
+      "buildingType": "yes",
+      "heightMeters": 0.0,
+      "levels": 0,
+      "footprint": [
+        {
+          "latitude": 42.3308887,
+          "longitude": -83.046972
+        },
+        {
+          "latitude": 42.3308603,
+          "longitude": -83.0469486
+        },
+        {
+          "latitude": 42.3308702,
+          "longitude": -83.0469268
+        },
+        {
+          "latitude": 42.3308848,
+          "longitude": -83.0468943
+        },
+        {
+          "latitude": 42.3309132,
+          "longitude": -83.0469177
+        }
+      ]
+    },
+    {
+      "id": "way/1461996124",
+      "name": "COSM",
+      "buildingType": "construction",
+      "heightMeters": 0.0,
+      "levels": 0,
+      "footprint": [
+        {
+          "latitude": 42.3318298,
+          "longitude": -83.0450782
+        },
+        {
+          "latitude": 42.3318274,
+          "longitude": -83.0456559
+        },
+        {
+          "latitude": 42.3321113,
+          "longitude": -83.0456576
+        },
+        {
+          "latitude": 42.3323406,
+          "longitude": -83.0455055
+        },
+        {
+          "latitude": 42.3321867,
+          "longitude": -83.0450809
+        },
+        {
+          "latitude": 42.332093,
+          "longitude": -83.0450803
+        }
+      ]
+    }
+  ]
+}
