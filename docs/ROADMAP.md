@@ -2,7 +2,7 @@
 
 ## M0 — Voxel Foundation
 
-### Code now
+### Code complete
 - [x] Core scale constants
 - [x] Block IDs
 - [x] Chunk voxel storage
@@ -11,32 +11,47 @@
 - [x] Runtime chunk view
 - [x] Test chunk bootstrap
 - [x] Detroit geographic-to-local-meter conversion
+- [x] World data service keyed by chunk coordinate
+- [x] Configurable horizontal multi-chunk streaming
+- [x] View unloading outside render radius
+- [x] Neighbor-aware chunk-boundary face culling
+- [x] Deterministic prototype chunk generation
 
 ### Requires Unity/editor verification
 - [ ] Create/open Unity project around this repository
 - [ ] Resolve any API/version compile differences
 - [ ] Enter Play Mode and render first chunk
+- [ ] Move across a 3×3/5×5 streamed area
+- [ ] Verify chunk seams have no duplicate/internal faces
 - [ ] Confirm collider behavior
-- [ ] Profile one chunk
+- [ ] Profile representative chunks
 
-### Next engineering
-- [ ] Multi-chunk world service
-- [ ] Neighbor-aware meshing
-- [ ] Chunk streaming radius
+### Next optimization
 - [ ] Greedy meshing
+- [ ] Background mesh generation
 - [ ] Save/load prototype
+- [ ] Separate simulation and rendering distance
 
 ## M1 — First Detroit Block
 
-- [ ] Choose exact Downtown test bounds
-- [ ] Define import JSON schema
-- [ ] Build map-data ingestion tool
-- [ ] Convert lat/lon to local meters
-- [ ] Rasterize road surfaces
-- [ ] Rasterize building footprints
-- [ ] Add simple procedural walls/roofs
-- [ ] Compare generated block against source map data
-- [ ] Replace one landmark with handcrafted version
+### Code complete
+- [x] Choose fixed Downtown prototype bounds
+- [x] Record OpenStreetMap source/licensing requirements
+- [x] Define intermediate road/building JSON schema
+- [x] Add Overpass editor download/conversion tool
+- [x] Convert latitude/longitude to local meters/voxels
+- [x] Rasterize road centerlines with approximate width
+- [x] Rasterize building footprints
+- [x] Extrude simple building wall/roof shells
+- [x] Runtime bootstrap for imported JSON
+
+### Requires Unity/editor verification
+- [ ] Run the OSM importer
+- [ ] Inspect generated intermediate JSON
+- [ ] Render the imported Downtown block
+- [ ] Compare road/building layout against source geography
+- [ ] Tune road width and building-height fallbacks
+- [ ] Replace one landmark with a handcrafted version
 
 **Exit condition:** the block is recognizable from its real-world layout.
 

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using VoxDetroit.Core;
+using VoxDetroit.World;
 
 namespace VoxDetroit.Voxels
 {
@@ -28,6 +29,17 @@ namespace VoxDetroit.Voxels
 
         public static Mesh Build(VoxelChunkData chunk)
         {
+            return Build(
+                chunk,
+                new ChunkCoord(0, 0, 0),
+                null);
+        }
+
+        public static Mesh Build(
+            VoxelChunkData chunk,
+            ChunkCoord coord,
+            IVoxelBlockSource neighborSource)
+        {
             float scale = VoxDetroitConstants.VoxelSizeMeters;
             int size = VoxDetroitConstants.ChunkSize;
 
@@ -50,27 +62,39 @@ namespace VoxDetroit.Voxels
 
                         for (int face = 0; face < 6; face++)
                         {
-                            Vector3Int offset = NeighborOffsets[face];
-                            int nx = x + offset.x;
-                            int ny = y + offset.y;
-                            int nz = z + offset.z;
-
-                            bool neighborInside = chunk.TryGet(nx, ny, nz, out BlockId neighbor);
-                            if (neighborInside && BlockCatalog.OccludesFace(neighbor))
+                            if (FaceIsOccluded(
+                                chunk,
+                                coord,
+                                neighborSource,
+                                x,
+                                y,
+                                z,
+                                face))
                             {
                                 continue;
                             }
 
-                            AddFace(vertices, triangles, normals, uvs, x, y, z, face, scale);
+                            AddFace(
+                                vertices,
+                                triangles,
+                                normals,
+                                uvs,
+                                x,
+                                y,
+                                z,
+                                face,
+                                scale);
                         }
                     }
                 }
             }
 
-            var mesh = new Mesh { name = "Voxel Chunk Mesh" };
+            var mesh = new Mesh { name = $"Voxel Chunk {coord}" };
+
             if (vertices.Count > 65535)
             {
-                mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
+                mesh.indexFormat =
+                    UnityEngine.Rendering.IndexFormat.UInt32;
             }
 
             mesh.SetVertices(vertices);
@@ -78,7 +102,45 @@ namespace VoxDetroit.Voxels
             mesh.SetNormals(normals);
             mesh.SetUVs(0, uvs);
             mesh.RecalculateBounds();
+
             return mesh;
+        }
+
+        private static bool FaceIsOccluded(
+            VoxelChunkData chunk,
+            ChunkCoord coord,
+            IVoxelBlockSource neighborSource,
+            int x,
+            int y,
+            int z,
+            int face)
+        {
+            Vector3Int offset = NeighborOffsets[face];
+
+            int nx = x + offset.x;
+            int ny = y + offset.y;
+            int nz = z + offset.z;
+
+            if (chunk.TryGet(nx, ny, nz, out BlockId localNeighbor))
+            {
+                return BlockCatalog.OccludesFace(localNeighbor);
+            }
+
+            if (neighborSource == null)
+            {
+                return false;
+            }
+
+            int worldX = coord.WorldVoxelOriginX + x + offset.x;
+            int worldY = coord.WorldVoxelOriginY + y + offset.y;
+            int worldZ = coord.WorldVoxelOriginZ + z + offset.z;
+
+            return neighborSource.TryGetBlock(
+                       worldX,
+                       worldY,
+                       worldZ,
+                       out BlockId worldNeighbor) &&
+                   BlockCatalog.OccludesFace(worldNeighbor);
         }
 
         private static void AddFace(
@@ -93,11 +155,15 @@ namespace VoxDetroit.Voxels
             float scale)
         {
             int start = vertices.Count;
-            Vector3 origin = new Vector3(x * scale, y * scale, z * scale);
+            Vector3 origin = new Vector3(
+                x * scale,
+                y * scale,
+                z * scale);
 
             for (int i = 0; i < 4; i++)
             {
-                vertices.Add(origin + FaceCorners[face, i] * scale);
+                vertices.Add(
+                    origin + FaceCorners[face, i] * scale);
                 normals.Add(NeighborOffsets[face]);
             }
 

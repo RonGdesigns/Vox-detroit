@@ -10,6 +10,10 @@ namespace VoxDetroit.World
         public readonly int Y;
         public readonly int Z;
 
+        public int WorldVoxelOriginX => X * VoxDetroitConstants.ChunkSize;
+        public int WorldVoxelOriginY => Y * VoxDetroitConstants.ChunkSize;
+        public int WorldVoxelOriginZ => Z * VoxDetroitConstants.ChunkSize;
+
         public ChunkCoord(int x, int y, int z)
         {
             X = x;
@@ -24,6 +28,18 @@ namespace VoxDetroit.World
                 FloorDiv(x, size),
                 FloorDiv(y, size),
                 FloorDiv(z, size));
+        }
+
+        public static ChunkCoord FromWorldMeters(
+            double xMeters,
+            double yMeters,
+            double zMeters)
+        {
+            double voxelSize = VoxDetroitConstants.VoxelSizeMeters;
+            int x = (int)Math.Floor(xMeters / voxelSize);
+            int y = (int)Math.Floor(yMeters / voxelSize);
+            int z = (int)Math.Floor(zMeters / voxelSize);
+            return FromWorldVoxel(x, y, z);
         }
 
         public static int ToLocalVoxel(int worldVoxel)
@@ -61,10 +77,13 @@ namespace VoxDetroit.World
         {
             int quotient = value / divisor;
             int remainder = value % divisor;
-            if (remainder != 0 && ((remainder < 0) != (divisor < 0)))
+
+            if (remainder != 0 &&
+                ((remainder < 0) != (divisor < 0)))
             {
                 quotient--;
             }
+
             return quotient;
         }
 
