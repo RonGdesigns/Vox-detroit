@@ -44,7 +44,12 @@ namespace VoxDetroit.Editor
                     NewSceneSetup.EmptyScene,
                     NewSceneMode.Single);
 
-            Camera camera = CreateCamera();
+            Transform streamingFocus =
+                CreateStreamingFocus();
+
+            Camera camera =
+                CreateCamera();
+
             CreateSun();
 
             GameObject worldObject =
@@ -56,9 +61,11 @@ namespace VoxDetroit.Editor
             DetroitImportBootstrap importer =
                 worldObject.AddComponent<DetroitImportBootstrap>();
 
+            worldObject.AddComponent<PrototypeRuntimeDiagnostics>();
+
             ConfigureStreamer(
                 streamer,
-                camera.transform);
+                streamingFocus);
 
             ConfigureImporter(
                 importer,
@@ -80,6 +87,17 @@ namespace VoxDetroit.Editor
                 ". Enter Play Mode to import and render the city slice.");
         }
 
+        private static Transform CreateStreamingFocus()
+        {
+            var focusObject =
+                new GameObject("Downtown Streaming Focus");
+
+            focusObject.transform.position =
+                Vector3.zero;
+
+            return focusObject.transform;
+        }
+
         private static Camera CreateCamera()
         {
             var cameraObject =
@@ -91,18 +109,18 @@ namespace VoxDetroit.Editor
                 cameraObject.AddComponent<Camera>();
 
             camera.nearClipPlane = 0.1f;
-            camera.farClipPlane = 2000f;
+            camera.farClipPlane = 2500f;
 
             camera.transform.position =
                 new Vector3(
                     0f,
-                    110f,
-                    -130f);
+                    150f,
+                    -210f);
 
             camera.transform.LookAt(
                 new Vector3(
                     0f,
-                    25f,
+                    35f,
                     0f));
 
             return camera;
@@ -130,17 +148,17 @@ namespace VoxDetroit.Editor
 
         private static void ConfigureStreamer(
             VoxelWorldStreamer streamer,
-            Transform cameraTransform)
+            Transform streamingFocus)
         {
             var serialized =
                 new SerializedObject(streamer);
 
             serialized.FindProperty("focus")
                 .objectReferenceValue =
-                cameraTransform;
+                streamingFocus;
 
             serialized.FindProperty("renderRadius")
-                .intValue = 6;
+                .intValue = 8;
 
             serialized.FindProperty(
                     "generatePrototypeChunks")

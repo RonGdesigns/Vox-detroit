@@ -13,7 +13,8 @@ namespace VoxDetroit.Detroit
 
         private void Awake()
         {
-            _streamer = GetComponent<VoxelWorldStreamer>();
+            _streamer =
+                GetComponent<VoxelWorldStreamer>();
 
             if (importOnAwake)
             {
@@ -59,7 +60,8 @@ namespace VoxDetroit.Detroit
 
             Debug.Log(
                 $"Imported {document.areaName}: " +
-                $"{_streamer.World.ChunkCount} chunks.");
+                $"{_streamer.World.ChunkCount} world chunks, " +
+                $"{_streamer.ResidentViewCount} currently rendered.");
         }
     }
 }
